@@ -91,6 +91,17 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
     onClose?.();
   };
 
+  const handleFinish = () => {
+    handleClose();
+    // Scroll to login section
+    setTimeout(() => {
+      const loginSection = document.getElementById("login");
+      if (loginSection) {
+        loginSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   const step = DEMO_STEPS[currentStep];
   const progress = ((currentStep + 1) / DEMO_STEPS.length) * 100;
 
