@@ -9,7 +9,7 @@ interface UserMessageProps {
 
 export function UserMessage({ message }: UserMessageProps) {
   return (
-    <div className="flex justify-end mb-0.5 animate-in slide-in-from-right-2 duration-500">
+    <div className="flex justify-end mb-0.25 animate-in slide-in-from-right-2 duration-500">
       <div className="flex items-end gap-2 max-w-[85%]">
         {/* Ultra-Compact Message Card */}
         <Card
