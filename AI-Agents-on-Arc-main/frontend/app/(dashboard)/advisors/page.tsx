@@ -183,28 +183,30 @@ export default function AdvisorsPage() {
             </div>
           )}
 
-          {/* Key Stats Footer */}
-          <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
-            <CardContent className="p-6">
-              <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
-                Advisor Specializations
-              </h3>
+          {/* Key Stats Footer - Only in Full Analysis Mode */}
+          {showFullAnalysis && (
+            <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+              <CardContent className="p-6">
+                <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
+                  Advisor Specializations
+                </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[
-                  { label: "Retirement Planning", value: "2", color: "text-[#ccff00]" },
-                  { label: "Tax Optimization", value: "2", color: "text-green-400" },
-                  { label: "Investment Strategy", value: "2", color: "text-emerald-400" },
-                  { label: "Estate Planning", value: "1", color: "text-orange-400" },
-                ].map((spec, idx) => (
-                  <div key={idx} className="text-center p-4 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20 hover:border-[#ccff00]/60 transition-all">
-                    <p className={`text-2xl font-bold ${spec.color} mb-1`}>{spec.value}</p>
-                    <p className="text-xs text-white/60">{spec.label}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { label: "Retirement Planning", value: "2", color: "text-[#ccff00]" },
+                    { label: "Tax Optimization", value: "2", color: "text-green-400" },
+                    { label: "Investment Strategy", value: "2", color: "text-emerald-400" },
+                    { label: "Estate Planning", value: "1", color: "text-orange-400" },
+                  ].map((spec, idx) => (
+                    <div key={idx} className="text-center p-4 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20 hover:border-[#ccff00]/60 transition-all">
+                      <p className={`text-2xl font-bold ${spec.color} mb-1`}>{spec.value}</p>
+                      <p className="text-xs text-white/60">{spec.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
 
