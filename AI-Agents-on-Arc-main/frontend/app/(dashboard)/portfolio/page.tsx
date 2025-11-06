@@ -7,6 +7,7 @@ import { PortfolioSnapshotData } from "@/lib/types/portfolio";
 import { PortfolioAgentCollaboration } from "@/components/portfolio/PortfolioAgentCollaboration";
 import { PortfolioExplainableInsights } from "@/components/portfolio/PortfolioExplainableInsights";
 import { OptimizedAIAssistant } from "@/components/spending/OptimizedAIAssistant";
+import { FloatingPortfolioChat } from "@/components/portfolio/FloatingPortfolioChat";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, TrendingUp, TrendingDown, Zap, DollarSign } from "lucide-react";
 
