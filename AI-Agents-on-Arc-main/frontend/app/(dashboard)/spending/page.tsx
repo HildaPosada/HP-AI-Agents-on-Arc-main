@@ -215,30 +215,32 @@ export default function SpendingPage() {
             </div>
           </div>
 
-          {/* Key Stats Footer */}
-          <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
-            <CardContent className="p-6">
-              <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
-                Your Financial Health Score
-              </h3>
+          {/* Key Stats Footer - Only in Full Analysis Mode */}
+          {showFullAnalysis && (
+            <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+              <CardContent className="p-6">
+                <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
+                  Your Financial Health Score
+                </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[
-                  { label: "Emergency Fund", value: "4 months", color: "text-[#ccff00]" },
-                  { label: "Savings Rate", value: "26.6%", color: "text-green-400" },
-                  { label: "Debt Ratio", value: "None", color: "text-green-400" },
-                  { label: "Budget Health", value: "95%", color: "text-[#ccff00]" },
-                ].map((stat, idx) => (
-                  <div key={idx} className="text-center p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
-                    <p className={`text-xl sm:text-2xl font-bold ${stat.color} mb-1`}>
-                      {stat.value}
-                    </p>
-                    <p className="text-xs text-white/60">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { label: "Emergency Fund", value: "4 months", color: "text-[#ccff00]" },
+                    { label: "Savings Rate", value: "26.6%", color: "text-green-400" },
+                    { label: "Debt Ratio", value: "None", color: "text-green-400" },
+                    { label: "Budget Health", value: "95%", color: "text-[#ccff00]" },
+                  ].map((stat, idx) => (
+                    <div key={idx} className="text-center p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                      <p className={`text-xl sm:text-2xl font-bold ${stat.color} mb-1`}>
+                        {stat.value}
+                      </p>
+                      <p className="text-xs text-white/60">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
 
