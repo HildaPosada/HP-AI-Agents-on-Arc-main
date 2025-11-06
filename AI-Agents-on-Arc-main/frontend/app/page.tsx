@@ -482,14 +482,18 @@ export default function Home() {
           <p>Built for AI Agents on Arc with USDC Hackathon</p>
           <div className="flex items-center gap-4">
             <a
-              href="#"
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-[#ccff00] transition-colors flex items-center gap-2"
             >
               <Github className="h-4 w-4" />
               GitHub
             </a>
             <a
-              href="#"
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/blob/flare-space/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-[#ccff00] transition-colors flex items-center gap-2"
             >
               <ExternalLink className="h-4 w-4" />
