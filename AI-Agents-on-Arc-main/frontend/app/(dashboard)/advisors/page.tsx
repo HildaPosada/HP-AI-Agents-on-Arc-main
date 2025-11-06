@@ -16,6 +16,7 @@ export default function AdvisorsPage() {
   const [snapshotLoaded, setSnapshotLoaded] = useState(false);
   const [_advisorsData, setAdvisorsData] =
     useState<AdvisorsSnapshotData | null>(null);
+  const [showFullAnalysis, setShowFullAnalysis] = useState(false);
 
   const handleSnapshotDataLoaded = useCallback((data: AdvisorsSnapshotData) => {
     console.log("[ADVISORS PAGE] 📋 Snapshot data loaded:", data);
