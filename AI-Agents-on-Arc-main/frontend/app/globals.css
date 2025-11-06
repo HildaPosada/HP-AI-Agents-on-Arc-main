@@ -1,55 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  /* Base colors - Clean white background */
-  --background: #ffffff;
-  --foreground: #0f172a;
+  /* Robinhood-inspired dark theme */
+  --background: #0f0f0f;
+  --foreground: #ffffff;
   
-  /* Primary - Emerald Green for banking */
-  --primary: #059669;
-  --primary-foreground: #ffffff;
+  /* Neon lime for primary actions */
+  --primary: #ccff00;
+  --primary-foreground: #0f0f0f;
   
-  /* Secondary and muted colors */
-  --secondary: #f8fafc;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
+  /* Secondary colors */
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #a0a0a0;
   
   /* Accent colors */
-  --accent: #10b981;
-  --accent-foreground: #ffffff;
+  --accent: #ccff00;
+  --accent-foreground: #0f0f0f;
   
   /* Border and input colors */
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #059669;
+  --border: #333333;
+  --input: #2a2a2a;
+  --ring: #ccff00;
   
-  /* Destructive colors - Modern red */
-  --destructive: #ef4444;
+  /* Destructive colors */
+  --destructive: #ff4444;
   --destructive-foreground: #ffffff;
   
-  /* Success colors - Emerald */
-  --success: #10b981;
-  --success-foreground: #ffffff;
+  /* Success colors */
+  --success: #00dd77;
+  --success-foreground: #0f0f0f;
   
   /* Card colors */
-  --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
   
   /* Popover colors */
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
   
-  /* Sidebar colors - Modern dark blue */
-  --sidebar-bg: #1e293b;
+  /* Sidebar colors */
+  --sidebar-bg: #0a0a0a;
   --sidebar-foreground: #ffffff;
-  --sidebar-border: #334155;
+  --sidebar-border: #2a2a2a;
   
-  /* Additional banking colors */
-  --income-color: #10b981;
-  --expense-color: #ef4444;
-  --warning-color: #f59e0b;
-  --info-color: #3b82f6;
+  /* Banking colors */
+  --income-color: #00dd77;
+  --expense-color: #ff4444;
+  --warning-color: #ffaa00;
+  --info-color: #4488ff;
 }
 
 @theme inline {
@@ -78,78 +78,48 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Base colors - dark mode */
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    
-    /* Primary - Emerald Green - same in both modes */
-    --primary: #10b981;
-    --primary-foreground: #ffffff;
-    
-    /* Secondary and muted colors - dark mode */
-    --secondary: #1e293b;
-    --secondary-foreground: #f1f5f9;
-    --muted: #334155;
-    --muted-foreground: #cbd5e1;
-    
-    /* Accent colors - dark mode */
-    --accent: #06b6d4;
-    --accent-foreground: #ffffff;
-    
-    /* Border and input colors - dark mode */
-    --border: #334155;
-    --input: #334155;
-    --ring: #10b981;
-    
-    /* Card colors - dark mode */
-    --card: #1e293b;
-    --card-foreground: #f1f5f9;
-    
-    /* Popover colors - dark mode */
-    --popover: #1e293b;
-    --popover-foreground: #f1f5f9;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Global utility classes */
+/* Glass effect for cards */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .glass-effect {
-    background: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+/* Neon lime accent text */
+.neon-text {
+  color: var(--primary);
 }
 
-/* Card styles for modern banking look */
+/* Bold typography for Robinhood style */
+.heading-bold {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Card modern style */
 .card-modern {
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 .card-modern:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(5, 150, 105, 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(204, 255, 0, 0.15);
   transform: translateY(-2px);
 }
 
-/* Gradient text for headings */
+/* Gradient text for accents */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, #ccff00, #00dd77);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
