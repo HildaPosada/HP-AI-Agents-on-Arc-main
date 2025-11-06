@@ -137,19 +137,43 @@ export default function SpendingPage() {
             </Card>
           </div>
 
-          {/* Two-Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column - Analysis (2 columns wide) */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Agent Collaboration Flow */}
-              <AgentCollaborationFlow />
-
-              {/* Explainable Insights */}
-              <ExplainableInsights />
+          {/* View Full Analysis Toggle - Robinhood Minimalist Style */}
+          {!showFullAnalysis && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setShowFullAnalysis(true)}
+                className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+              >
+                View Full Analysis
+              </button>
             </div>
+          )}
+
+          {/* Two-Column Layout */}
+          <div className={`grid grid-cols-1 ${showFullAnalysis ? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
+            {/* Left Column - Analysis (shown only in full mode) */}
+            {showFullAnalysis && (
+              <div className="lg:col-span-2 space-y-6">
+                {/* Hide Full Analysis Button */}
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => setShowFullAnalysis(false)}
+                    className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+                  >
+                    Hide Full Analysis
+                  </button>
+                </div>
+
+                {/* Agent Collaboration Flow */}
+                <AgentCollaborationFlow />
+
+                {/* Explainable Insights */}
+                <ExplainableInsights />
+              </div>
+            )}
 
             {/* Right Column - USDC & Assistant */}
-            <div className="space-y-6">
+            <div className={`${showFullAnalysis ? "" : "lg:col-span-1"} space-y-6`}>
               {/* USDC Balance */}
               <USDCTransactionCard
                 totalUSADCBalance={3500.5}
