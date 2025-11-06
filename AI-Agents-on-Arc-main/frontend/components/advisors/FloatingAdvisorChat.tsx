@@ -63,7 +63,11 @@ export function FloatingAdvisorChat({
           ></div>
 
           {/* Modal - slides in from right - Non-blocking */}
-          <div className="fixed bottom-0 right-0 top-0 z-50 w-full sm:w-96 lg:w-[28rem] bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto">
+          <div className={`fixed bottom-0 right-0 z-50 bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto ${
+            isCollapsed
+              ? "top-auto h-16 w-full sm:w-96 lg:w-[28rem] rounded-tl-2xl"
+              : "top-0 h-full w-full sm:w-96 lg:w-[28rem]"
+          }`}>
             {/* Header */}
             <div className="flex-shrink-0 p-4 border-b border-[#ccff00]/20 bg-[#1a1a1a]">
               <div className="flex items-center justify-between gap-3">
