@@ -320,7 +320,7 @@ export default function Home() {
               className="px-6 sm:px-8 py-3 sm:py-4 border border-[#ccff00]/30 text-[#ccff00] font-bold rounded-lg hover:border-[#ccff00] hover:bg-[#ccff00]/10 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-              View Code
+              GitHub
             </a>
           </div>
 
