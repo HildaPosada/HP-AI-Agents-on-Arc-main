@@ -182,13 +182,20 @@ export function Sidebar() {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="sm:hidden fixed inset-0 z-40 bg-black/50 top-14">
-          <div className="absolute top-14 left-0 right-0 bg-[#0a0a0a] border-b border-[#ccff00]/10 max-h-[calc(100vh-56px)] overflow-y-auto">
-            <div className="flex flex-col">
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="sm:hidden fixed inset-0 z-30 bg-black/50 top-14"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+
+          {/* Drawer menu panel */}
+          <div className="sm:hidden fixed top-14 left-0 right-0 bottom-0 z-40 bg-[#0a0a0a] border-b border-[#ccff00]/10 overflow-y-auto">
+            <div className="flex flex-col h-full">
               <SidebarContent />
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
