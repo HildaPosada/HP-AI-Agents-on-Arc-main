@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdvisorsSnapshot } from "@/components/advisors/AdvisorsSnapshot";
+import { AdvisorsCard } from "@/components/advisors/AdvisorsCard";
 import { FloatingAdvisorChat } from "@/components/advisors/FloatingAdvisorChat";
 import { AdvisorsSnapshotData } from "@/lib/types/advisors";
 
@@ -29,6 +30,35 @@ export default function AdvisorsPage() {
       setSnapshotLoaded(false);
     }
   }, []);
+
+  // Load advisor data upfront
+  useEffect(() => {
+    const loadAdvisorsData = async () => {
+      // Simulate loading delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      const dummyData: AdvisorsSnapshotData = {
+        advisors: [
+          "Sarah Johnson - Retirement Planning (⭐ 4.8/5)",
+          "Michael Chen - Investment Strategy (⭐ 4.9/5)",
+          "Emily Davis - Tax Optimization (⭐ 4.7/5)",
+          "Robert Martinez - Estate Planning (⭐ 4.6/5)",
+          "Lisa Anderson - College Savings (⭐ 4.8/5)",
+        ],
+        meetings: [
+          "Q4 Portfolio Review with Michael Chen - Nov 18, 2024 at 2:00 PM",
+          "Tax Planning Session with Emily Davis - Dec 15, 2024 at 10:00 AM",
+          "Retirement Goals Check-in with Sarah Johnson - Jan 5, 2025 at 3:30 PM",
+        ],
+      };
+
+      setAdvisorsData(dummyData);
+    };
+
+    if (!isLoading && isAuthenticated) {
+      loadAdvisorsData();
+    }
+  }, [isLoading, isAuthenticated]);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
