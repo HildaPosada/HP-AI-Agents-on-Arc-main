@@ -28,10 +28,8 @@ export function SpendingSnapshot({
     setIsLoading(true);
     onLoadingStateChange?.(true);
 
-    // Simulate loading delay for better UX
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    // Use dummy data directly
     console.log("[FRONTEND] 📊 Loading demo data for presentation");
     const dummyData: SpendingSnapshotData = {
       income: 8500,
@@ -63,44 +61,39 @@ export function SpendingSnapshot({
     }
   }, [userId, fetchSpendingData]);
 
-  // Loading state
   if (isLoading) {
     return (
       <div className="h-full flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent relative">
-        {/* Glass loading card */}
-        <div className="bg-card/90 backdrop-blur-md border border-border/50 rounded-xl p-8 shadow-lg relative overflow-hidden">
+        <div className="bg-card/90 backdrop-blur-md border border-border/50 rounded-3xl p-8 shadow-lg relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
 
           <div className="relative flex flex-col items-center space-y-6">
-            {/* Animated ArcFi logo */}
             <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-cyan-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
+              <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
                 <span className="text-white font-bold text-lg">ArcFi</span>
               </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-cyan-400 rounded-full animate-pulse" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full animate-pulse" />
             </div>
 
-            {/* Loading spinner */}
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
 
             <div className="text-center space-y-2">
               <p className="text-foreground font-semibold">
                 Analyzing Financial Data
               </p>
               <p className="text-muted-foreground text-sm">
-                AI is processing your spending patterns...
+                Processing your spending patterns...
               </p>
             </div>
 
-            {/* Progress dots */}
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"
                 style={{ animationDelay: "0.3s" }}
               />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"
                 style={{ animationDelay: "0.6s" }}
               />
             </div>
@@ -110,14 +103,13 @@ export function SpendingSnapshot({
     );
   }
 
-  // Error state
   if (error) {
     return (
       <div className="h-full p-6 flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent">
         <div className="w-full max-w-md">
           <Alert
             variant="destructive"
-            className="bg-card/90 backdrop-blur-md border-destructive/20 shadow-lg relative overflow-hidden"
+            className="bg-card/90 backdrop-blur-md border-destructive/20 shadow-lg relative overflow-hidden rounded-3xl"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
             <div className="relative">
@@ -133,7 +125,7 @@ export function SpendingSnapshot({
                   variant="outline"
                   size="sm"
                   onClick={fetchSpendingData}
-                  className="self-start bg-background/50 hover:bg-background border-destructive/30 hover:border-destructive/50 text-destructive hover:text-destructive"
+                  className="self-start bg-background/50 hover:bg-background border-destructive/30 hover:border-destructive/50 text-destructive hover:text-destructive rounded-2xl"
                 >
                   <div className="flex items-center gap-2">
                     <Loader2 className="h-4 w-4" />
@@ -148,7 +140,6 @@ export function SpendingSnapshot({
     );
   }
 
-  // Success state - render the dashboard
   console.log("[FRONTEND] 🎨 Rendering dashboard with data:");
   console.log("[FRONTEND] 🎨 Income:", data?.income);
   console.log("[FRONTEND] 🎨 Expenses:", data?.expenses);
@@ -161,15 +152,12 @@ export function SpendingSnapshot({
   );
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent relative">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)] pointer-events-none" />
+    <div className="h-full flex flex-col bg-gradient-to-br from-white/50 via-slate-50/30 to-white/50 dark:from-slate-900/10 dark:via-slate-800/5 dark:to-slate-900/10 relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.03),transparent_50%)] pointer-events-none" />
 
-      {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6 space-y-8">
+        <div className="p-8 space-y-8">
           <div className="relative space-y-8">
-            {/* Income and Expenses Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <SpendingCard
                 title="Income"
@@ -183,12 +171,10 @@ export function SpendingSnapshot({
               />
             </div>
 
-            {/* Activities List */}
             <div className="transform hover:scale-[1.01] transition-transform duration-300">
               <ActivitiesList activities={data?.activities || []} />
             </div>
 
-            {/* Financial Insights */}
             <div className="transform hover:scale-[1.01] transition-transform duration-300">
               <InsightsCard insights={data?.insights || ""} />
             </div>
