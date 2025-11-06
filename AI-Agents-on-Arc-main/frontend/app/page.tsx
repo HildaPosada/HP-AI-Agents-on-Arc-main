@@ -103,7 +103,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
                   {[
                     { name: "Spending Agent", emoji: "💰" },
-                    { name: "Portfolio Agent", emoji: "📈" },
+                    { name: "Portfolio Agent", emoji: "��" },
                     { name: "Goals Agent", emoji: "🎯" },
                     { name: "Perks Agent", emoji: "🎁" },
                     { name: "Advisors Agent", emoji: "👨‍💼" },
@@ -483,7 +483,7 @@ export default function Home() {
           <p>Built for AI Agents on Arc with USDC Hackathon</p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#ccff00] transition-colors flex items-center gap-2"
