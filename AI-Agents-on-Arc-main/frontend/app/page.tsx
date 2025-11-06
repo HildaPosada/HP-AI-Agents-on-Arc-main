@@ -37,6 +37,11 @@ export default function Home() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDemoTutorial, setShowDemoTutorial] = useState(false);
 
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleGrantPermissions = () => {
     setShowAgentPermissions(false);
     router.push("/spending");
