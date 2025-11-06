@@ -180,36 +180,35 @@ export default function Home() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              <button
-                onClick={() => setActiveTab("features")}
-                className={`text-xs sm:text-sm font-medium transition-colors ${
-                  activeTab === "features"
-                    ? "text-[#ccff00]"
-                    : "text-white/60 hover:text-white"
-                }`}
+              <a
+                href="#agents"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
               >
-                Features
-              </button>
-              <button
-                onClick={() => setActiveTab("tech")}
-                className={`text-xs sm:text-sm font-medium transition-colors ${
-                  activeTab === "tech"
-                    ? "text-[#ccff00]"
-                    : "text-white/60 hover:text-white"
-                }`}
+                Meet Your AI Team
+              </a>
+              <a
+                href="#tech"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
               >
                 Technology
-              </button>
-              <button
-                onClick={() => setActiveTab("agents")}
-                className={`text-xs sm:text-sm font-medium transition-colors ${
-                  activeTab === "agents"
-                    ? "text-[#ccff00]"
-                    : "text-white/60 hover:text-white"
-                }`}
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
               >
-                Agents
-              </button>
+                <Github className="h-4 w-4" />
+                View Code
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/blob/flare-space/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
+              >
+                Docs
+              </a>
               <Button
                 onClick={() => setShowDemoTutorial(true)}
                 variant="ghost"
