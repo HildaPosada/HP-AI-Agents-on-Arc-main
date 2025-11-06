@@ -188,13 +188,6 @@ export default function AdvisorsPage() {
           </Card>
         </div>
       </div>
-
-      {/* Floating Chat Widget */}
-      <FloatingAdvisorChat
-        userId={user?.username || ""}
-        isEnabled={snapshotLoaded}
-        advisorsData={_advisorsData}
-      />
     </div>
   );
 }
