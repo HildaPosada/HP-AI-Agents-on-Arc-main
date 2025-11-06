@@ -261,6 +261,13 @@ export default function PerksPage() {
           </Card>
         </div>
       </div>
+
+      {/* Floating Chat Widget */}
+      <FloatingPerksChat
+        userId={user?.username || ""}
+        isEnabled={true}
+        perksData={_perksData}
+      />
     </div>
   );
 }
