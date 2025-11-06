@@ -201,7 +201,7 @@ export default function Home() {
                 GitHub
               </a>
               <a
-                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/blob/flare-space/README.md"
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
