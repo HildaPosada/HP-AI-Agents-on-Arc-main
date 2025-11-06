@@ -18,7 +18,7 @@ export function FloatingAdvisorChat({
   advisorsData,
 }: FloatingAdvisorChatProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
     <>
