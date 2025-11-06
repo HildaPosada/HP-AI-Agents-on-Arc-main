@@ -190,6 +190,22 @@ export default function AdvisorsPage() {
             </div>
           )}
 
+          {/* Collapsed View - Shows Advisors and Meetings Lists */}
+          {!showFullAnalysis && _advisorsData && (
+            <div className="grid grid-cols-1 gap-4">
+              <AdvisorsCard
+                title="Available Advisors"
+                items={_advisorsData.advisors || []}
+                variant="advisors"
+              />
+              <AdvisorsCard
+                title="Your Meetings"
+                items={_advisorsData.meetings || []}
+                variant="meetings"
+              />
+            </div>
+          )}
+
           {/* Full Width Analysis Section - Shown only in full mode */}
           {showFullAnalysis && (
             <div className="space-y-6">
