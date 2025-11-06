@@ -190,8 +190,11 @@ export function Sidebar() {
           />
 
           {/* Drawer menu panel */}
-          <div className="sm:hidden fixed top-14 left-0 right-0 bottom-0 z-40 bg-[#0a0a0a] border-b border-[#ccff00]/10 overflow-y-auto">
-            <div className="flex flex-col h-full pb-96">
+          <div
+            className="sm:hidden fixed top-14 left-0 right-0 z-40 bg-[#0a0a0a] border-b border-[#ccff00]/10 overflow-y-auto"
+            style={{ bottom: 0, paddingBottom: 'max(6rem, env(safe-area-inset-bottom))' }}
+          >
+            <div className="flex flex-col">
               <SidebarContent />
             </div>
           </div>
