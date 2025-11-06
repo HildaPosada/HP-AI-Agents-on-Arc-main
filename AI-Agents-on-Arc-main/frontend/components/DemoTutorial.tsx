@@ -228,11 +228,11 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
             )}
 
             <Button
-              onClick={handleNext}
+              onClick={currentStep === DEMO_STEPS.length - 1 ? handleFinish : handleNext}
               className="flex-1 sm:flex-1 bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] font-bold flex items-center justify-center gap-2"
             >
               {step.action}
-              <ChevronRight className="h-4 w-4" />
+              {currentStep !== DEMO_STEPS.length - 1 && <ChevronRight className="h-4 w-4" />}
             </Button>
 
             <Button
