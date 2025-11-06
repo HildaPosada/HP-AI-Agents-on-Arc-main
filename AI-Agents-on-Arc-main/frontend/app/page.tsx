@@ -190,15 +190,6 @@ export default function Home() {
                 <Github className="h-4 w-4" />
                 GitHub
               </a>
-              <a
-                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Docs
-              </a>
               <Button
                 onClick={() => setShowDemoTutorial(true)}
                 variant="ghost"
