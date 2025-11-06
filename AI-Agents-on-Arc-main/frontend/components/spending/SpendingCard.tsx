@@ -21,97 +21,80 @@ export function SpendingCard({ title, amount, variant }: SpendingCardProps) {
   const getIcon = () => {
     if (variant === "success") {
       return (
-        <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
+        <TrendingUp className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
       );
     } else if (variant === "destructive") {
       return (
-        <TrendingDown className="h-5 w-5 text-red-600 dark:text-red-400" />
+        <TrendingDown className="h-6 w-6 text-red-600 dark:text-red-400" />
       );
     }
-    return <DollarSign className="h-5 w-5 text-gray-600 dark:text-gray-400" />;
+    return <DollarSign className="h-6 w-6 text-slate-600 dark:text-slate-400" />;
   };
 
   const getIconBackground = () => {
     if (variant === "success") {
-      return "bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30";
+      return "bg-emerald-100/50 dark:bg-emerald-900/30 border border-emerald-200/50 dark:border-emerald-700/50";
     } else if (variant === "destructive") {
-      return "bg-gradient-to-br from-red-500/20 to-rose-500/20 backdrop-blur-sm border border-red-500/30";
+      return "bg-red-100/50 dark:bg-red-900/30 border border-red-200/50 dark:border-red-700/50";
     }
-    return "bg-gradient-to-br from-primary/20 to-cyan-500/20 backdrop-blur-sm border border-primary/30";
+    return "bg-slate-100/50 dark:bg-slate-900/30 border border-slate-200/50 dark:border-slate-700/50";
   };
 
   const getAmountColor = () => {
     if (variant === "success") {
-      return "text-green-600 dark:text-green-400";
+      return "text-emerald-600 dark:text-emerald-400";
     } else if (variant === "destructive") {
       return "text-red-600 dark:text-red-400";
     }
-    return "text-primary";
+    return "text-slate-900 dark:text-slate-100";
   };
 
   const getCardBackground = () => {
     if (variant === "success") {
-      return "bg-card/90 backdrop-blur-md border-green-500/20 hover:border-green-500/30 shadow-lg hover:shadow-green-500/10";
+      return "bg-gradient-to-br from-emerald-50/50 to-emerald-50/30 dark:from-emerald-950/20 dark:to-emerald-900/10 border-emerald-100/50 dark:border-emerald-800/50 hover:border-emerald-200/80 dark:hover:border-emerald-700/80 hover:shadow-lg hover:shadow-emerald-100/30 dark:hover:shadow-emerald-900/30";
     } else if (variant === "destructive") {
-      return "bg-card/90 backdrop-blur-md border-red-500/20 hover:border-red-500/30 shadow-lg hover:shadow-red-500/10";
+      return "bg-gradient-to-br from-red-50/50 to-red-50/30 dark:from-red-950/20 dark:to-red-900/10 border-red-100/50 dark:border-red-800/50 hover:border-red-200/80 dark:hover:border-red-700/80 hover:shadow-lg hover:shadow-red-100/30 dark:hover:shadow-red-900/30";
     }
-    return "bg-card/90 backdrop-blur-md border-primary/20 hover:border-primary/30 shadow-lg hover:shadow-primary/10";
+    return "bg-gradient-to-br from-slate-50 to-slate-50/50 dark:from-slate-900/20 dark:to-slate-800/10 border-slate-100/50 dark:border-slate-700/50";
   };
 
   return (
     <Card
       className={cn(
-        "transition-all duration-300 hover:scale-105 group relative overflow-hidden",
+        "transition-all duration-300 hover:scale-105 group relative overflow-hidden rounded-3xl",
         getCardBackground()
       )}
     >
-      {/* Glass effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none" />
-
-      <CardContent className="p-6 relative">
+      <CardContent className="p-8 relative">
         <div className="flex items-center justify-between">
-          <div className="space-y-2">
-            <p className="text-sm font-semibold text-muted-foreground/90 uppercase tracking-wide">
+          <div className="space-y-4">
+            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-widest">
               {title}
             </p>
             <p
               className={cn(
-                "text-3xl font-bold tracking-tight transition-colors duration-200",
+                "text-4xl font-bold tracking-tight transition-colors duration-200",
                 getAmountColor()
               )}
             >
               {formatCurrency(amount)}
             </p>
-            {/* Subtle indicator line */}
             <div
               className={cn(
-                "h-1 w-16 rounded-full transition-all duration-300 group-hover:w-20",
+                "h-1.5 w-20 rounded-full transition-all duration-300 group-hover:w-24",
                 variant === "success"
-                  ? "bg-gradient-to-r from-green-500 to-emerald-500"
+                  ? "bg-gradient-to-r from-emerald-400 to-emerald-600"
                   : variant === "destructive"
-                  ? "bg-gradient-to-r from-red-500 to-rose-500"
-                  : "bg-gradient-to-r from-primary to-cyan-500"
+                  ? "bg-gradient-to-r from-red-400 to-red-600"
+                  : "bg-gradient-to-r from-slate-400 to-slate-600"
               )}
             />
           </div>
 
           <div className="relative">
-            {/* Glow effect behind icon */}
             <div
               className={cn(
-                "absolute inset-0 rounded-xl blur-xl transition-opacity duration-300 opacity-0 group-hover:opacity-100",
-                variant === "success"
-                  ? "bg-green-500/30"
-                  : variant === "destructive"
-                  ? "bg-red-500/30"
-                  : "bg-primary/30"
-              )}
-            />
-
-            {/* Icon container */}
-            <div
-              className={cn(
-                "relative p-4 rounded-xl transition-all duration-300 group-hover:scale-110",
+                "p-5 rounded-2xl transition-all duration-300 group-hover:scale-110",
                 getIconBackground()
               )}
             >
