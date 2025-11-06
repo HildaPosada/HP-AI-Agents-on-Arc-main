@@ -114,7 +114,7 @@ export function FloatingPerksChat({
 
             {/* Chat Content - Hidden when collapsed */}
             {!isCollapsed && (
-              <div className="flex-1 overflow-hidden">
+              <div className="flex-1 overflow-hidden pb-32 sm:pb-6" style={{ paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))' }}>
                 <PerksChat
                   userId={userId}
                   isEnabled={isEnabled}
