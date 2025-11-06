@@ -96,24 +96,23 @@ export function AgentMessage({ message }: AgentMessageProps) {
                 components={{
                   // Enhanced paragraph styling
                   p: ({ children }) => (
-                    <p className="text-sm leading-relaxed mb-4 last:mb-0 text-foreground/95">
+                    <p className="text-xs leading-relaxed mb-3 last:mb-0 text-foreground/95">
                       {children}
                     </p>
                   ),
                   // Enhanced list styling with better spacing
                   ul: ({ children }) => (
-                    <ul className="text-sm space-y-2 mb-4 ml-5 list-none text-foreground/95">
+                    <ul className="text-xs space-y-1.5 mb-3 ml-5 list-none text-foreground/95">
                       {children}
                     </ul>
                   ),
                   ol: ({ children }) => (
-                    <ol className="text-sm space-y-2 mb-4 ml-5 list-decimal text-foreground/95">
+                    <ol className="text-xs space-y-1.5 mb-3 ml-5 list-decimal text-foreground/95">
                       {children}
                     </ol>
                   ),
                   li: ({ children }) => (
-                    <li className="text-foreground/95 relative">
-                      <div className="absolute -left-4 top-2 w-1.5 h-1.5 bg-gradient-to-r from-primary to-cyan-500 rounded-full" />
+                    <li className="text-foreground/95">
                       {children}
                     </li>
                   ),
