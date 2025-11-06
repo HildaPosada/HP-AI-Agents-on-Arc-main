@@ -34,7 +34,6 @@ export default function Home() {
   const { isAuthenticated, isLoading, logout } = useAuth();
   const router = useRouter();
   const [showAgentPermissions, setShowAgentPermissions] = useState(false);
-  const [activeTab, setActiveTab] = useState("features");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDemoTutorial, setShowDemoTutorial] = useState(false);
 
