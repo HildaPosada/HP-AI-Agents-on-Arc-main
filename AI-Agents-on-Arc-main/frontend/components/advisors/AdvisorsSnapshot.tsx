@@ -6,6 +6,8 @@ import { Loader2, AlertCircle, UserCheck } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { AdvisorsCard } from "./AdvisorsCard";
+import { AdvisorsAgentCollaboration } from "./AdvisorsAgentCollaboration";
+import { AdvisorsExplainableInsights } from "./AdvisorsExplainableInsights";
 
 interface AdvisorsSnapshotProps {
   userId: string;
@@ -45,7 +47,7 @@ export function AdvisorsSnapshot({
         "Retirement Goals Check-in with Sarah Johnson - Jan 5, 2025 at 3:30 PM",
       ],
     };
-    
+
     setData(dummyData);
     setIsLoading(false);
     onLoadingStateChange?.(false);
@@ -133,19 +135,32 @@ export function AdvisorsSnapshot({
   console.log("[FRONTEND] 🎨 Meetings:", data?.meetings);
 
   return (
-    <div className="flex-1 p-6 space-y-4 overflow-y-auto">
-      {/* Advisors Cards Grid */}
-      <div className="grid grid-cols-1 gap-4">
-        <AdvisorsCard
-          title="Available Advisors"
-          items={data?.advisors || []}
-          variant="advisors"
+    <div className="flex-1 overflow-y-auto">
+      <div className="p-6 space-y-6">
+        {/* Agent Collaboration Section */}
+        <AdvisorsAgentCollaboration
+          totalAdvisors={data?.advisors.length || 5}
+          matchScore={94}
         />
-        <AdvisorsCard
-          title="Your Meetings"
-          items={data?.meetings || []}
-          variant="meetings"
+
+        {/* Explainable Insights Section */}
+        <AdvisorsExplainableInsights
+          matchedAdvisors={data?.advisors.slice(0, 3) || []}
         />
+
+        {/* Legacy Cards (Optional) */}
+        <div className="grid grid-cols-1 gap-4">
+          <AdvisorsCard
+            title="Available Advisors"
+            items={data?.advisors || []}
+            variant="advisors"
+          />
+          <AdvisorsCard
+            title="Your Meetings"
+            items={data?.meetings || []}
+            variant="meetings"
+          />
+        </div>
       </div>
     </div>
   );
