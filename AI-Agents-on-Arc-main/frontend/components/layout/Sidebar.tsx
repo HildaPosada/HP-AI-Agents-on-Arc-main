@@ -193,6 +193,13 @@ export function Sidebar() {
           </div>
         </>
       )}
+
+      {/* Transaction Modal - Rendered at top level for proper z-index */}
+      <TransactionModal
+        isOpen={isTransactionModalOpen}
+        onClose={() => setIsTransactionModalOpen(false)}
+        userName={user?.username || "User"}
+      />
     </>
   );
 }
