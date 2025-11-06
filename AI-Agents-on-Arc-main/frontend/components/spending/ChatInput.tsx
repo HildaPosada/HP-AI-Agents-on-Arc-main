@@ -182,7 +182,7 @@ export function ChatInput({
             disabled={disabled || isLoading}
             size="sm"
             className={cn(
-              "h-[40px] min-w-[40px]",
+              "h-[50px] min-w-[50px]",
               isRecording
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
                 : 'bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#047857] hover:to-[#065f46]'
@@ -190,9 +190,9 @@ export function ChatInput({
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >
             {isRecording ? (
-              <MicOff className="h-4 w-4" />
+              <MicOff className="h-5 w-5" />
             ) : (
-              <Mic className="h-4 w-4" />
+              <Mic className="h-5 w-5" />
             )}
           </Button>
 
@@ -201,7 +201,7 @@ export function ChatInput({
             onClick={handleSend}
             disabled={!message.trim() || disabled || isLoading}
             size="sm"
-            className="h-[40px] min-w-[40px]"
+            className="h-[50px] min-w-[50px]"
           >
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
