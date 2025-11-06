@@ -109,15 +109,8 @@ export function FloatingAdvisorChat({
               </div>
             </div>
 
-            {/* Chat Content */}
-            {isMinimized && (
-              <div className="flex-1 flex flex-col items-center justify-center">
-                <p className="text-sm text-white/60">Chat minimized</p>
-                <p className="text-xs text-white/40 mt-1">Click ↑ to expand</p>
-              </div>
-            )}
-
-            {!isMinimized && (
+            {/* Chat Content - Hidden when collapsed */}
+            {!isCollapsed && (
               <div className="flex-1 overflow-hidden">
                 <AdvisorsChat
                   userId={userId}
