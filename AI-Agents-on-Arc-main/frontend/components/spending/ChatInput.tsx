@@ -137,7 +137,7 @@ export function ChatInput({
     const textarea = e.target;
     textarea.style.height = "auto";
     const scrollHeight = textarea.scrollHeight;
-    const maxHeight = 120; // Max 5 lines approximately
+    const maxHeight = 200; // Max ~8 lines approximately
     textarea.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
   };
 
