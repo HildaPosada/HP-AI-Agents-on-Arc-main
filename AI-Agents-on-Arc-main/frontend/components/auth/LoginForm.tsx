@@ -31,13 +31,13 @@ export function LoginForm() {
     const success = login(username.trim());
 
     if (success) {
-      // Login successful
+      // Login successful - navigate to dashboard
       setUsername("");
+      router.push("/spending");
     } else {
       setError("Invalid username. Use: user-001, user-002, or user-003");
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
