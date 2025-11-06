@@ -21,7 +21,7 @@ export function UserMessage({ message }: UserMessageProps) {
         >
           <CardContent className="px-3 py-2 relative">
             {/* Message content with proportional sizing */}
-            <p className="text-xs leading-snug whitespace-pre-wrap font-medium text-primary-foreground break-words">
+            <p className="text-xs leading-snug whitespace-pre-wrap font-medium text-[#0f0f0f] break-words">
               {message.content}
             </p>
 
