@@ -67,26 +67,20 @@ export default function PortfolioPage() {
     <SplitView
       leftPanel={
         <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
-
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* Mini ArcFi Logo */}
+          <div className="flex-shrink-0 p-6 border-b border-emerald-200/30 dark:border-emerald-900/30 bg-gradient-to-r from-emerald-50/50 to-emerald-100/30 dark:from-emerald-950/20 dark:to-emerald-900/10 backdrop-blur-sm relative">
+            <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-xs">ArcFi</span>
                 </div>
-                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-orange-300 rounded-full animate-pulse" />
+                <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse" />
               </div>
 
-              {/* Header Text */}
               <div>
-                <h2 className="text-xl font-bold text-black">
-                  Portfolio Management Agent
+                <h2 className="text-lg font-bold text-foreground">
+                  Portfolio Analysis
                 </h2>
-                <p className="text-black/70 text-xs">
+                <p className="text-sm text-muted-foreground">
                   Monitor investments and track performance
                 </p>
               </div>
@@ -105,28 +99,22 @@ export default function PortfolioPage() {
       }
       rightPanel={
         <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
-
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* AI Chat Icon */}
+          <div className="flex-shrink-0 p-6 border-b border-emerald-200/30 dark:border-emerald-900/30 bg-gradient-to-r from-emerald-50/50 to-emerald-100/30 dark:from-emerald-950/20 dark:to-emerald-900/10 backdrop-blur-sm relative">
+            <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
                   <Bot className="h-5 w-5 text-white" />
                 </div>
-                <div className="absolute -bottom-0.5 -right-0.5">
-                  <MessageSquare className="h-3.5 w-3.5 text-orange-300" />
+                <div className="absolute -bottom-1 -right-1">
+                  <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
                 </div>
               </div>
 
-              {/* Header Text */}
               <div>
-                <h2 className="text-xl font-bold text-black">
-                  Portfolio Chat Assistant
+                <h2 className="text-lg font-bold text-foreground">
+                  Investment Assistant
                 </h2>
-                <p className="text-black/70 text-xs">
+                <p className="text-sm text-muted-foreground">
                   Get investment advice and rebalancing recommendations
                 </p>
               </div>
