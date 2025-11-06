@@ -47,13 +47,13 @@ export function UserMessage({ message }: UserMessageProps) {
         <div className="flex-shrink-0 relative order-1 mb-0.5">
           <div
             className={cn(
-              "relative w-7 h-7 rounded-lg flex items-center justify-center shadow-sm transition-all duration-200",
+              "relative w-6 h-6 rounded-lg flex items-center justify-center shadow-sm transition-all duration-200",
               "bg-gradient-to-br from-primary/90 to-primary/80",
               "border border-primary/30"
             )}
           >
             {/* User icon */}
-            <User className="h-3.5 w-3.5 text-primary-foreground" />
+            <User className="h-3 w-3 text-primary-foreground" />
           </div>
 
           {/* Tiny status indicator */}
