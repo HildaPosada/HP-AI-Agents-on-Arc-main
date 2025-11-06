@@ -347,58 +347,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
-            Why ArcFi Wins
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-            {[
-              {
-                icon: Zap,
-                title: "🎯 Originality",
-                desc: "First multi-agent banking system using A2A Protocol",
-              },
-              {
-                icon: Cpu,
-                title: "💻 Application of Tech",
-                desc: "Google ADK + Gemini + A2A + USDC/Arc",
-              },
-              {
-                icon: TrendingUp,
-                title: "💰 Business Value",
-                desc: "B2C SaaS model solving real banking problems",
-              },
-              {
-                icon: Award,
-                title: "🎨 Presentation",
-                desc: "Stunning UI showing agent reasoning & USDC visibly",
-              },
-            ].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <Card
-                  key={idx}
-                  className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors"
-                >
-                  <CardContent className="pt-6 sm:pt-8">
-                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-[#ccff00] mb-3 sm:mb-4" />
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-white/70">{item.desc}</p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
       {/* Agents Section */}
-      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+      <div id="agents" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
             Meet Your AI Team
