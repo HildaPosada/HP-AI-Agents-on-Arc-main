@@ -16,6 +16,7 @@ export default function PerksPage() {
   const router = useRouter();
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [_perksData, setPerksData] = useState<PerksSnapshotData | null>(null);
+  const [showFullAnalysis, setShowFullAnalysis] = useState(false);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
