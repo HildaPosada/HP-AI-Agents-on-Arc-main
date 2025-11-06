@@ -13,33 +13,28 @@ export default function AdvisorsPage() {
   const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
-  // Shared state for snapshot and chat coordination
   const [snapshotLoaded, setSnapshotLoaded] = useState(false);
   const [_advisorsData, setAdvisorsData] =
     useState<AdvisorsSnapshotData | null>(null);
 
-  // Callbacks for coordinating between snapshot and chat (moved before conditional returns)
   const handleSnapshotDataLoaded = useCallback((data: AdvisorsSnapshotData) => {
     console.log("[ADVISORS PAGE] 📋 Snapshot data loaded:", data);
     setAdvisorsData(data);
-    setSnapshotLoaded(true); // Enable chat
+    setSnapshotLoaded(true);
   }, []);
 
   const handleSnapshotLoadingChange = useCallback((loading: boolean) => {
     if (loading) {
-      setSnapshotLoaded(false); // Disable chat during reload
+      setSnapshotLoaded(false);
     }
   }, []);
 
-  // Handle navigation side effect when authentication changes
   useEffect(() => {
-    // Only redirect if loading is complete and user is not authenticated
     if (!isLoading && !isAuthenticated) {
       router.push("/");
     }
   }, [isLoading, isAuthenticated, router]);
 
-  // Show loading state while authentication is being restored
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -51,7 +46,6 @@ export default function AdvisorsPage() {
     );
   }
 
-  // Show loading state while redirecting unauthenticated users
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -63,43 +57,24 @@ export default function AdvisorsPage() {
     );
   }
 
-  console.log("[ADVISORS PAGE] 🎨 Rendering with state:", {
-    userId: user?.username,
-    snapshotLoaded,
-    hasAdvisorsData: !!_advisorsData,
-  });
-
   return (
     <SplitView
       leftPanel={
         <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
-
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* Advisors Icon */}
-              <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
-                  <UserCheck className="h-5 w-5 text-white" />
-                </div>
-                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-orange-300 rounded-full animate-pulse" />
+          <div className="flex-shrink-0 p-6 border-b border-border bg-secondary">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary">
+                <UserCheck className="h-5 w-5 text-primary-foreground" />
               </div>
-
-              {/* Header Text */}
               <div>
-                <h2 className="text-xl font-bold text-black">
-                  Financial Advisors Agent
-                </h2>
-                <p className="text-black/70 text-xs">
-                  Connect with expert advisors for personalized guidance
+                <h2 className="text-lg font-bold text-foreground">Financial Advisors</h2>
+                <p className="text-sm text-muted-foreground">
+                  Connect with expert advisors
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Scrollable Content */}
           <div className="flex-1 overflow-hidden">
             <AdvisorsSnapshot
               userId={user?.username || ""}
@@ -111,35 +86,22 @@ export default function AdvisorsPage() {
       }
       rightPanel={
         <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
-
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* AI Chat Icon */}
-              <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
-                  <Bot className="h-5 w-5 text-white" />
-                </div>
-                <div className="absolute -bottom-0.5 -right-0.5">
-                  <MessageSquare className="h-3.5 w-3.5 text-orange-300" />
-                </div>
+          <div className="flex-shrink-0 p-6 border-b border-border bg-secondary">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary">
+                <Bot className="h-5 w-5 text-primary-foreground" />
               </div>
-
-              {/* Header Text */}
               <div>
-                <h2 className="text-xl font-bold text-black">
-                  Advisors Chat Assistant
+                <h2 className="text-lg font-bold text-foreground">
+                  Advisors Assistant
                 </h2>
-                <p className="text-black/70 text-xs">
-                  Schedule meetings and get matched with the right financial expert
+                <p className="text-sm text-muted-foreground">
+                  Schedule meetings and get matched with experts
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Scrollable Chat Container */}
           <div className="flex-1 overflow-hidden">
             <AdvisorsChat
               userId={user?.username || ""}
