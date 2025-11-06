@@ -15,7 +15,7 @@ export function FloatingSpendingChat({
   isEnabled,
 }: FloatingSpendingChatProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
     <>
