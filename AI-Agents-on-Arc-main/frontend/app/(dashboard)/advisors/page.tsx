@@ -147,22 +147,12 @@ export default function AdvisorsPage() {
             </Card>
           </div>
 
-          {/* Advisor Analysis Section */}
-          <div className="space-y-6">
-            {/* Analysis Cards */}
-            <div>
-              <AdvisorsSnapshot
-                userId={user?.username || ""}
-                onDataLoaded={handleSnapshotDataLoaded}
-                onLoadingStateChange={handleSnapshotLoadingChange}
-              />
-            </div>
-
-            {/* Expandable Chat Section */}
-            <ExpandableAdvisorChat
+          {/* Full Width Analysis Section */}
+          <div>
+            <AdvisorsSnapshot
               userId={user?.username || ""}
-              isEnabled={snapshotLoaded}
-              advisorsData={_advisorsData}
+              onDataLoaded={handleSnapshotDataLoaded}
+              onLoadingStateChange={handleSnapshotLoadingChange}
             />
           </div>
 
