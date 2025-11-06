@@ -39,8 +39,8 @@ export function FloatingPortfolioChat({
             <MessageCircle className="w-7 h-7 text-[#0f0f0f]" />
           </div>
 
-          {/* Badge - notification dot */}
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+          {/* Badge - notification dot - proportional */}
+          <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border border-white animate-pulse"></div>
 
           {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
