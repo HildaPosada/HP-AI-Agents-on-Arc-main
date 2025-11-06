@@ -63,22 +63,19 @@ export function SpendingSnapshot({
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent relative">
-        <div className="bg-card/90 backdrop-blur-md border border-border/50 rounded-3xl p-8 shadow-lg relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
-
+      <div className="h-full flex items-center justify-center bg-background">
+        <div className="bg-card border border-border rounded-lg p-8 shadow-lg relative overflow-hidden">
           <div className="relative flex flex-col items-center space-y-6">
             <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
-                <span className="text-white font-bold text-lg">ArcFi</span>
+              <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">ArcFi</span>
               </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full animate-pulse" />
             </div>
 
-            <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
 
             <div className="text-center space-y-2">
-              <p className="text-foreground font-semibold">
+              <p className="text-foreground font-bold">
                 Analyzing Financial Data
               </p>
               <p className="text-muted-foreground text-sm">
@@ -87,13 +84,13 @@ export function SpendingSnapshot({
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <div
-                className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"
+                className="w-2 h-2 bg-primary rounded-full animate-pulse"
                 style={{ animationDelay: "0.3s" }}
               />
               <div
-                className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"
+                className="w-2 h-2 bg-primary rounded-full animate-pulse"
                 style={{ animationDelay: "0.6s" }}
               />
             </div>
@@ -105,18 +102,17 @@ export function SpendingSnapshot({
 
   if (error) {
     return (
-      <div className="h-full p-6 flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent">
+      <div className="h-full p-6 flex items-center justify-center bg-background">
         <div className="w-full max-w-md">
           <Alert
             variant="destructive"
-            className="bg-card/90 backdrop-blur-md border-destructive/20 shadow-lg relative overflow-hidden rounded-3xl"
+            className="bg-card border border-destructive/30 rounded-lg shadow-lg"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
             <div className="relative">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription className="flex flex-col space-y-4 pt-2">
                 <div className="space-y-2">
-                  <p className="font-semibold text-destructive">
+                  <p className="font-bold text-destructive">
                     Unable to load financial data
                   </p>
                   <p className="text-sm text-muted-foreground">{error}</p>
@@ -125,7 +121,7 @@ export function SpendingSnapshot({
                   variant="outline"
                   size="sm"
                   onClick={fetchSpendingData}
-                  className="self-start bg-background/50 hover:bg-background border-destructive/30 hover:border-destructive/50 text-destructive hover:text-destructive rounded-2xl"
+                  className="self-start bg-card hover:bg-muted text-foreground rounded-lg"
                 >
                   <div className="flex items-center gap-2">
                     <Loader2 className="h-4 w-4" />
@@ -144,40 +140,30 @@ export function SpendingSnapshot({
   console.log("[FRONTEND] 🎨 Income:", data?.income);
   console.log("[FRONTEND] 🎨 Expenses:", data?.expenses);
   console.log("[FRONTEND] 🎨 Activities count:", data?.activities?.length);
-  console.log("[FRONTEND] 🎨 Activities:", data?.activities);
-  console.log("[FRONTEND] 🎨 Insights length:", data?.insights?.length);
-  console.log(
-    "[FRONTEND] 🎨 Insights preview:",
-    data?.insights?.substring(0, 100)
-  );
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-br from-white/50 via-slate-50/30 to-white/50 dark:from-slate-900/10 dark:via-slate-800/5 dark:to-slate-900/10 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.03),transparent_50%)] pointer-events-none" />
-
+    <div className="h-full flex flex-col bg-background relative">
       <div className="flex-1 overflow-y-auto">
         <div className="p-8 space-y-8">
-          <div className="relative space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <SpendingCard
-                title="Income"
-                amount={data?.income || 0}
-                variant="success"
-              />
-              <SpendingCard
-                title="Expenses"
-                amount={data?.expenses || 0}
-                variant="destructive"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <SpendingCard
+              title="Income"
+              amount={data?.income || 0}
+              variant="success"
+            />
+            <SpendingCard
+              title="Expenses"
+              amount={data?.expenses || 0}
+              variant="destructive"
+            />
+          </div>
 
-            <div className="transform hover:scale-[1.01] transition-transform duration-300">
-              <ActivitiesList activities={data?.activities || []} />
-            </div>
+          <div>
+            <ActivitiesList activities={data?.activities || []} />
+          </div>
 
-            <div className="transform hover:scale-[1.01] transition-transform duration-300">
-              <InsightsCard insights={data?.insights || ""} />
-            </div>
+          <div>
+            <InsightsCard insights={data?.insights || ""} />
           </div>
         </div>
       </div>
