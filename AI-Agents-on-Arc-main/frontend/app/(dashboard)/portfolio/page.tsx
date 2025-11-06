@@ -245,6 +245,12 @@ export default function PortfolioPage() {
           </Card>
         </div>
       </div>
+
+      {/* Floating Chat Widget */}
+      <FloatingPortfolioChat
+        userId={user?.username || ""}
+        isEnabled={true}
+      />
     </div>
   );
 }
