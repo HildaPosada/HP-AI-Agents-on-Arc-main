@@ -7,13 +7,11 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex h-screen bg-background overflow-hidden">
-      {/* Sidebar - Hidden on mobile, visible on tablet and up */}
-      <div className="hidden sm:block w-64 flex-shrink-0 border-r border-[#ccff00]/10">
-        <Sidebar />
-      </div>
+      {/* Sidebar - Always renders (handles its own responsive behavior) */}
+      <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden pt-14 sm:pt-0">
         {children}
       </div>
     </div>
