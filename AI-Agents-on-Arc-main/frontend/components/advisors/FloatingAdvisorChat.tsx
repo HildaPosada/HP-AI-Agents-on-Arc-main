@@ -28,9 +28,10 @@ export function FloatingAdvisorChat({
           setIsOpen(true);
           setIsCollapsed(false);
         }}
-        className={`fixed bottom-6 right-6 z-40 group transition-all duration-300 ${
+        className={`fixed right-6 z-40 group transition-all duration-300 ${
           isOpen ? "hidden" : "block"
         }`}
+        style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}
         aria-label="Open Advisor Chat"
       >
         <div className="relative">
