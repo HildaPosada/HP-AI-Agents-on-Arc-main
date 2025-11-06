@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdvisorsSnapshot } from "@/components/advisors/AdvisorsSnapshot";
-import { AdvisorsChat } from "@/components/advisors/AdvisorsChat";
+import { FloatingAdvisorChat } from "@/components/advisors/FloatingAdvisorChat";
 import { AdvisorsSnapshotData } from "@/lib/types/advisors";
 
 export default function AdvisorsPage() {
@@ -147,43 +147,13 @@ export default function AdvisorsPage() {
             </Card>
           </div>
 
-          {/* Two-Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column - Analysis (2 columns wide) */}
-            <div className="lg:col-span-2">
-              <AdvisorsSnapshot
-                userId={user?.username || ""}
-                onDataLoaded={handleSnapshotDataLoaded}
-                onLoadingStateChange={handleSnapshotLoadingChange}
-              />
-            </div>
-
-            {/* Right Column - Chat Assistant */}
-            <div className="flex flex-col">
-              <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] flex-1 flex flex-col">
-                <CardContent className="pt-6 flex flex-col flex-1">
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center">
-                        <Users className="h-4 w-4 text-[#ccff00]" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white">Advisors Assistant</h3>
-                    </div>
-                    <p className="text-sm text-white/60">
-                      Schedule meetings and get personalized guidance
-                    </p>
-                  </div>
-
-                  <div className="flex-1 overflow-hidden">
-                    <AdvisorsChat
-                      userId={user?.username || ""}
-                      isEnabled={snapshotLoaded}
-                      advisorsData={_advisorsData}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+          {/* Full Width Analysis Section */}
+          <div>
+            <AdvisorsSnapshot
+              userId={user?.username || ""}
+              onDataLoaded={handleSnapshotDataLoaded}
+              onLoadingStateChange={handleSnapshotLoadingChange}
+            />
           </div>
 
           {/* Key Stats Footer */}
@@ -210,6 +180,13 @@ export default function AdvisorsPage() {
           </Card>
         </div>
       </div>
+
+      {/* Floating Chat Widget */}
+      <FloatingAdvisorChat
+        userId={user?.username || ""}
+        isEnabled={snapshotLoaded}
+        advisorsData={_advisorsData}
+      />
     </div>
   );
 }
