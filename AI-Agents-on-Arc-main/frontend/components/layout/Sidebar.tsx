@@ -54,129 +54,86 @@ export function Sidebar() {
   };
 
   return (
-    <div className="w-64 flex flex-col relative" style={{ backgroundColor: 'var(--sidebar-bg)' }}>
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/5 pointer-events-none" />
-
+    <div className="w-64 flex flex-col relative bg-sidebar-bg border-r border-sidebar-border">
       {/* Header with ArcFi Logo */}
-      <div className="relative p-6 border-b" style={{ borderColor: 'var(--sidebar-border)' }}>
-        <div className="flex items-center gap-3 group">
-          {/* ArcFi Logo with Emerald */}
-          <div className="relative">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg transition-all duration-300 bg-gradient-to-br from-emerald-500 to-emerald-600">
-              <Coins className="h-5 w-5 text-white" />
-            </div>
-            <div className="absolute -top-1 -right-1">
-              <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
-            </div>
+      <div className="relative p-6 border-b border-sidebar-border">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary">
+            <Coins className="h-5 w-5 text-primary-foreground font-bold" />
           </div>
-
-          {/* Brand Text */}
           <div>
-            <h1 className="font-bold text-base text-white">
-              ArcFi
-            </h1>
-            <p className="text-xs text-white/60">Financial Partner</p>
+            <h1 className="font-bold text-base text-foreground">ArcFi</h1>
+            <p className="text-xs text-muted-foreground">Financial Partner</p>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
-          {navigationItems.map((item) => {
-            const isActive = pathname === item.href;
-            const Icon = item.icon;
+      <nav className="flex-1 p-4 space-y-2">
+        {navigationItems.map((item) => {
+          const isActive = pathname === item.href;
+          const Icon = item.icon;
 
-            return (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className={`
-                    flex items-center px-4 py-3 text-sm font-medium rounded-2xl transition-all duration-200 group relative overflow-hidden
-                    ${
-                      isActive
-                        ? "text-white shadow-lg"
-                        : "text-white/70 hover:text-white hover:bg-white/10"
-                    }
-                  `}
-                  style={isActive ? { 
-                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  } : {}}
-                >
-                  <Icon
-                    className={`w-5 h-5 mr-3 transition-colors duration-200`}
-                  />
-
-                  <span className="relative z-10">{item.name}</span>
-
-                  {isActive && (
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl" />
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Send USDC Button */}
-        <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--sidebar-border)' }}>
-          <button
-            onClick={() => setIsTransactionModalOpen(true)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-2xl hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-105 transition-all duration-200 group relative overflow-hidden"
-          >
-            <Send className="w-5 h-5 group-hover:rotate-12 transition-transform duration-200" />
-            <span>Send USDC</span>
-            
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-          </button>
-          <p className="text-xs text-white/50 text-center mt-2">Secure transfers</p>
-        </div>
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`
+                flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200
+                ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }
+              `}
+            >
+              <Icon className="w-5 h-5 mr-3" />
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </nav>
 
+      {/* Send USDC Button */}
+      <div className="p-4 border-t border-sidebar-border">
+        <button
+          onClick={() => setIsTransactionModalOpen(true)}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-bold rounded-lg hover:opacity-90 transition-opacity duration-200 group"
+        >
+          <Send className="w-4 h-4" />
+          <span>Send USDC</span>
+        </button>
+        <p className="text-xs text-muted-foreground text-center mt-2">Secure transfers</p>
+      </div>
+
       {/* User Info & Logout */}
-      <div className="relative p-4 border-t" style={{ borderColor: 'var(--sidebar-border)' }}>
+      <div className="p-4 border-t border-sidebar-border space-y-4">
         {user && (
-          <div className="space-y-4">
-            {/* User Profile Card */}
-            <div className="backdrop-blur-sm border rounded-2xl p-4 shadow-sm" style={{ 
-              backgroundColor: 'rgba(16, 185, 129, 0.1)',
-              borderColor: 'rgba(16, 185, 129, 0.3)'
-            }}>
+          <>
+            <div className="p-3 rounded-lg bg-muted border border-sidebar-border">
               <div className="flex items-center space-x-3">
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-br from-emerald-500 to-emerald-600">
-                    <User className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 flex items-center justify-center" style={{
-                    backgroundColor: '#10b981',
-                    borderColor: '#1e293b'
-                  }}>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                  </div>
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-primary">
+                  <User className="w-4 h-4 text-primary-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white truncate">
+                  <p className="text-sm font-bold text-foreground truncate">
                     {user.username}
                   </p>
-                  <p className="text-xs text-white/70">
-                    Active
-                  </p>
+                  <p className="text-xs text-muted-foreground">Active</p>
                 </div>
               </div>
             </div>
 
-            {/* Logout Button */}
             <Button
               variant="outline"
               size="sm"
-              className="w-full justify-start bg-white/5 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30 text-white/70 transition-all duration-200 rounded-2xl"
+              className="w-full justify-start bg-transparent hover:bg-muted text-foreground rounded-lg"
               onClick={handleLogout}
             >
               <LogOut className="w-4 h-4 mr-2" />
               Logout
             </Button>
-          </div>
+          </>
         )}
       </div>
 
