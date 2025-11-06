@@ -115,7 +115,7 @@ export function FloatingAdvisorChat({
 
             {/* Chat Content - Hidden when collapsed */}
             {!isCollapsed && (
-              <div className="flex-1 overflow-hidden">
+              <div className="flex-1 overflow-hidden pb-32 sm:pb-6" style={{ paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))' }}>
                 <AdvisorsChat
                   userId={userId}
                   isEnabled={isEnabled}
