@@ -246,33 +246,37 @@ export default function Home() {
           {/* Mobile Menu */}
           {showMobileMenu && (
             <div className="md:hidden pb-4 space-y-2">
-              <button
-                onClick={() => {
-                  setActiveTab("features");
-                  setShowMobileMenu(false);
-                }}
+              <a
+                href="#agents"
+                onClick={() => setShowMobileMenu(false)}
                 className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
               >
-                Features
-              </button>
-              <button
-                onClick={() => {
-                  setActiveTab("tech");
-                  setShowMobileMenu(false);
-                }}
+                Meet Your AI Team
+              </a>
+              <a
+                href="#tech"
+                onClick={() => setShowMobileMenu(false)}
                 className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
               >
                 Technology
-              </button>
-              <button
-                onClick={() => {
-                  setActiveTab("agents");
-                  setShowMobileMenu(false);
-                }}
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg flex items-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                View Code
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/blob/flare-space/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
               >
-                Agents
-              </button>
+                Docs
+              </a>
             </div>
           )}
         </div>
