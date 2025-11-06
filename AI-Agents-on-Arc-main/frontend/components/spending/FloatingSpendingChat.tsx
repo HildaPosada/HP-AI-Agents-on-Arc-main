@@ -60,7 +60,11 @@ export function FloatingSpendingChat({
           ></div>
 
           {/* Modal - slides in from right - Non-blocking */}
-          <div className="fixed bottom-0 right-0 top-0 z-50 w-full sm:w-96 lg:w-[28rem] bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto">
+          <div className={`fixed bottom-0 right-0 z-50 bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto ${
+            isCollapsed
+              ? "top-auto h-16 w-full sm:w-96 lg:w-[28rem] rounded-tl-2xl"
+              : "top-0 h-full w-full sm:w-96 lg:w-[28rem]"
+          }`}>
             {/* Header */}
             <div className="flex-shrink-0 p-4 border-b border-[#ccff00]/20 bg-[#1a1a1a]">
               <div className="flex items-center justify-between gap-3">
@@ -80,13 +84,13 @@ export function FloatingSpendingChat({
 
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setIsMinimized(!isMinimized)}
+                    onClick={() => setIsCollapsed(!isCollapsed)}
                     className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors pointer-events-auto"
-                    aria-label="Minimize chat"
+                    aria-label={isCollapsed ? "Expand chat" : "Collapse chat"}
                   >
                     <ChevronDown
                       className={`w-4 h-4 text-[#ccff00] transition-transform duration-300 ${
-                        isMinimized ? "rotate-180" : ""
+                        isCollapsed ? "rotate-180" : ""
                       }`}
                     />
                   </button>
@@ -102,15 +106,8 @@ export function FloatingSpendingChat({
               </div>
             </div>
 
-            {/* Chat Content */}
-            {isMinimized && (
-              <div className="flex-1 flex flex-col items-center justify-center">
-                <p className="text-sm text-white/60">Chat minimized</p>
-                <p className="text-xs text-white/40 mt-1">Click ↑ to expand</p>
-              </div>
-            )}
-
-            {!isMinimized && (
+            {/* Chat Content - Hidden when collapsed */}
+            {!isCollapsed && (
               <div className="flex-1 overflow-hidden">
                 <SpendingChat
                   userId={userId}
