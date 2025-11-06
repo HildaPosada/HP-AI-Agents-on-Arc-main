@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdvisorsSnapshot } from "@/components/advisors/AdvisorsSnapshot";
-import { ExpandableAdvisorChat } from "@/components/advisors/ExpandableAdvisorChat";
+import { FloatingAdvisorChat } from "@/components/advisors/FloatingAdvisorChat";
 import { AdvisorsSnapshotData } from "@/lib/types/advisors";
 
 export default function AdvisorsPage() {
