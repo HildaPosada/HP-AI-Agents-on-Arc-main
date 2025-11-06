@@ -112,7 +112,7 @@ export function FloatingSpendingChat({
 
             {/* Chat Content - Hidden when collapsed */}
             {!isCollapsed && (
-              <div className="flex-1 overflow-hidden pb-6 sm:pb-6" style={{ paddingBottom: 'calc(3.5rem + env(safe-area-inset-bottom))' }}>
+              <div className="flex-1 overflow-hidden pb-6 sm:pb-6" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))' }}>
                 <SpendingChat
                   userId={userId}
                   isEnabled={isEnabled}
