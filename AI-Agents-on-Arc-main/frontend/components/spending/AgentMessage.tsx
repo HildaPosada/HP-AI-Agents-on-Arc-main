@@ -39,10 +39,10 @@ export function AgentMessage({ message }: AgentMessageProps) {
             </div>
           </div>
 
-          {/* Status indicator */}
+          {/* Status indicator - proportional */}
           <div
             className={cn(
-              "absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-background shadow-sm",
+              "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-background shadow-sm",
               "bg-gradient-to-r from-green-400 to-emerald-500"
             )}
           />
