@@ -96,7 +96,7 @@ export function FloatingAdvisorChat({
 
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors pointer-events-auto"
                     aria-label="Close chat"
                   >
                     <X className="w-4 h-4 text-[#ccff00]" />
