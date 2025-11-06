@@ -22,9 +22,9 @@ export function UserMessage({ message }: UserMessageProps) {
           {/* Minimal glass effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/8 to-transparent pointer-events-none" />
 
-          <CardContent className="px-2 py-1 relative">
+          <CardContent className="px-1.5 py-0.5 relative">
             {/* Message content with proportional sizing */}
-            <p className="text-sm leading-tight whitespace-pre-wrap font-medium text-primary-foreground break-words">
+            <p className="text-xs leading-snug whitespace-pre-wrap font-medium text-primary-foreground break-words">
               {message.content}
             </p>
 
