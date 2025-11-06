@@ -22,22 +22,24 @@ export function UserMessage({ message }: UserMessageProps) {
           {/* Minimal glass effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/8 to-transparent pointer-events-none" />
 
-          <CardContent className="px-3 py-2 relative">
-            {/* Tight message content */}
-            <p className="text-sm leading-snug whitespace-pre-wrap font-medium text-primary-foreground">
+          <CardContent className="px-2.5 py-1.5 relative">
+            {/* Message content with proportional sizing */}
+            <p className="text-sm leading-tight whitespace-pre-wrap font-medium text-primary-foreground break-words">
               {message.content}
             </p>
 
-            {/* Inline timestamp */}
-            <div className="flex items-center justify-end gap-1 mt-1">
-              <CheckCircle className="h-2.5 w-2.5 text-white/60" />
-              <span className="text-xs text-white/50">
-                {message.timestamp.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </span>
-            </div>
+            {/* Inline timestamp - only on longer messages */}
+            {message.content.length > 20 && (
+              <div className="flex items-center justify-end gap-1 mt-0.5">
+                <CheckCircle className="h-2.5 w-2.5 text-white/60" />
+                <span className="text-xs text-white/50">
+                  {message.timestamp.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+              </div>
+            )}
           </CardContent>
         </Card>
 
