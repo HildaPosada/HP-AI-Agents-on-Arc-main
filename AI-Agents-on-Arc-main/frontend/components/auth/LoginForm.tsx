@@ -125,14 +125,16 @@ export function LoginForm() {
               <button
                 key={demoUser}
                 type="button"
-                onClick={async () => {
+                onClick={() => {
                   setError("");
                   setIsLoading(true);
                   const success = login(demoUser);
-                  if (!success) {
+                  if (success) {
+                    router.push("/spending");
+                  } else {
                     setError(`Failed to login with ${demoUser}`);
+                    setIsLoading(false);
                   }
-                  setIsLoading(false);
                 }}
                 disabled={isLoading}
                 className="px-3 py-2 text-xs font-bold bg-[#ccff00]/10 hover:bg-[#ccff00]/20 text-[#ccff00] rounded-lg transition-all duration-200 border border-[#ccff00]/30 hover:border-[#ccff00]/60 hover:shadow-lg hover:shadow-[#ccff00]/20 disabled:opacity-50 disabled:cursor-not-allowed"
