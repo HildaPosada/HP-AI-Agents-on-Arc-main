@@ -37,16 +37,6 @@ export default function Home() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDemoTutorial, setShowDemoTutorial] = useState(false);
 
-  useEffect(() => {
-    if (!isLoading) {
-      if (isAuthenticated) {
-        setShowAgentPermissions(true);
-      } else {
-        setShowAgentPermissions(false);
-      }
-    }
-  }, [isLoading, isAuthenticated]);
-
   const handleGrantPermissions = () => {
     setShowAgentPermissions(false);
     router.push("/spending");
