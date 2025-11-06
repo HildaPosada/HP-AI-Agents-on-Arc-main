@@ -57,14 +57,13 @@ export function FloatingAdvisorChat({
       {/* Chat Modal/Drawer */}
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop - Non-blocking (pointer-events-none) */}
           <div
-            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300"
-            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 z-40 pointer-events-none transition-opacity duration-300"
           ></div>
 
-          {/* Modal - slides in from right */}
-          <div className="fixed bottom-0 right-0 top-0 z-50 w-full sm:w-96 lg:w-[28rem] bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col">
+          {/* Modal - slides in from right - Non-blocking */}
+          <div className="fixed bottom-0 right-0 top-0 z-50 w-full sm:w-96 lg:w-[28rem] bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden">
             {/* Header */}
             <div className="flex-shrink-0 p-4 border-b border-[#ccff00]/20 bg-[#1a1a1a]">
               <div className="flex items-center justify-between gap-3">
