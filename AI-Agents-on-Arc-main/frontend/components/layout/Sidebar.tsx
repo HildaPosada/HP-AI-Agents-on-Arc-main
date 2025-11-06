@@ -143,13 +143,6 @@ export function Sidebar() {
           </>
         )}
       </div>
-
-      {/* Transaction Modal */}
-      <TransactionModal
-        isOpen={isTransactionModalOpen}
-        onClose={() => setIsTransactionModalOpen(false)}
-        userName={user?.username || "User"}
-      />
     </>
   );
 
