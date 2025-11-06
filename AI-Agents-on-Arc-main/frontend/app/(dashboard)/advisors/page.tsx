@@ -148,14 +148,40 @@ export default function AdvisorsPage() {
             </Card>
           </div>
 
-          {/* Full Width Analysis Section */}
-          <div>
-            <AdvisorsSnapshot
-              userId={user?.username || ""}
-              onDataLoaded={handleSnapshotDataLoaded}
-              onLoadingStateChange={handleSnapshotLoadingChange}
-            />
-          </div>
+          {/* View Full Analysis Toggle - Robinhood Minimalist Style */}
+          {!showFullAnalysis && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setShowFullAnalysis(true)}
+                className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+              >
+                View Full Analysis
+              </button>
+            </div>
+          )}
+
+          {/* Full Width Analysis Section - Shown only in full mode */}
+          {showFullAnalysis && (
+            <div className="space-y-6">
+              {/* Hide Full Analysis Button */}
+              <div className="flex justify-center">
+                <button
+                  onClick={() => setShowFullAnalysis(false)}
+                  className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+                >
+                  Hide Full Analysis
+                </button>
+              </div>
+
+              <div>
+                <AdvisorsSnapshot
+                  userId={user?.username || ""}
+                  onDataLoaded={handleSnapshotDataLoaded}
+                  onLoadingStateChange={handleSnapshotLoadingChange}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Key Stats Footer */}
           <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
