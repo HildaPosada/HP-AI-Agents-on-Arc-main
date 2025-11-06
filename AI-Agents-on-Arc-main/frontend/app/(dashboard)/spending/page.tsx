@@ -9,6 +9,7 @@ import { ExplainableInsights } from "@/components/spending/ExplainableInsights";
 import { OptimizedAIAssistant } from "@/components/spending/OptimizedAIAssistant";
 import { SpendingCard } from "@/components/spending/SpendingCard";
 import { USDCTransactionCard } from "@/components/spending/USDCTransactionCard";
+import { FloatingSpendingChat } from "@/components/spending/FloatingSpendingChat";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, TrendingDown, Zap, Target } from "lucide-react";
 
