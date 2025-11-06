@@ -192,7 +192,7 @@ export default function Home() {
                 Technology
               </a>
               <a
-                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
