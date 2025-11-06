@@ -313,7 +313,7 @@ export default function Home() {
               Try ArcFi Now
             </button>
             <a
-              href="https://github.com"
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 sm:px-8 py-3 sm:py-4 border border-[#ccff00]/30 text-[#ccff00] font-bold rounded-lg hover:border-[#ccff00] hover:bg-[#ccff00]/10 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
