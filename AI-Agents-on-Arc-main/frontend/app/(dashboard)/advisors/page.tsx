@@ -1,12 +1,10 @@
-"use client";
-
 import { useState, useCallback, useEffect } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
 import { useRouter } from "next/navigation";
 import { Loader2, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdvisorsSnapshot } from "@/components/advisors/AdvisorsSnapshot";
-import { FloatingAdvisorChat } from "@/components/advisors/FloatingAdvisorChat";
+import { ExpandableAdvisorChat } from "@/components/advisors/ExpandableAdvisorChat";
 import { AdvisorsSnapshotData } from "@/lib/types/advisors";
 
 export default function AdvisorsPage() {
