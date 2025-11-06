@@ -30,7 +30,7 @@ export function FloatingPerksChat({
         className={`fixed right-6 z-40 group transition-all duration-300 ${
           isOpen ? "hidden" : "block"
         }`}
-        style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}
+        style={{ bottom: 'calc(5rem + env(safe-area-inset-bottom))' }}
         aria-label="Open Perks Chat"
       >
         <div className="relative">
