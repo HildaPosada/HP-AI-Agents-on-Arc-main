@@ -57,7 +57,7 @@ export function UserMessage({ message }: UserMessageProps) {
           </div>
 
           {/* Tiny status indicator */}
-          <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full border border-background" />
+          <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full border border-background" />
         </div>
       </div>
     </div>
