@@ -60,7 +60,7 @@ export function AgentMessage({ message }: AgentMessageProps) {
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 via-cyan-500/5 to-transparent rounded-full blur-3xl" />
 
-          <CardContent className="px-4 py-3 pb-4 relative">
+          <CardContent className="px-4 pt-3 pb-5 relative">
             {/* AI Header */}
             <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/30">
               <div className="flex items-center gap-2">
