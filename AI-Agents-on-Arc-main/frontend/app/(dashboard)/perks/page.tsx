@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { PerksSnapshotData } from "@/lib/types/perks";
 import { PerksAgentCollaboration } from "@/components/perks/PerksAgentCollaboration";
 import { PerksExplainableInsights } from "@/components/perks/PerksExplainableInsights";
+import { FloatingPerksChat } from "@/components/perks/FloatingPerksChat";
 import { OptimizedAIAssistant } from "@/components/spending/OptimizedAIAssistant";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Gift, TrendingUp, DollarSign, Zap } from "lucide-react";
