@@ -175,7 +175,7 @@ export function AgentMessage({ message }: AgentMessageProps) {
 
             {/* Enhanced Footer */}
             {!message.streaming && (
-              <div className="flex items-center justify-between mt-1.5 pt-1 border-t border-gradient-to-r from-transparent via-border/50 to-transparent">
+              <div className="flex items-center justify-between mt-3 pt-2 border-t border-gradient-to-r from-transparent via-border/50 to-transparent">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full shadow-sm" />
                   <span className="text-xs text-muted-foreground font-medium">
