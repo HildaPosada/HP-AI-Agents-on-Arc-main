@@ -410,7 +410,7 @@ export default function Home() {
       </div>
 
       {/* Tech Stack */}
-      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+      <div id="tech" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
             Powered By Industry Leaders
