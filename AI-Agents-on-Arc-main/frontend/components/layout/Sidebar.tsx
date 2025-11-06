@@ -161,7 +161,7 @@ export function Sidebar() {
       </div>
 
       {/* Mobile Header with Menu Button */}
-      <div className="sm:hidden fixed top-16 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-[#ccff00]/10 flex items-center px-4 z-40">
+      <div className="sm:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-[#ccff00]/10 flex items-center px-4 z-50">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
@@ -182,8 +182,8 @@ export function Sidebar() {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="sm:hidden fixed inset-0 z-30 bg-black/50 top-30">
-          <div className="absolute top-30 left-0 right-0 bg-[#0a0a0a] border-b border-[#ccff00]/10 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="sm:hidden fixed inset-0 z-40 bg-black/50 top-14">
+          <div className="absolute top-14 left-0 right-0 bg-[#0a0a0a] border-b border-[#ccff00]/10 max-h-[calc(100vh-56px)] overflow-y-auto">
             <div className="flex flex-col">
               <SidebarContent />
             </div>
