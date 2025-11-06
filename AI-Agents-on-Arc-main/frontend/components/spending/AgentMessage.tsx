@@ -10,8 +10,8 @@ interface AgentMessageProps {
 
 export function AgentMessage({ message }: AgentMessageProps) {
   return (
-    <div className="flex justify-start mb-1 animate-in slide-in-from-left-2 duration-500">
-      <div className="flex items-start gap-2 max-w-[85%]">
+    <div className="flex justify-start mb-0.5 animate-in slide-in-from-left-2 duration-500">
+      <div className="flex items-start gap-2 max-w-[90%]">
         {/* Enhanced ArcFi Logo Avatar */}
         <div className="flex-shrink-0 relative group">
           {/* Main avatar container with glass effect */}
