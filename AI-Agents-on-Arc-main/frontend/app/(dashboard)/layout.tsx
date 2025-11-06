@@ -11,7 +11,7 @@ export default function DashboardLayout({
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden pt-14 sm:pt-0">
+      <div className="flex-1 flex flex-col overflow-hidden pt-14 sm:pt-0" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         {children}
       </div>
     </div>
