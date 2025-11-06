@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Clock, ArrowUpRight, ArrowDownLeft } from "lucide-react";
+import { BlockchainVerificationBadge } from "./BlockchainVerificationBadge";
 
 interface USDCTransaction {
   id: string;
@@ -50,17 +51,17 @@ export function USDCTransactionCard({
 }: USDCTransactionCardProps) {
   return (
     <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] hover:border-[#ccff00]/50">
-      <CardContent className="pt-8">
+      <CardContent className="pt-6 sm:pt-8">
         {/* Header with Balance */}
         <div className="mb-6">
           <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-2">
             USDC Balance on Arc
           </p>
-          <div className="flex items-baseline gap-2 mb-4">
-            <span className="text-4xl font-bold text-[#ccff00]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2 mb-4">
+            <span className="text-3xl sm:text-4xl font-bold text-[#ccff00]">
               ${totalUSADCBalance.toFixed(2)}
             </span>
-            <span className="text-sm text-white/60">Circle Arc Network</span>
+            <span className="text-xs sm:text-sm text-white/60">Circle Arc Network</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-white/70">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
@@ -71,22 +72,35 @@ export function USDCTransactionCard({
         {/* Divider */}
         <div className="h-px bg-[#ccff00]/10 mb-6"></div>
 
+        {/* Blockchain Verification Badge */}
+        <div className="mb-6">
+          <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-3">
+            Blockchain Status
+          </p>
+          <BlockchainVerificationBadge
+            status="verified"
+            network="Circle Arc"
+          />
+        </div>
+
+        <div className="h-px bg-[#ccff00]/10 mb-6"></div>
+
         {/* Recent Transactions */}
         <div>
           <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-4">
             Recent Arc Transactions
           </p>
 
-          <div className="space-y-3">
+          <div className="space-y-3 max-h-80 overflow-y-auto">
             {transactions.map((tx) => (
               <div
                 key={tx.id}
                 className="p-3 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors group"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                   {/* Icon */}
                   <div
-                    className={`p-2 rounded-lg ${
+                    className={`p-2 rounded-lg w-fit ${
                       tx.type === "receive"
                         ? "bg-green-500/20"
                         : "bg-orange-500/20"
@@ -101,7 +115,7 @@ export function USDCTransactionCard({
 
                   {/* Details */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-1">
                       <p className="text-sm font-medium text-white truncate">
                         {tx.recipient}
                       </p>
@@ -115,7 +129,7 @@ export function USDCTransactionCard({
                         {tx.type === "receive" ? "+" : "-"}${tx.amount.toFixed(2)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                       <span className="text-xs text-white/50">{tx.timestamp}</span>
                       <div className="flex items-center gap-1">
                         {tx.status === "confirmed" ? (
@@ -138,9 +152,9 @@ export function USDCTransactionCard({
                   </div>
                 </div>
 
-                {/* Hash on Hover */}
-                <div className="mt-2 pt-2 border-t border-[#ccff00]/10 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <p className="text-xs text-white/60 font-mono">
+                {/* Hash on Hover - Mobile Friendly */}
+                <div className="mt-2 pt-2 border-t border-[#ccff00]/10 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                  <p className="text-xs text-white/60 font-mono break-all">
                     Hash: <span className="text-[#ccff00]">{tx.hash}</span>
                   </p>
                 </div>
@@ -155,8 +169,8 @@ export function USDCTransactionCard({
             <div className="w-8 h-8 rounded-full bg-[#ccff00]/20 flex items-center justify-center flex-shrink-0">
               <span className="text-sm font-bold text-[#ccff00]">⊙</span>
             </div>
-            <div className="flex-1">
-              <p className="text-sm font-bold text-white">Circle Arc Network</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-white truncate">Circle Arc Network</p>
               <p className="text-xs text-white/60">
                 Stablecoin settlement on Arc blockchain
               </p>
