@@ -17,6 +17,7 @@ export default function SpendingPage() {
   const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const [isLoadingData, setIsLoadingData] = useState(true);
+  const [showFullAnalysis, setShowFullAnalysis] = useState(false);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
