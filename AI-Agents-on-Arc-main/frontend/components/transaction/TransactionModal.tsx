@@ -180,7 +180,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
         <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
           
           {/* Left Side - Transaction Form */}
-          <div className="flex-1 p-4 sm:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-[#ccff00]/10">
+          <div className="flex-1 p-4 sm:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-[#ccff00]/10 pb-16 sm:pb-6" style={{ paddingBottom: 'calc(6rem + env(safe-area-inset-bottom))' }}>
             {step === "form" && (
               <div className="space-y-5">
                 
