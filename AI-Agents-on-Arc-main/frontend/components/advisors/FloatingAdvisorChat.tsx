@@ -84,7 +84,7 @@ export function FloatingAdvisorChat({
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => setIsMinimized(!isMinimized)}
-                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors pointer-events-auto"
                     aria-label="Minimize chat"
                   >
                     <ChevronDown
