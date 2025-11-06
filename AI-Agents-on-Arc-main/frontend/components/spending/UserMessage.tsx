@@ -31,8 +31,8 @@ export function UserMessage({ message }: UserMessageProps) {
             {/* Inline timestamp - only on longer messages */}
             {message.content.length > 20 && (
               <div className="flex items-center justify-end gap-0.5 mt-0.5">
-                <CheckCircle className="h-2.5 w-2.5 text-white/60" />
-                <span className="text-xs text-white/50">
+                <CheckCircle className="h-2.5 w-2.5 text-[#0f0f0f]/60" />
+                <span className="text-xs text-[#0f0f0f]/70 font-medium">
                   {message.timestamp.toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
