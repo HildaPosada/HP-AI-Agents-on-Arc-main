@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthContext";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { Button } from "@/components/ui/button";
+import { DemoTutorial } from "@/components/DemoTutorial";
 import {
   Card,
   CardContent,
@@ -24,6 +25,9 @@ import {
   Award,
   Github,
   ExternalLink,
+  Menu,
+  X,
+  Play,
 } from "lucide-react";
 
 export default function Home() {
@@ -31,6 +35,8 @@ export default function Home() {
   const router = useRouter();
   const [showAgentPermissions, setShowAgentPermissions] = useState(false);
   const [activeTab, setActiveTab] = useState("features");
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showDemoTutorial, setShowDemoTutorial] = useState(false);
 
   useEffect(() => {
     if (!isLoading) {
@@ -77,25 +83,25 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-2xl mx-auto">
           <Card className="shadow-2xl border-[#ccff00]/20 bg-[#1a1a1a]">
-            <CardContent className="pt-8">
-              <div className="text-center mb-8">
+            <CardContent className="pt-6 sm:pt-8">
+              <div className="text-center mb-6 sm:mb-8">
                 <div className="w-16 h-16 bg-[#ccff00] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Shield className="h-8 w-8 text-[#0f0f0f]" />
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                   Enable AI Agents
                 </h2>
-                <p className="text-white/70">
-                  To use ArcFi, grant access to our 6 specialized AI agents
+                <p className="text-white/70 text-sm sm:text-base">
+                  Grant access to our 6 specialized AI agents
                 </p>
               </div>
 
-              <div className="space-y-4 mb-8">
-                <h3 className="font-semibold flex items-center gap-2 text-white">
+              <div className="space-y-4 mb-6 sm:mb-8">
+                <h3 className="font-semibold flex items-center gap-2 text-white text-sm">
                   <CheckCircle className="h-5 w-5 text-[#ccff00]" />
                   Your AI Agent Team:
                 </h3>
-                <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
                   {[
                     { name: "Spending Agent", emoji: "💰" },
                     { name: "Portfolio Agent", emoji: "📈" },
@@ -106,7 +112,7 @@ export default function Home() {
                   ].map((agent) => (
                     <div
                       key={agent.name}
-                      className="p-3 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/30 hover:border-[#ccff00]/60 transition-colors"
+                      className="p-2 sm:p-3 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/30 hover:border-[#ccff00]/60 transition-colors"
                     >
                       <p className="font-medium text-white">
                         {agent.emoji} {agent.name}
@@ -116,25 +122,25 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-[#ccff00]/10 border border-[#ccff00]/30 rounded-lg p-4 mb-8">
+              <div className="bg-[#ccff00]/10 border border-[#ccff00]/30 rounded-lg p-4 mb-6 sm:mb-8">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="h-5 w-5 text-[#ccff00] flex-shrink-0 mt-0.5" />
-                  <div className="text-sm">
+                  <div className="text-xs sm:text-sm">
                     <p className="font-medium text-white mb-1">
                       Powered by Google ADK & A2A Protocol
                     </p>
                     <p className="text-white/80">
                       Agents communicate securely via Agent-to-Agent protocol
-                      with Gemini API for intelligent decision-making.
+                      with Gemini API.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-3">
                 <Button
                   onClick={handleGrantPermissions}
-                  className="flex-1 bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] font-bold"
+                  className="w-full bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] font-bold"
                   size="lg"
                 >
                   <CheckCircle className="mr-2 h-4 w-4" />
@@ -144,7 +150,7 @@ export default function Home() {
                   onClick={handleDenyPermissions}
                   variant="outline"
                   size="lg"
-                  className="flex-1 border-[#ccff00]/30 text-[#ccff00] hover:bg-[#ccff00]/10"
+                  className="w-full border-[#ccff00]/30 text-[#ccff00] hover:bg-[#ccff00]/10"
                 >
                   Cancel
                 </Button>
@@ -161,17 +167,22 @@ export default function Home() {
       {/* Navigation */}
       <div className="fixed top-0 w-full z-50 bg-[#0f0f0f]/80 backdrop-blur border-b border-[#ccff00]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-[#ccff00] rounded-lg flex items-center justify-center">
                 <Brain className="h-5 w-5 text-[#0f0f0f]" />
               </div>
-              <span className="text-xl font-bold text-[#ccff00]">ArcFi</span>
+              <span className="text-lg sm:text-xl font-bold text-[#ccff00]">
+                ArcFi
+              </span>
             </div>
+
+            {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => setActiveTab("features")}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-xs sm:text-sm font-medium transition-colors ${
                   activeTab === "features"
                     ? "text-[#ccff00]"
                     : "text-white/60 hover:text-white"
@@ -181,7 +192,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab("tech")}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-xs sm:text-sm font-medium transition-colors ${
                   activeTab === "tech"
                     ? "text-[#ccff00]"
                     : "text-white/60 hover:text-white"
@@ -191,7 +202,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab("agents")}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-xs sm:text-sm font-medium transition-colors ${
                   activeTab === "agents"
                     ? "text-[#ccff00]"
                     : "text-white/60 hover:text-white"
@@ -199,38 +210,102 @@ export default function Home() {
               >
                 Agents
               </button>
+              <Button
+                onClick={() => setShowDemoTutorial(true)}
+                variant="ghost"
+                size="sm"
+                className="text-[#ccff00] hover:bg-[#ccff00]/10 gap-2"
+              >
+                <Play className="h-4 w-4" />
+                Demo
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-2">
+              <Button
+                onClick={() => setShowDemoTutorial(true)}
+                variant="ghost"
+                size="sm"
+                className="text-[#ccff00] hover:bg-[#ccff00]/10"
+              >
+                <Play className="h-4 w-4" />
+              </Button>
+              <button
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+              >
+                {showMobileMenu ? (
+                  <X className="h-5 w-5 text-white" />
+                ) : (
+                  <Menu className="h-5 w-5 text-white" />
+                )}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {showMobileMenu && (
+            <div className="md:hidden pb-4 space-y-2">
+              <button
+                onClick={() => {
+                  setActiveTab("features");
+                  setShowMobileMenu(false);
+                }}
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
+              >
+                Features
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("tech");
+                  setShowMobileMenu(false);
+                }}
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
+              >
+                Technology
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("agents");
+                  setShowMobileMenu(false);
+                }}
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
+              >
+                Agents
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Hero Section */}
-      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-20 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           {/* Logo + Title */}
-          <div className="mb-8 flex justify-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#ccff00] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#ccff00]/30">
-              <Brain className="h-10 w-10 text-[#0f0f0f]" />
+          <div className="mb-6 sm:mb-8 flex justify-center">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#ccff00] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#ccff00]/30">
+              <Brain className="h-8 w-8 sm:h-10 sm:w-10 text-[#0f0f0f]" />
             </div>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             The Future of <span className="text-[#ccff00]">Banking</span>
           </h1>
 
-          <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Multi-agent AI orchestration powered by Google ADK, Agent-to-Agent Protocol, and Gemini. Transform banking with intelligent, collaborative AI agents.
+          <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
+            Multi-agent AI orchestration powered by Google ADK, A2A Protocol, and Gemini. Transform banking.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 sm:mb-16 px-2">
             <button
               onClick={() =>
                 document
                   .getElementById("login")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="px-8 py-4 bg-[#ccff00] text-[#0f0f0f] font-bold rounded-lg hover:bg-[#ccff00]/90 transition-all hover:shadow-2xl hover:shadow-[#ccff00]/30"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ccff00] text-[#0f0f0f] font-bold rounded-lg hover:bg-[#ccff00]/90 transition-all hover:shadow-2xl hover:shadow-[#ccff00]/30 text-sm sm:text-base"
             >
               Try ArcFi Now
             </button>
@@ -238,140 +313,125 @@ export default function Home() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border border-[#ccff00]/30 text-[#ccff00] font-bold rounded-lg hover:border-[#ccff00] hover:bg-[#ccff00]/10 transition-all flex items-center justify-center gap-2"
+              className="px-6 sm:px-8 py-3 sm:py-4 border border-[#ccff00]/30 text-[#ccff00] font-bold rounded-lg hover:border-[#ccff00] hover:bg-[#ccff00]/10 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-4 w-4 sm:h-5 sm:w-5" />
               View Code
             </a>
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-20">
-            <div className="p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
-              <div className="text-3xl font-bold text-[#ccff00] mb-2">6</div>
-              <div className="text-sm text-white/70">Specialized Agents</div>
+          <div className="grid grid-cols-3 gap-3 sm:gap-8 mb-12 sm:mb-20">
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                6
+              </div>
+              <div className="text-xs sm:text-sm text-white/70">Agents</div>
             </div>
-            <div className="p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
-              <div className="text-3xl font-bold text-[#ccff00] mb-2">A2A</div>
-              <div className="text-sm text-white/70">Protocol Enabled</div>
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                A2A
+              </div>
+              <div className="text-xs sm:text-sm text-white/70">Protocol</div>
             </div>
-            <div className="p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
-              <div className="text-3xl font-bold text-[#ccff00] mb-2">USDC</div>
-              <div className="text-sm text-white/70">Arc Integration</div>
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                USDC
+              </div>
+              <div className="text-xs sm:text-sm text-white/70">Arc</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">
-            Why ArcFi Wins the Hackathon
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+            Why ArcFi Wins
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Innovation */}
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors">
-              <CardContent className="pt-8">
-                <div className="w-12 h-12 bg-[#ccff00]/20 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-[#ccff00]" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  🎯 Originality
-                </h3>
-                <p className="text-white/70">
-                  First multi-agent banking system using A2A Protocol. AI agents collaborate intelligently instead of static chatbots.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Technology */}
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors">
-              <CardContent className="pt-8">
-                <div className="w-12 h-12 bg-[#ccff00]/20 rounded-lg flex items-center justify-center mb-4">
-                  <Cpu className="h-6 w-6 text-[#ccff00]" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  💻 Application of Tech
-                </h3>
-                <p className="text-white/70">
-                  Google ADK + Gemini API + A2A Protocol + USDC/Arc. Cutting-edge tech stack fully integrated.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Business */}
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors">
-              <CardContent className="pt-8">
-                <div className="w-12 h-12 bg-[#ccff00]/20 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="h-6 w-6 text-[#ccff00]" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  💰 Business Value
-                </h3>
-                <p className="text-white/70">
-                  B2C SaaS model. Solves real banking problems. USDC enables global stablecoin payments.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Presentation */}
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors">
-              <CardContent className="pt-8">
-                <div className="w-12 h-12 bg-[#ccff00]/20 rounded-lg flex items-center justify-center mb-4">
-                  <Award className="h-6 w-6 text-[#ccff00]" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  🎨 Presentation
-                </h3>
-                <p className="text-white/70">
-                  Stunning dark UI with neon lime accents. Shows agent reasoning & USDC transactions visibly.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {[
+              {
+                icon: Zap,
+                title: "🎯 Originality",
+                desc: "First multi-agent banking system using A2A Protocol",
+              },
+              {
+                icon: Cpu,
+                title: "💻 Application of Tech",
+                desc: "Google ADK + Gemini + A2A + USDC/Arc",
+              },
+              {
+                icon: TrendingUp,
+                title: "💰 Business Value",
+                desc: "B2C SaaS model solving real banking problems",
+              },
+              {
+                icon: Award,
+                title: "🎨 Presentation",
+                desc: "Stunning UI showing agent reasoning & USDC visibly",
+              },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <Card
+                  key={idx}
+                  className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors"
+                >
+                  <CardContent className="pt-6 sm:pt-8">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-[#ccff00] mb-3 sm:mb-4" />
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-white/70">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </div>
 
       {/* Agents Section */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">
-            Meet Your AI Agent Team
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+            Meet Your AI Team
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
                 icon: DollarSign,
                 name: "Spending Agent",
-                desc: "Analyzes transactions, finds savings, manages subscriptions",
+                desc: "Analyzes transactions & finds savings",
               },
               {
                 icon: TrendingUp,
                 name: "Portfolio Agent",
-                desc: "Investment analysis, market insights, rebalancing suggestions",
+                desc: "Investment analysis & rebalancing",
               },
               {
                 icon: Brain,
                 name: "Goals Agent",
-                desc: "Goal setting, savings tracking, milestone planning",
+                desc: "Goal setting & savings tracking",
               },
               {
                 icon: BarChart3,
                 name: "Perks Agent",
-                desc: "Reward maximization, benefit discovery, optimization",
+                desc: "Reward maximization",
               },
               {
                 icon: Shield,
                 name: "Advisors Agent",
-                desc: "Professional guidance, advisor matching, expert connections",
+                desc: "Professional guidance & matching",
               },
               {
                 icon: Network,
                 name: "Chat Orchestrator",
-                desc: "Intelligent routing, multi-agent coordination, response synthesis",
+                desc: "Multi-agent coordination",
               },
             ].map((agent, idx) => {
               const Icon = agent.icon;
@@ -380,12 +440,14 @@ export default function Home() {
                   key={idx}
                   className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-all hover:shadow-lg hover:shadow-[#ccff00]/10"
                 >
-                  <CardContent className="pt-8">
-                    <Icon className="h-8 w-8 text-[#ccff00] mb-4" />
-                    <h3 className="text-lg font-bold text-white mb-2">
+                  <CardContent className="pt-6">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-[#ccff00] mb-3" />
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">
                       {agent.name}
                     </h3>
-                    <p className="text-sm text-white/70">{agent.desc}</p>
+                    <p className="text-xs sm:text-sm text-white/70">
+                      {agent.desc}
+                    </p>
                   </CardContent>
                 </Card>
               );
@@ -395,100 +457,53 @@ export default function Home() {
       </div>
 
       {/* Tech Stack */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
             Powered By Industry Leaders
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20">
-              <CardContent className="pt-8">
-                <h3 className="text-2xl font-bold text-[#ccff00] mb-4">
-                  🧠 Google AI Stack
-                </h3>
-                <ul className="space-y-3 text-white/70">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Agent Development Kit (ADK)
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Gemini 2.5 Flash API
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    A2A Protocol
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20">
-              <CardContent className="pt-8">
-                <h3 className="text-2xl font-bold text-[#ccff00] mb-4">
-                  💰 Blockchain Stack
-                </h3>
-                <ul className="space-y-3 text-white/70">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Circle Arc Network
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    USDC Stablecoin
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Smart Contract Integration
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20">
-              <CardContent className="pt-8">
-                <h3 className="text-2xl font-bold text-[#ccff00] mb-4">
-                  🎨 Frontend Stack
-                </h3>
-                <ul className="space-y-3 text-white/70">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Next.js 15 + React 19
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    TypeScript
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Tailwind CSS
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-[#1a1a1a] border-[#ccff00]/20">
-              <CardContent className="pt-8">
-                <h3 className="text-2xl font-bold text-[#ccff00] mb-4">
-                  ⚙️ Backend Stack
-                </h3>
-                <ul className="space-y-3 text-white/70">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Python + FastAPI
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Microservices Architecture
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                    Cymbal Bank Backend
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {[
+              {
+                title: "🧠 Google AI Stack",
+                items: ["Agent Development Kit (ADK)", "Gemini 2.5 Flash API", "A2A Protocol"],
+              },
+              {
+                title: "💰 Blockchain Stack",
+                items: ["Circle Arc Network", "USDC Stablecoin", "Smart Contracts"],
+              },
+              {
+                title: "🎨 Frontend Stack",
+                items: ["Next.js 15 + React 19", "TypeScript", "Tailwind CSS"],
+              },
+              {
+                title: "⚙️ Backend Stack",
+                items: ["Python + FastAPI", "Microservices", "Cymbal Bank"],
+              },
+            ].map((stack, idx) => (
+              <Card
+                key={idx}
+                className="bg-[#1a1a1a] border-[#ccff00]/20"
+              >
+                <CardContent className="pt-6 sm:pt-8">
+                  <h3 className="text-lg sm:text-2xl font-bold text-[#ccff00] mb-4">
+                    {stack.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {stack.items.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 text-xs sm:text-sm text-white/70"
+                      >
+                        <CheckCircle className="h-4 w-4 text-[#ccff00]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
@@ -496,21 +511,21 @@ export default function Home() {
       {/* Login Section */}
       <div
         id="login"
-        className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10"
+        className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10"
       >
         <div className="max-w-md mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 text-center">
             Get Started
           </h2>
-          <div className="bg-[#1a1a1a] border border-[#ccff00]/20 rounded-lg p-8">
+          <div className="bg-[#1a1a1a] border border-[#ccff00]/20 rounded-lg p-6 sm:p-8">
             <LoginForm />
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="border-t border-[#ccff00]/10 py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-white/60 text-sm">
+      <div className="border-t border-[#ccff00]/10 py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-white/60 text-xs sm:text-sm">
           <p>Built for AI Agents on Arc with USDC Hackathon</p>
           <div className="flex items-center gap-4">
             <a
@@ -530,6 +545,12 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Demo Tutorial Modal */}
+      <DemoTutorial
+        isOpen={showDemoTutorial}
+        onClose={() => setShowDemoTutorial(false)}
+      />
     </div>
   );
 }
