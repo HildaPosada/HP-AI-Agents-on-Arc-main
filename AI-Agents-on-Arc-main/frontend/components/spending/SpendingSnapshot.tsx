@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { SpendingCard } from "./SpendingCard";
 import { ActivitiesList } from "./ActivitiesList";
 import { InsightsCard } from "./InsightsCard";
+import { AgentReasoningPanel } from "./AgentReasoningPanel";
+import { USDCTransactionCard } from "./USDCTransactionCard";
 
 interface SpendingSnapshotProps {
   userId: string;
@@ -67,12 +69,12 @@ export function SpendingSnapshot({
         <div className="bg-card border border-border rounded-lg p-8 shadow-lg relative overflow-hidden">
           <div className="relative flex flex-col items-center space-y-6">
             <div className="relative">
-              <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">ArcFi</span>
+              <div className="w-16 h-16 bg-[#ccff00] rounded-lg flex items-center justify-center">
+                <span className="text-[#0f0f0f] font-bold text-lg">ArcFi</span>
               </div>
             </div>
 
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <Loader2 className="h-8 w-8 animate-spin text-[#ccff00]" />
 
             <div className="text-center space-y-2">
               <p className="text-foreground font-bold">
@@ -84,13 +86,13 @@ export function SpendingSnapshot({
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
                 style={{ animationDelay: "0.3s" }}
               />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
                 style={{ animationDelay: "0.6s" }}
               />
             </div>
@@ -139,31 +141,76 @@ export function SpendingSnapshot({
   console.log("[FRONTEND] 🎨 Rendering dashboard with data:");
   console.log("[FRONTEND] 🎨 Income:", data?.income);
   console.log("[FRONTEND] 🎨 Expenses:", data?.expenses);
-  console.log("[FRONTEND] 🎨 Activities count:", data?.activities?.length);
 
   return (
     <div className="h-full flex flex-col bg-background relative">
       <div className="flex-1 overflow-y-auto">
         <div className="p-8 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <SpendingCard
-              title="Income"
-              amount={data?.income || 0}
-              variant="success"
-            />
-            <SpendingCard
-              title="Expenses"
-              amount={data?.expenses || 0}
-              variant="destructive"
-            />
-          </div>
+          <div className="relative space-y-8">
+            {/* Income & Expenses */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <SpendingCard
+                title="Income"
+                amount={data?.income || 0}
+                variant="success"
+              />
+              <SpendingCard
+                title="Expenses"
+                amount={data?.expenses || 0}
+                variant="destructive"
+              />
+            </div>
 
-          <div>
-            <ActivitiesList activities={data?.activities || []} />
-          </div>
+            {/* Agent Reasoning & USDC */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <AgentReasoningPanel
+                agentName="Spending Agent"
+                confidence={95}
+                reasoning="Analyzed 47 transactions across 12 merchants. Income exceeds expenses by 26.6%. Top spending category is Housing at 38%. Recommendation: Increase emergency fund savings."
+              />
+              <USDCTransactionCard
+                totalUSADCBalance={3500.5}
+                transactions={[
+                  {
+                    id: "1",
+                    type: "receive",
+                    amount: 1000,
+                    recipient: "Salary Deposit",
+                    timestamp: "2024-11-15 09:30 AM",
+                    hash: "0x742d...f9a2",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "2",
+                    type: "send",
+                    amount: 50,
+                    recipient: "USDC Payment",
+                    timestamp: "2024-11-14 02:15 PM",
+                    hash: "0x8f9e...2d45",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "3",
+                    type: "receive",
+                    amount: 250,
+                    recipient: "Reward Payout",
+                    timestamp: "2024-11-13 11:00 AM",
+                    hash: "0x5c3a...b8e1",
+                    status: "confirmed",
+                  },
+                ]}
+              />
+            </div>
 
-          <div>
-            <InsightsCard insights={data?.insights || ""} />
+            {/* Activities */}
+            <div>
+              <ActivitiesList activities={data?.activities || []} />
+            </div>
+
+            {/* Insights */}
+            <div>
+              <InsightsCard insights={data?.insights || ""} />
+            </div>
           </div>
         </div>
       </div>
