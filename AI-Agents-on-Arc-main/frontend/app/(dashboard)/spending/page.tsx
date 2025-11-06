@@ -216,6 +216,12 @@ export default function SpendingPage() {
           </Card>
         </div>
       </div>
+
+      {/* Floating Chat Widget */}
+      <FloatingSpendingChat
+        userId={user?.username || ""}
+        isEnabled={true}
+      />
     </div>
   );
 }
