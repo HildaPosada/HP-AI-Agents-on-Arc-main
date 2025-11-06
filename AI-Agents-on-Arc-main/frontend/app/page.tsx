@@ -198,14 +198,15 @@ export default function Home() {
                 className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
               >
                 <Github className="h-4 w-4" />
-                View Code
+                GitHub
               </a>
               <a
                 href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/blob/flare-space/README.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors flex items-center gap-1"
               >
+                <ExternalLink className="h-4 w-4" />
                 Docs
               </a>
               <Button
