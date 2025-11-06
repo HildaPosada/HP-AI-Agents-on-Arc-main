@@ -11,18 +11,15 @@ export function UserMessage({ message }: UserMessageProps) {
   return (
     <div className="flex justify-end mb-0.25 animate-in slide-in-from-right-2 duration-500">
       <div className="flex items-end gap-1.5 max-w-[85%]">
-        {/* Ultra-Compact Message Card */}
+        {/* iOS Messenger Style Message Bubble */}
         <Card
           className={cn(
-            "relative bg-gradient-to-br from-primary/95 to-primary/90 backdrop-blur-md order-2",
-            "text-primary-foreground shadow-md border border-primary/30",
-            "transition-all duration-200 overflow-hidden"
+            "relative bg-gradient-to-br from-[#ccff00] to-[#b8e800] order-2",
+            "text-[#0f0f0f] shadow-md",
+            "transition-all duration-200 overflow-hidden rounded-3xl"
           )}
         >
-          {/* Minimal glass effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/8 to-transparent pointer-events-none" />
-
-          <CardContent className="px-1.5 py-0.5 relative">
+          <CardContent className="px-3 py-2 relative">
             {/* Message content with proportional sizing */}
             <p className="text-xs leading-snug whitespace-pre-wrap font-medium text-primary-foreground break-words">
               {message.content}
