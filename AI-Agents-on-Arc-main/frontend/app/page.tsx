@@ -443,10 +443,10 @@ export default function Home() {
       {/* Login Section */}
       <div
         id="login"
-        className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
+        className="py-6 sm:py-10 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
       >
         <div className="max-w-md mx-auto">
-          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-4 sm:p-6">
+          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-3 sm:p-4">
             <LoginForm />
           </div>
         </div>
