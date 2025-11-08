@@ -117,6 +117,16 @@ export function ChatInput({
     };
   }, []);
 
+  // Clear error after 3 seconds
+  useEffect(() => {
+    if (micError) {
+      const timer = setTimeout(() => {
+        setMicError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [micError]);
+
   const toggleVoiceInput = () => {
     if (isListening || isRecording) {
       // Stop listening
