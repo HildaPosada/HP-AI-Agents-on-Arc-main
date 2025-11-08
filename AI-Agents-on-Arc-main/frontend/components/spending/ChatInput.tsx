@@ -23,6 +23,17 @@ export function ChatInput({
   const recognitionRef = useRef<any>(null);
   const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Check browser support on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      setHasBrowserSupport(false);
+      return;
+    }
+
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    setHasBrowserSupport(!!SpeechRecognition);
+  }, []);
+
   // Initialize speech recognition
   const initializeSpeechRecognition = () => {
     if (typeof window === 'undefined') return;
@@ -30,7 +41,8 @@ export function ChatInput({
     const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
 
     if (!SpeechRecognition) {
-      console.log('ℹ️ Speech Recognition API not available in this browser');
+      setMicError('Speech recognition not supported in this browser');
+      setHasBrowserSupport(false);
       return;
     }
 
@@ -44,15 +56,19 @@ export function ChatInput({
         console.log('🎤 Speech recognition started');
         setIsListening(true);
         setIsRecording(true);
+        setMicError(null);
       };
 
       recognition.onresult = (event: any) => {
         let finalTranscript = '';
+        let interimTranscript = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
             finalTranscript += transcript + ' ';
+          } else {
+            interimTranscript += transcript;
           }
         }
 
@@ -64,7 +80,7 @@ export function ChatInput({
 
       recognition.onerror = (event: any) => {
         console.log('⚠️ Speech recognition error:', event.error);
-        // Silently handle errors - don't show alerts
+        setMicError(`Mic error: ${event.error}`);
         setIsListening(false);
         setIsRecording(false);
       };
@@ -77,8 +93,11 @@ export function ChatInput({
 
       recognitionRef.current = recognition;
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       console.log('ℹ️ Could not initialize speech recognition:', error);
-      // Silently fail - don't show alerts
+      setMicError(`Failed to initialize: ${errorMsg}`);
+      setIsListening(false);
+      setIsRecording(false);
     }
   };
 
