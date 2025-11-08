@@ -165,7 +165,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#FF9900] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#FF9900] rounded-lg flex items-center justify-center logo-glow">
                 <Coins className="h-5 w-5 text-[#0f0f0f]" />
               </div>
               <span className="text-lg sm:text-xl font-bold text-[#FF9900]">
@@ -266,7 +266,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           {/* Logo + Title */}
           <div className="mb-6 sm:mb-8 flex justify-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#FF9900] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#FF9900]/30">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#FF9900] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#FF9900]/30 logo-glow">
               <Coins className="h-8 w-8 sm:h-10 sm:w-10 text-[#0f0f0f]" />
             </div>
           </div>
@@ -446,10 +446,10 @@ export default function Home() {
         className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
       >
         <div className="max-w-md mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 text-center">
             Get Started
           </h2>
-          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-6 sm:p-8">
+          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-4 sm:p-6">
             <LoginForm />
           </div>
         </div>
