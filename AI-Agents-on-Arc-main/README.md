@@ -1,9 +1,12 @@
 
 <div align='center'>
-<img width="272" height="137" alt="ArcFi" src="https://github.com/user-attachments/assets/11432f9f-6a4c-47ce-8d8b-9521b513d7be" />
+    <a href='https://agent-arc.netlify.app/'>
+<img width="272" height="137" alt="ArcFi" src="https://github.com/user-attachments/assets/b52e51d4-b41a-4c0e-961e-74feecab1b1f" />
+    </a>
 </div>
 
-# ArcFi — AI Agents on Arc with USDC
+
+<h2 align='center'>ArcFi — AI Agents on Arc with USDC</h2>
 
 This project was built for the **AI Agents on Arc with USDC Hackathon**, reimagining retail banking through intelligent multi-agent systems powered by **Google’s Agent Development Kit (ADK)**, the **Agent-to-Agent (A2A) Protocol**, the **Gemini API**, and the **Arc blockchain** — a **USDC-native Layer-1** designed for stable, secure financial automation.
 
@@ -340,6 +343,45 @@ temp-repo/
 
 * Run `uv sync` in the agents directory
 * Run `npm install` in the frontend directory
+
+<div align="center">
+
+  <h1><u>Our Team</u></h1>
+
+  <table>
+    <tr>
+      <td>
+        <a href="https://github.com/SaifRasool92">
+          <img src="https://avatars.githubusercontent.com/u/170190067?v=4" width="100" alt="Saif Ur Rasool"/><br>
+          <sub><b>Saif Ur Rasool</b></sub>
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/Meharzain2010">
+          <img src="https://avatars.githubusercontent.com/u/194600882?s=400" width="100" alt="Zia Ur Rehman"/><br>
+          <sub><b>Zia Ur Rehman</b></sub>
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/">
+          <img src="https://avatars.githubusercontent.com/u/139736274?s=400&u=92616bfda6d10b31bd7fcf134741981dd89b57ab&v=4" width="100" alt="Hilda Posada"/><br>
+          <sub><b>Hilda Posada</b></sub>
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/merstella">
+          <img src="https://avatars.githubusercontent.com/merstella" width="100" alt="Phuc Hoang"/><br>
+          <sub><b>Phuc Hoang</b></sub>
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/MariamTahir-07">
+          <img src="https://avatars.githubusercontent.com/u/237412379?v=4" width="100" alt="Mariam Tahir"/><br>
+          <sub><b>Mariam Tahir</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
 
 ---
 
