@@ -63,7 +63,7 @@ export default function SpendingPage() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-background">
       {/* Header */}
-      <div className="flex-shrink-0 p-2 sm:p-4 border-b border-[#FF9900]/10 bg-[#1a1a1a]">
+      <div className="flex-shrink-0 p-1 sm:p-3 border-b border-[#FF9900]/10 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
