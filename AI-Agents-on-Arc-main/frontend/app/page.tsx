@@ -68,10 +68,10 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] relative overflow-hidden flex items-center justify-center p-4">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 sm:left-20">
-            <Shield className="h-16 w-16 sm:h-24 sm:w-24 text-[#ccff00] animate-pulse" />
+            <Shield className="h-16 w-16 sm:h-24 sm:w-24 text-[#FF9900] animate-pulse" />
           </div>
           <div className="absolute bottom-20 right-10 sm:right-32">
-            <Brain className="h-18 w-18 sm:h-22 sm:w-22 text-[#ccff00] animate-pulse" />
+            <Brain className="h-18 w-18 sm:h-22 sm:w-22 text-[#FF9900] animate-pulse" />
           </div>
         </div>
 
