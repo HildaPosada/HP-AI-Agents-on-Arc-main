@@ -92,54 +92,54 @@ export default function SpendingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Income Card */}
             <Card className="bg-green-500/10 border border-green-500/30 relative overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="text-xs text-green-400/70 font-bold uppercase tracking-wider mb-2">
+                    <p className="text-xs text-green-400/70 font-bold uppercase tracking-wider mb-1">
                       Income
                     </p>
-                    <p className="text-3xl sm:text-4xl font-bold text-green-400">
+                    <p className="text-2xl sm:text-3xl font-bold text-green-400">
                       ${income.toLocaleString()}
                     </p>
                   </div>
-                  <TrendingDown className="h-8 w-8 text-green-400/30 rotate-180" />
+                  <TrendingDown className="h-6 w-6 text-green-400/30 rotate-180 flex-shrink-0" />
                 </div>
               </CardContent>
             </Card>
 
             {/* Expenses Card */}
             <Card className="bg-red-500/10 border border-red-500/30 relative overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="text-xs text-red-400/70 font-bold uppercase tracking-wider mb-2">
+                    <p className="text-xs text-red-400/70 font-bold uppercase tracking-wider mb-1">
                       Expenses
                     </p>
-                    <p className="text-3xl sm:text-4xl font-bold text-red-400">
+                    <p className="text-2xl sm:text-3xl font-bold text-red-400">
                       ${expenses.toLocaleString()}
                     </p>
                   </div>
-                  <TrendingDown className="h-8 w-8 text-red-400/30" />
+                  <TrendingDown className="h-6 w-6 text-red-400/30 flex-shrink-0" />
                 </div>
               </CardContent>
             </Card>
 
             {/* Net Savings Card */}
-            <Card className="bg-[#ccff00]/10 border border-[#ccff00]/30 relative overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
+            <Card className="bg-[#FF9900]/10 border border-[#FF9900]/30 relative overflow-hidden">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="text-xs text-[#ccff00]/70 font-bold uppercase tracking-wider mb-2">
+                    <p className="text-xs text-[#FF9900]/70 font-bold uppercase tracking-wider mb-1">
                       Monthly Savings
                     </p>
-                    <p className="text-3xl sm:text-4xl font-bold text-[#ccff00]">
+                    <p className="text-2xl sm:text-3xl font-bold text-[#FF9900]">
                       ${savings.toLocaleString()}
                     </p>
-                    <p className="text-xs text-white/60 mt-2">
+                    <p className="text-xs text-white/60 mt-1">
                       {((savings / income) * 100).toFixed(1)}% of income
                     </p>
                   </div>
-                  <Target className="h-8 w-8 text-[#ccff00]/30" />
+                  <Target className="h-6 w-6 text-[#FF9900]/30 flex-shrink-0" />
                 </div>
               </CardContent>
             </Card>
