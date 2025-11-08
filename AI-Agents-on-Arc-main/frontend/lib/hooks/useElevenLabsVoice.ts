@@ -7,8 +7,17 @@ interface UseElevenLabsVoiceOptions {
   modelId?: string;
 }
 
+export interface Voice {
+  voice_id: string;
+  name: string;
+  category?: string;
+  preview_url?: string;
+}
+
 export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
   const [selectedVoiceId, setSelectedVoiceId] = useState<string>("");
+  const [availableVoices, setAvailableVoices] = useState<Voice[]>([]);
+  const [voicesLoading, setVoicesLoading] = useState(true);
   const {
     voiceId = selectedVoiceId,
     modelId = "eleven_multilingual_v2",
@@ -27,21 +36,28 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
 
     const fetchVoices = async () => {
       try {
+        setVoicesLoading(true);
         const response = await fetch("/api/elevenlabs/voices");
         if (!response.ok) {
           console.warn("Could not fetch voices, using default");
           setSelectedVoiceId("Adam");
+          setAvailableVoices([]);
           return;
         }
         const data = await response.json();
         if (data.voices && data.voices.length > 0) {
+          setAvailableVoices(data.voices);
           setSelectedVoiceId(data.voices[0].voice_id);
         } else {
           setSelectedVoiceId("Adam");
+          setAvailableVoices([]);
         }
       } catch (err) {
         console.warn("Failed to fetch voices:", err);
         setSelectedVoiceId("Adam");
+        setAvailableVoices([]);
+      } finally {
+        setVoicesLoading(false);
       }
     };
 
