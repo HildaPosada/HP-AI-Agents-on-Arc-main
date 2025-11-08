@@ -55,6 +55,14 @@ const DEMO_STEPS: DemoStep[] = [
   },
   {
     id: 5,
+    title: "Voice-Powered AI Assistant",
+    description:
+      "Listen to AI responses using ElevenLabs multilingual voice technology. Perfect for hands-free banking and accessibility.",
+    highlight: "voice",
+    action: "Next",
+  },
+  {
+    id: 6,
     title: "Start Using ArcFi",
     description:
       "You're ready to manage your finances with AI! Begin exploring your dashboard.",
