@@ -57,30 +57,22 @@ export function USDCTransactionCard({
           <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-2">
             USDC Balance on Arc
           </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2 mb-4">
-            <span className="text-3xl sm:text-4xl font-bold text-[#FF9900]">
-              ${totalUSADCBalance.toFixed(2)}
-            </span>
-            <span className="text-xs sm:text-sm text-white/60">Circle Arc Network</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2">
+              <span className="text-3xl sm:text-4xl font-bold text-[#FF9900]">
+                ${totalUSADCBalance.toFixed(2)}
+              </span>
+              <span className="text-xs sm:text-sm text-white/60">Circle Arc Network</span>
+            </div>
+            <BlockchainVerificationBadge
+              status="verified"
+              network="Circle Arc"
+            />
           </div>
           <div className="flex items-center gap-2 text-xs text-white/70">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
             <span>Connected • Verified</span>
           </div>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px bg-[#FF9900]/10 mb-6"></div>
-
-        {/* Blockchain Verification Badge */}
-        <div className="mb-6">
-          <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-3">
-            Blockchain Status
-          </p>
-          <BlockchainVerificationBadge
-            status="verified"
-            network="Circle Arc"
-          />
         </div>
 
         <div className="h-px bg-[#FF9900]/10 mb-6"></div>
