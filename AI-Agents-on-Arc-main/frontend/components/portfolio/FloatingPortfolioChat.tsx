@@ -116,6 +116,7 @@ export function FloatingPortfolioChat({
                 <PortfolioChat
                   userId={userId}
                   isEnabled={isEnabled}
+                  portfolioData={null}
                 />
               </div>
             )}
