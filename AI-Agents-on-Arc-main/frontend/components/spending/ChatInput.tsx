@@ -108,29 +108,33 @@ export function ChatInput({
         initializeSpeechRecognition();
       }
 
-      // Show recording UI even if recognition might not work (Safari fallback)
+      // Show recording UI immediately
       setIsListening(true);
       setIsRecording(true);
+
+      // Set minimum recording duration so it doesn't flash
+      const recordingTimeout = setTimeout(() => {
+        if (isRecording) {
+          setIsListening(false);
+          setIsRecording(false);
+        }
+      }, 10000); // 10 second timeout
 
       try {
         if (recognitionRef.current) {
           recognitionRef.current.start();
+          console.log('✓ Speech recognition started');
         } else {
-          console.log('Speech Recognition not available, but showing recording UI');
-          // Still show the recording state for user feedback
-          setTimeout(() => {
-            console.log('Auto-stopping recording after timeout (no speech API)');
-            setIsListening(false);
-            setIsRecording(false);
-          }, 5000); // 5 second timeout for manual stop
+          console.log('Speech Recognition API not available, showing recording UI');
+          // Still show recording state for user feedback even without API
         }
       } catch (error) {
         console.error('Error starting speech recognition:', error);
-        // Keep recording state visible so user knows they clicked it
         if ((error as any).name === 'InvalidStateError') {
+          console.log('Speech recognition already running, attempting restart');
           try {
             if (recognitionRef.current) {
-              recognitionRef.current.stop();
+              recognitionRef.current.abort();
               setTimeout(() => {
                 recognitionRef.current?.start();
               }, 100);
