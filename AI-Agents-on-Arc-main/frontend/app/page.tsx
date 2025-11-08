@@ -276,7 +276,7 @@ export default function Home() {
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
-            Multi-agent AI orchestration powered by Google ADK, A2A Protocol, and Gemini. Transform banking.
+            Empower your finances with AI + Arc insights. Track spending, grow savings with USDC, and manage money hands-free through multilingual ElevenLabs voice AI.
           </p>
 
           {/* CTA Buttons */}
