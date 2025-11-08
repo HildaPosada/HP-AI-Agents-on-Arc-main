@@ -144,8 +144,15 @@ export function ChatInput({
       setIsListening(false);
       setIsRecording(false);
     } else {
+      // Check browser support first
+      if (!hasBrowserSupport) {
+        setMicError('Microphone not supported. Try Chrome, Edge, or Safari.');
+        return;
+      }
+
       // Start listening
       setMessage(''); // Clear message when starting
+      setMicError(null);
 
       if (!recognitionRef.current) {
         initializeSpeechRecognition();
@@ -172,12 +179,14 @@ export function ChatInput({
           recognitionRef.current.start();
           console.log('✓ Speech recognition started');
         } else {
-          console.log('Speech Recognition API not available, showing recording UI');
-          // Still show recording state for user feedback even without API
+          setMicError('Failed to start microphone');
+          setIsRecording(false);
+          setIsListening(false);
         }
       } catch (error) {
         console.error('Error starting speech recognition:', error);
-        if ((error as any).name === 'InvalidStateError') {
+        const err = error as any;
+        if (err.name === 'InvalidStateError') {
           console.log('Speech recognition already running, attempting restart');
           try {
             if (recognitionRef.current) {
@@ -188,7 +197,12 @@ export function ChatInput({
             }
           } catch (e) {
             console.error('Error restarting:', e);
+            setMicError('Failed to start microphone');
           }
+        } else {
+          setMicError(`Microphone error: ${err.message || 'Unknown'}`);
+          setIsRecording(false);
+          setIsListening(false);
         }
       }
     }
