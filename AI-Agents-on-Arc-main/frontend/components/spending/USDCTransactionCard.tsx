@@ -75,6 +75,7 @@ export function USDCTransactionCard({
           </div>
         </div>
 
+        {/* Divider */}
         <div className="h-px bg-[#FF9900]/10 mb-6"></div>
 
         {/* Recent Transactions */}
