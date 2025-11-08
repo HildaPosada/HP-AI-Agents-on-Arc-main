@@ -165,7 +165,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#FF9900] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#FF9900] rounded-lg flex items-center justify-center logo-glow">
                 <Coins className="h-5 w-5 text-[#0f0f0f]" />
               </div>
               <span className="text-lg sm:text-xl font-bold text-[#FF9900]">
