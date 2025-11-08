@@ -27,8 +27,7 @@ export function ChatInput({
     const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
 
     if (!SpeechRecognition) {
-      console.error('Speech Recognition not supported in this browser');
-      alert('Speech Recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+      console.log('ℹ️ Speech Recognition API not available in this browser');
       return;
     }
 
@@ -39,13 +38,12 @@ export function ChatInput({
       recognition.lang = 'en-US';
 
       recognition.onstart = () => {
-        console.log('Speech recognition started');
+        console.log('🎤 Speech recognition started');
         setIsListening(true);
         setIsRecording(true);
       };
 
       recognition.onresult = (event: any) => {
-        console.log('Speech recognition result:', event);
         let finalTranscript = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -56,28 +54,28 @@ export function ChatInput({
         }
 
         if (finalTranscript.trim()) {
-          console.log('Final transcript:', finalTranscript);
+          console.log('✓ Final transcript:', finalTranscript);
           setMessage(prev => (prev + ' ' + finalTranscript).trim());
         }
       };
 
       recognition.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
-        alert('Microphone Error: ' + event.error + '. Please check microphone permissions.');
+        console.log('⚠️ Speech recognition error:', event.error);
+        // Silently handle errors - don't show alerts
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognition.onend = () => {
-        console.log('Speech recognition ended');
+        console.log('🎤 Speech recognition ended');
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognitionRef.current = recognition;
     } catch (error) {
-      console.error('Error initializing speech recognition:', error);
-      alert('Could not initialize speech recognition. Please check your browser.');
+      console.log('ℹ️ Could not initialize speech recognition:', error);
+      // Silently fail - don't show alerts
     }
   };
 
