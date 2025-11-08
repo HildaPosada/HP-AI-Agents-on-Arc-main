@@ -226,7 +226,9 @@ export default function PerksPage() {
               </Card>
 
               {/* AI Assistant */}
-              <OptimizedAIAssistant />
+              <div className="h-96">
+                <OptimizedAIAssistant />
+              </div>
             </div>
           </div>
 
