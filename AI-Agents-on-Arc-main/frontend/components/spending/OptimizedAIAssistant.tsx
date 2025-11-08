@@ -150,17 +150,17 @@ export function OptimizedAIAssistant() {
 
   return (
     <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] h-full flex flex-col">
-      <CardContent className="p-6 flex flex-col h-full">
+      <CardContent className="p-4 sm:p-5 flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#FF9900]/10">
-          <div className="w-8 h-8 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center">
-            <Bot className="h-4 w-4 text-[#FF9900]" />
+        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#FF9900]/10">
+          <div className="w-6 h-6 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+            <Bot className="h-3 w-3 text-[#FF9900]" />
           </div>
-          <div>
-            <h3 className="font-bold text-white text-sm">AI Assistant</h3>
-            <p className="text-xs text-white/50">Multi-agent powered</p>
+          <div className="min-w-0">
+            <h3 className="font-bold text-white text-xs">AI Assistant</h3>
+            <p className="text-xs text-white/50 leading-tight">Multi-agent powered</p>
           </div>
-          <div className="ml-auto w-2 h-2 bg-[#FF9900] rounded-full animate-pulse"></div>
+          <div className="ml-auto w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-pulse flex-shrink-0"></div>
         </div>
 
         {/* Messages Area */}
