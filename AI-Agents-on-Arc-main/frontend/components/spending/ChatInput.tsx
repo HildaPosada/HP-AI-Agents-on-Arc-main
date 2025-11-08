@@ -93,24 +93,41 @@ export function ChatInput({
   const toggleVoiceInput = () => {
     if (!recognitionRef.current) {
       initializeSpeechRecognition();
+      if (!recognitionRef.current) {
+        console.error('Failed to initialize speech recognition');
+        return;
+      }
     }
 
-    if (isListening) {
+    if (isListening || isRecording) {
       // Stop listening
-      recognitionRef.current?.stop();
+      try {
+        recognitionRef.current.stop();
+      } catch (error) {
+        console.error('Error stopping speech recognition:', error);
+      }
       setIsListening(false);
       setIsRecording(false);
     } else {
       // Start listening
       try {
-        recognitionRef.current?.start();
-        setIsListening(true);
-        setIsRecording(true);
+        setMessage(''); // Clear message when starting
+        recognitionRef.current.start();
       } catch (error) {
         console.error('Error starting speech recognition:', error);
-        // If already started, just continue
-        setIsListening(true);
-        setIsRecording(true);
+        if ((error as any).name === 'InvalidStateError') {
+          // Already running, stop and restart
+          try {
+            recognitionRef.current.stop();
+            setTimeout(() => {
+              recognitionRef.current?.start();
+              setIsListening(true);
+              setIsRecording(true);
+            }, 100);
+          } catch (e) {
+            console.error('Error restarting:', e);
+          }
+        }
       }
     }
   };
