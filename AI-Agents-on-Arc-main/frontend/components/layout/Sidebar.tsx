@@ -16,6 +16,7 @@ import {
   Send,
   Menu,
   X,
+  Wallet,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -130,6 +131,13 @@ export function Sidebar() {
                 </div>
               </div>
             </div>
+
+            <button
+              className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-purple-600 to-magenta-600 hover:from-purple-700 hover:to-magenta-700 text-white font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm"
+            >
+              <Wallet className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span>Connect Arc Wallet</span>
+            </button>
 
             <Button
               variant="outline"
