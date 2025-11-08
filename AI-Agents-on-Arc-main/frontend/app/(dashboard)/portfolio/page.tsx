@@ -37,7 +37,7 @@ export default function PortfolioPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-[#ccff00] mx-auto mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#FF9900] mx-auto mb-4" />
           <p className="text-white/70">Analyzing your portfolio...</p>
         </div>
       </div>
@@ -62,11 +62,11 @@ export default function PortfolioPage() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-background">
       {/* Header */}
-      <div className="flex-shrink-0 p-2 sm:p-4 border-b border-[#ccff00]/10 bg-[#1a1a1a]">
+      <div className="flex-shrink-0 p-2 sm:p-4 border-b border-[#FF9900]/10 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
-              <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-[#ccff00] flex items-center justify-center">
+              <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-[#FF9900] flex items-center justify-center">
                 <TrendingUp className="h-4 sm:h-5 w-4 sm:w-5 text-[#0f0f0f]" />
               </div>
               <div>
@@ -77,8 +77,8 @@ export default function PortfolioPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs">
-              <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"></div>
-              <span className="text-[#ccff00] font-bold">A2A PROTOCOL LIVE</span>
+              <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse"></div>
+              <span className="text-[#FF9900] font-bold">A2A PROTOCOL LIVE</span>
             </div>
           </div>
         </div>
@@ -151,19 +151,19 @@ export default function PortfolioPage() {
             </Card>
 
             {/* YTD Return Card */}
-            <Card className="bg-[#ccff00]/10 border border-[#ccff00]/30 relative overflow-hidden">
+            <Card className="bg-[#FF9900]/10 border border-[#FF9900]/30 relative overflow-hidden">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-xs text-[#ccff00]/70 font-bold uppercase tracking-wider mb-2">
+                    <p className="text-xs text-[#FF9900]/70 font-bold uppercase tracking-wider mb-2">
                       YTD Return
                     </p>
-                    <p className="text-2xl sm:text-3xl font-bold text-[#ccff00]">
+                    <p className="text-2xl sm:text-3xl font-bold text-[#FF9900]">
                       +{ytdReturn}%
                     </p>
                     <p className="text-xs text-green-400 mt-1">+${(gainAmount / 1000).toFixed(1)}K</p>
                   </div>
-                  <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-[#ccff00]/30" />
+                  <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-[#FF9900]/30" />
                 </div>
               </CardContent>
             </Card>
@@ -174,7 +174,7 @@ export default function PortfolioPage() {
             <div className="flex justify-center">
               <button
                 onClick={() => setShowFullAnalysis(true)}
-                className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+                className="px-6 py-2 rounded-lg border border-[#FF9900]/30 text-[#FF9900] text-sm font-semibold hover:bg-[#FF9900]/10 transition-all"
               >
                 View Full Analysis
               </button>
@@ -190,7 +190,7 @@ export default function PortfolioPage() {
                 <div className="flex justify-center">
                   <button
                     onClick={() => setShowFullAnalysis(false)}
-                    className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+                    className="px-6 py-2 rounded-lg border border-[#FF9900]/30 text-[#FF9900] text-sm font-semibold hover:bg-[#FF9900]/10 transition-all"
                   >
                     Hide Full Analysis
                   </button>
@@ -212,32 +212,32 @@ export default function PortfolioPage() {
             {/* Right Column - Metrics & Assistant */}
             <div className={`${showFullAnalysis ? "" : "lg:col-span-1"} space-y-6`}>
               {/* Key Metrics Card */}
-              <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+              <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
                 <CardContent className="pt-8">
                   <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
                     Portfolio Metrics
                   </h3>
 
                   <div className="space-y-4 text-sm">
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20">
                       <span className="text-white/70">Sharpe Ratio</span>
-                      <span className="font-bold text-[#ccff00]">1.92</span>
+                      <span className="font-bold text-[#FF9900]">1.92</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20">
                       <span className="text-white/70">Max Drawdown</span>
                       <span className="font-bold text-green-400">-8.3%</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20">
                       <span className="text-white/70">Volatility</span>
-                      <span className="font-bold text-[#ccff00]">12.1%</span>
+                      <span className="font-bold text-[#FF9900]">12.1%</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20">
                       <span className="text-white/70">Beta</span>
                       <span className="font-bold text-white">0.94</span>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
+                  <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
                     <p className="text-xs text-white/60 mb-2">Last Rebalanced</p>
                     <p className="text-sm font-bold text-white">Q3 2024</p>
                   </div>
@@ -252,7 +252,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Asset Allocation Summary Footer */}
-          <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+          <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
             <CardContent className="p-6">
               <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
                 Asset Class Distribution
@@ -260,14 +260,14 @@ export default function PortfolioPage() {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
-                  { label: "Equities", value: "65%", color: "text-[#ccff00]" },
+                  { label: "Equities", value: "65%", color: "text-[#FF9900]" },
                   { label: "Bonds", value: "23%", color: "text-green-400" },
                   { label: "Cash", value: "8%", color: "text-yellow-400" },
                   { label: "Crypto", value: "4%", color: "text-purple-400" },
                 ].map((asset, idx) => (
                   <div
                     key={idx}
-                    className="text-center p-4 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20 hover:border-[#ccff00]/60 transition-all"
+                    className="text-center p-4 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20 hover:border-[#FF9900]/60 transition-all"
                   >
                     <p className={`text-2xl font-bold ${asset.color} mb-1`}>{asset.value}</p>
                     <p className="text-xs text-white/60">{asset.label}</p>
