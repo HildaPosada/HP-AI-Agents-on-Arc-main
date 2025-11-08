@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
 import { useRouter } from "next/navigation";
 import { SpendingSnapshotData } from "@/lib/types/spending";
@@ -18,6 +18,7 @@ export default function SpendingPage() {
   const router = useRouter();
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [showFullAnalysis, setShowFullAnalysis] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -30,11 +31,8 @@ export default function SpendingPage() {
 
   // Scroll to top on page load
   useEffect(() => {
-    if (!isLoadingData && isAuthenticated) {
-      const scrollContainer = document.querySelector('.flex-1.overflow-y-auto');
-      if (scrollContainer) {
-        scrollContainer.scrollTop = 0;
-      }
+    if (!isLoadingData && isAuthenticated && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
     }
   }, [isLoadingData, isAuthenticated]);
 
