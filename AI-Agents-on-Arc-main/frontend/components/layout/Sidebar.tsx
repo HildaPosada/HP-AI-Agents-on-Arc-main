@@ -14,6 +14,8 @@ import {
   Coins,
   DollarSign,
   Send,
+  Menu,
+  X,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -25,11 +27,6 @@ const navigationItems = [
     href: "/spending",
     icon: CreditCard,
   },
-  // {
-  //   name: "Goals",
-  //   href: "/goals",
-  //   icon: Target,
-  // },
   {
     name: "Portfolio",
     href: "/portfolio",
@@ -45,11 +42,6 @@ const navigationItems = [
     href: "/advisors",
     icon: Users,
   },
-  // {
-  //   name: "Profile",
-  //   href: "/profile",
-  //   icon: User,
-  // },
 ];
 
 export function Sidebar() {
@@ -57,156 +49,157 @@ export function Sidebar() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    logout(); // This sets user context to null
-    router.push("/"); // Redirect to login page
+    logout();
+    router.push("/");
   };
 
-  return (
-    <div className="w-64 flex flex-col relative" style={{ backgroundColor: 'var(--sidebar-bg)' }}>
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/5 pointer-events-none" />
-
+  const SidebarContent = () => (
+    <>
       {/* Header with ArcFi Logo */}
-      <div className="relative p-6 border-b" style={{ borderColor: '#3a4a5e' }}>
-        <div className="flex items-center gap-3 group">
-          {/* Mini ArcFi Logo with Orange */}
-          <div className="relative">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300" style={{ 
-              background: '#FF9900',
-              boxShadow: '0 10px 15px -3px rgba(255, 153, 0, 0.25), 0 4px 6px -2px rgba(255, 153, 0, 0.1)' 
-            }}>
-              <Coins className="h-5 w-5 text-white" />
-            </div>
-            <div className="absolute -top-0.5 -right-0.5">
-              <DollarSign className="h-3.5 w-3.5 text-white" />
-            </div>
+      <div className="relative p-4 sm:p-6 border-b border-[#ccff00]/10">
+        <div className="flex items-center gap-3">
+          <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg flex items-center justify-center bg-[#ccff00]">
+            <Coins className="h-4 sm:h-5 w-4 sm:w-5 text-[#0f0f0f] font-bold" />
           </div>
-
-          {/* Brand Text */}
           <div>
-            <h1 className="font-bold text-base text-white">
-              ArcFi
-            </h1>
-            <p className="text-xs text-white/60">AI Banking Platform</p>
+            <h1 className="font-bold text-base text-white">ArcFi</h1>
+            <p className="text-xs text-white/60">Financial Partner</p>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <ul className="space-y-1">
-          {navigationItems.map((item) => {
-            const isActive = pathname === item.href;
-            const Icon = item.icon;
+      <nav className="flex-1 p-3 sm:p-4 space-y-2">
+        {navigationItems.map((item) => {
+          const isActive = pathname === item.href;
+          const Icon = item.icon;
 
-            return (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className={`
-                    flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group relative overflow-hidden
-                    ${
-                      isActive
-                        ? "text-white border shadow-sm"
-                        : "text-white/70 hover:text-white hover:bg-white/10"
-                    }
-                  `}
-                  style={isActive ? { 
-                    backgroundColor: '#FF9900',
-                    borderColor: '#FF9900' 
-                  } : {}}
-                >
-                  {/* Active indicator */}
-                  {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full" style={{ backgroundColor: 'white' }} />
-                  )}
-
-                  <Icon
-                    className={`w-5 h-5 mr-3 transition-colors duration-200 ${
-                      isActive ? "text-white" : "group-hover:text-white"
-                    }`}
-                  />
-
-                  <span className="relative z-10">{item.name}</span>
-
-                  {/* Hover effect background */}
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-xl" />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Make Transaction Button */}
-        <div className="mt-6 pt-6 border-t" style={{ borderColor: '#3a4a5e' }}>
-          <button
-            onClick={() => setIsTransactionModalOpen(true)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#2775CA] to-[#1E5FA8] text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 group relative overflow-hidden"
-          >
-            <Send className="w-5 h-5 group-hover:rotate-12 transition-transform duration-200" />
-            <span>Send USDC</span>
-            
-            {/* Animated shine effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-          </button>
-          <p className="text-xs text-white/50 text-center mt-2">Blockchain-powered transfers</p>
-        </div>
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`
+                flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200
+                ${
+                  isActive
+                    ? "bg-[#ccff00] text-[#0f0f0f]"
+                    : "text-white/70 hover:text-white hover:bg-[#ccff00]/10"
+                }
+              `}
+            >
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </nav>
 
-      {/* Enhanced User Info & Logout */}
-      <div className="relative p-4 border-t" style={{ borderColor: 'var(--sidebar-border)' }}>
+      {/* Send USDC Button */}
+      <div className="p-3 sm:p-4 border-t border-[#ccff00]/10">
+        <button
+          onClick={() => {
+            setIsTransactionModalOpen(true);
+            setIsMobileMenuOpen(false);
+          }}
+          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#ccff00] text-[#0f0f0f] font-bold rounded-lg hover:opacity-90 transition-opacity duration-200 text-xs sm:text-sm"
+        >
+          <Send className="w-3 h-3 sm:w-4 sm:h-4" />
+          <span>Send USDC</span>
+        </button>
+        <p className="text-xs text-white/60 text-center mt-2">Secure transfers</p>
+      </div>
+
+      {/* User Info & Logout */}
+      <div className="p-3 sm:p-4 border-t border-[#ccff00]/10 space-y-3 sm:space-y-4">
         {user && (
-          <div className="space-y-4">
-            {/* User Profile Card */}
-            <div className="backdrop-blur-sm border rounded-xl p-4 shadow-sm" style={{ 
-              backgroundColor: 'rgba(255, 153, 0, 0.1)',
-              borderColor: 'rgba(255, 153, 0, 0.3)'
-            }}>
+          <>
+            <div className="p-2 sm:p-3 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/30">
               <div className="flex items-center space-x-3">
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ background: '#FF9900' }}>
-                    <User className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 flex items-center justify-center" style={{
-                    backgroundColor: '#FF9900',
-                    borderColor: '#232F3E'
-                  }}>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                  </div>
+                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center bg-[#ccff00]">
+                  <User className="w-3 h-3 sm:w-4 sm:h-4 text-[#0f0f0f]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white truncate">
+                  <p className="text-xs sm:text-sm font-bold text-white truncate">
                     {user.username}
                   </p>
-                  <p className="text-xs text-white/70">
-                    Active Session
-                  </p>
+                  <p className="text-xs text-white/60">Active</p>
                 </div>
               </div>
             </div>
 
-            {/* Logout Button */}
             <Button
               variant="outline"
               size="sm"
-              className="w-full justify-start bg-background/50 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-all duration-200"
+              className="w-full justify-start bg-transparent hover:bg-[#ccff00]/10 text-white rounded-lg text-xs sm:text-sm"
               onClick={handleLogout}
             >
-              <LogOut className="w-4 h-4 mr-2" />
+              <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
               Logout
             </Button>
-          </div>
+          </>
         )}
       </div>
+    </>
+  );
 
-      {/* Transaction Modal */}
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <div className="hidden sm:flex w-64 flex-col relative bg-[#0a0a0a] border-r border-[#ccff00]/10">
+        <SidebarContent />
+      </div>
+
+      {/* Mobile Header with Menu Button */}
+      <div className="sm:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-[#ccff00]/10 flex items-center px-4 z-50">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-5 w-5 text-white" />
+          ) : (
+            <Menu className="h-5 w-5 text-white" />
+          )}
+        </button>
+        <div className="ml-auto flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-[#ccff00]">
+            <Coins className="h-3 w-3 text-[#0f0f0f]" />
+          </div>
+          <span className="font-bold text-white">ArcFi</span>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="sm:hidden fixed inset-0 z-30 bg-black/50 top-14"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+
+          {/* Drawer menu panel */}
+          <div
+            className="sm:hidden fixed top-14 left-0 right-0 z-40 bg-[#0a0a0a] border-b border-[#ccff00]/10 overflow-y-auto"
+            style={{ bottom: 0, paddingBottom: 'max(6rem, env(safe-area-inset-bottom))' }}
+          >
+            <div className="flex flex-col">
+              <SidebarContent />
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Transaction Modal - Rendered at top level for proper z-index */}
       <TransactionModal
         isOpen={isTransactionModalOpen}
         onClose={() => setIsTransactionModalOpen(false)}
         userName={user?.username || "User"}
       />
-    </div>
+    </>
   );
 }

@@ -1,148 +1,254 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { SplitView } from "../../../components/layout/SplitView";
 import { useAuth } from "@/components/auth/AuthContext";
 import { useRouter } from "next/navigation";
-import { SpendingSnapshot } from "@/components/spending/SpendingSnapshot";
-import { SpendingChat } from "@/components/spending/SpendingChat";
 import { SpendingSnapshotData } from "@/lib/types/spending";
-import { Bot, MessageSquare } from "lucide-react";
+import { AgentCollaborationFlow } from "@/components/spending/AgentCollaborationFlow";
+import { ExplainableInsights } from "@/components/spending/ExplainableInsights";
+import { OptimizedAIAssistant } from "@/components/spending/OptimizedAIAssistant";
+import { SpendingCard } from "@/components/spending/SpendingCard";
+import { USDCTransactionCard } from "@/components/spending/USDCTransactionCard";
+import { FloatingSpendingChat } from "@/components/spending/FloatingSpendingChat";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2, TrendingDown, Zap, Target } from "lucide-react";
 
 export default function SpendingPage() {
   const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [showFullAnalysis, setShowFullAnalysis] = useState(false);
 
-  // Shared state for snapshot and chat coordination
-  const [snapshotLoaded, setSnapshotLoaded] = useState(false);
-  const [snapshotData, setSnapshotData] = useState<SpendingSnapshotData | null>(
-    null
-  );
-
-  // Memoize callback functions to prevent infinite re-renders
-  const handleDataLoaded = useCallback((data: SpendingSnapshotData) => {
-    setSnapshotData(data);
-    setSnapshotLoaded(true);
-  }, []);
-
-  const handleLoadingStateChange = useCallback((loading: boolean) => {
-    if (!loading) {
-      // Additional logic can go here if needed
-    }
-  }, []);
-
-  // Handle navigation side effect when authentication changes
   useEffect(() => {
-    // Only redirect if loading is complete and user is not authenticated
     if (!isLoading && !isAuthenticated) {
       router.push("/");
+    } else if (!isLoading && isAuthenticated) {
+      // Simulate data loading
+      setTimeout(() => setIsLoadingData(false), 1000);
     }
   }, [isLoading, isAuthenticated, router]);
 
-  // Show loading state while authentication is being restored
-  if (isLoading) {
+  if (isLoading || isLoadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading...</p>
+          <Loader2 className="h-8 w-8 animate-spin text-[#ccff00] mx-auto mb-4" />
+          <p className="text-white/70">Analyzing your finances...</p>
         </div>
       </div>
     );
   }
 
-  // Show loading state while redirecting unauthenticated users
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Redirecting to login...</p>
-        </div>
+        <p className="text-white/70">Redirecting...</p>
       </div>
     );
   }
 
+  // Demo data
+  const income = 8500;
+  const expenses = 6234;
+  const savings = income - expenses;
+
   return (
-    <SplitView
-      leftPanel={
-        <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
-
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* Mini ArcFi Logo */}
-              <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xs">ArcFi</span>
-                </div>
-                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-orange-300 rounded-full animate-pulse" />
+    <div className="flex-1 flex flex-col overflow-hidden bg-background">
+      {/* Header */}
+      <div className="flex-shrink-0 p-4 sm:p-6 border-b border-[#ccff00]/10 bg-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <div className="flex items-center gap-3">
+              <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-[#ccff00] flex items-center justify-center">
+                <Zap className="h-4 sm:h-5 w-4 sm:w-5 text-[#0f0f0f]" />
               </div>
-
-              {/* Header Text */}
               <div>
-                <h2 className="text-xl font-bold text-black">
-                  Spending Analysis Agent
-                </h2>
-                <p className="text-black/70 text-xs">
-                  Track and optimize your expenses
+                <h1 className="text-lg sm:text-2xl font-bold text-white">Spending Analysis</h1>
+                <p className="text-xs sm:text-sm text-white/60">
+                  Powered by 6 AI agents analyzing your finances in real-time
                 </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"></div>
+              <span className="text-[#ccff00] font-bold">A2A PROTOCOL LIVE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
+          {/* Top Metrics Row - Hero Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Income Card */}
+            <Card className="bg-green-500/10 border border-green-500/30 relative overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-xs text-green-400/70 font-bold uppercase tracking-wider mb-2">
+                      Income
+                    </p>
+                    <p className="text-3xl sm:text-4xl font-bold text-green-400">
+                      ${income.toLocaleString()}
+                    </p>
+                  </div>
+                  <TrendingDown className="h-8 w-8 text-green-400/30 rotate-180" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Expenses Card */}
+            <Card className="bg-red-500/10 border border-red-500/30 relative overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-xs text-red-400/70 font-bold uppercase tracking-wider mb-2">
+                      Expenses
+                    </p>
+                    <p className="text-3xl sm:text-4xl font-bold text-red-400">
+                      ${expenses.toLocaleString()}
+                    </p>
+                  </div>
+                  <TrendingDown className="h-8 w-8 text-red-400/30" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Net Savings Card */}
+            <Card className="bg-[#ccff00]/10 border border-[#ccff00]/30 relative overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-xs text-[#ccff00]/70 font-bold uppercase tracking-wider mb-2">
+                      Monthly Savings
+                    </p>
+                    <p className="text-3xl sm:text-4xl font-bold text-[#ccff00]">
+                      ${savings.toLocaleString()}
+                    </p>
+                    <p className="text-xs text-white/60 mt-2">
+                      {((savings / income) * 100).toFixed(1)}% of income
+                    </p>
+                  </div>
+                  <Target className="h-8 w-8 text-[#ccff00]/30" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* View Full Analysis Toggle - Robinhood Minimalist Style */}
+          {!showFullAnalysis && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setShowFullAnalysis(true)}
+                className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+              >
+                View Full Analysis
+              </button>
+            </div>
+          )}
+
+          {/* Two-Column Layout */}
+          <div className={`grid grid-cols-1 ${showFullAnalysis ? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
+            {/* Left Column - Analysis (shown only in full mode) */}
+            {showFullAnalysis && (
+              <div className="lg:col-span-2 space-y-6">
+                {/* Hide Full Analysis Button */}
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => setShowFullAnalysis(false)}
+                    className="px-6 py-2 rounded-lg border border-[#ccff00]/30 text-[#ccff00] text-sm font-semibold hover:bg-[#ccff00]/10 transition-all"
+                  >
+                    Hide Full Analysis
+                  </button>
+                </div>
+
+                {/* Agent Collaboration Flow */}
+                <AgentCollaborationFlow />
+
+                {/* Explainable Insights */}
+                <ExplainableInsights />
+              </div>
+            )}
+
+            {/* Right Column - USDC & Assistant */}
+            <div className={`${showFullAnalysis ? "" : "lg:col-span-1"} space-y-6`}>
+              {/* USDC Balance */}
+              <USDCTransactionCard
+                totalUSADCBalance={3500.5}
+                transactions={[
+                  {
+                    id: "1",
+                    type: "receive",
+                    amount: 1000,
+                    recipient: "Salary Deposit",
+                    timestamp: "2024-11-15 09:30 AM",
+                    hash: "0x742d...f9a2",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "2",
+                    type: "send",
+                    amount: 50,
+                    recipient: "USDC Payment",
+                    timestamp: "2024-11-14 02:15 PM",
+                    hash: "0x8f9e...2d45",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "3",
+                    type: "receive",
+                    amount: 250,
+                    recipient: "Reward Payout",
+                    timestamp: "2024-11-13 11:00 AM",
+                    hash: "0x5c3a...b8e1",
+                    status: "confirmed",
+                  },
+                ]}
+              />
+
+              {/* AI Assistant */}
+              <div className="h-96">
+                <OptimizedAIAssistant />
               </div>
             </div>
           </div>
 
-          {/* Scrollable Content */}
-          <div className="flex-1 overflow-hidden">
-            <SpendingSnapshot
-              userId={user?.username || ""}
-              onDataLoaded={handleDataLoaded}
-              onLoadingStateChange={handleLoadingStateChange}
-            />
-          </div>
-        </div>
-      }
-      rightPanel={
-        <div className="h-full flex flex-col">
-          {/* Fixed Header */}
-          <div className="flex-shrink-0 p-4 border-b border-orange-600/30 bg-primary backdrop-blur-sm relative z-10">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 pointer-events-none" />
+          {/* Key Stats Footer - Only in Full Analysis Mode */}
+          {showFullAnalysis && (
+            <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+              <CardContent className="p-6">
+                <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
+                  Your Financial Health Score
+                </h3>
 
-            <div className="relative flex items-center gap-3 mb-1">
-              {/* AI Chat Icon */}
-              <div className="relative">
-                <div className="w-9 h-9 bg-gradient-to-br from-orange-700 to-orange-800 rounded-xl flex items-center justify-center shadow-lg">
-                  <Bot className="h-5 w-5 text-white" />
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { label: "Emergency Fund", value: "4 months", color: "text-[#ccff00]" },
+                    { label: "Savings Rate", value: "26.6%", color: "text-green-400" },
+                    { label: "Debt Ratio", value: "None", color: "text-green-400" },
+                    { label: "Budget Health", value: "95%", color: "text-[#ccff00]" },
+                  ].map((stat, idx) => (
+                    <div key={idx} className="text-center p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20">
+                      <p className={`text-xl sm:text-2xl font-bold ${stat.color} mb-1`}>
+                        {stat.value}
+                      </p>
+                      <p className="text-xs text-white/60">{stat.label}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="absolute -bottom-0.5 -right-0.5">
-                  <MessageSquare className="h-3.5 w-3.5 text-orange-300" />
-                </div>
-              </div>
-
-              {/* Header Text */}
-              <div>
-                <h2 className="text-xl font-bold text-black">
-                  Spending Chat Assistant
-                </h2>
-                <p className="text-black/70 text-xs">
-                  Get insights on your spending patterns and savings opportunities
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Scrollable Chat Container */}
-          <div className="flex-1 overflow-hidden">
-            <SpendingChat
-              userId={user?.username || ""}
-              isEnabled={snapshotLoaded}
-              spendingData={snapshotData}
-            />
-          </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
-      }
-    />
+      </div>
+
+      {/* Floating Chat Widget */}
+      <FloatingSpendingChat
+        userId={user?.username || ""}
+        isEnabled={true}
+      />
+    </div>
   );
 }

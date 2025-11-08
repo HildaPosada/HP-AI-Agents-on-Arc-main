@@ -137,7 +137,7 @@ export function ChatInput({
     const textarea = e.target;
     textarea.style.height = "auto";
     const scrollHeight = textarea.scrollHeight;
-    const maxHeight = 120; // Max 5 lines approximately
+    const maxHeight = 200; // Max ~8 lines approximately
     textarea.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
   };
 
@@ -158,11 +158,11 @@ export function ChatInput({
             disabled={disabled || isLoading}
             className={cn(
               "w-full resize-none rounded-md border border-input bg-background",
-              "px-3 py-2 text-sm ring-offset-background",
+              "px-4 py-3 text-sm ring-offset-background",
               "placeholder:text-muted-foreground",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               "disabled:cursor-not-allowed disabled:opacity-50",
-              "min-h-[40px] max-h-[120px]"
+              "min-h-[60px] max-h-[200px]"
             )}
             rows={1}
           />
@@ -182,7 +182,7 @@ export function ChatInput({
             disabled={disabled || isLoading}
             size="sm"
             className={cn(
-              "h-[40px] min-w-[40px]",
+              "h-[50px] min-w-[50px]",
               isRecording
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
                 : 'bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#047857] hover:to-[#065f46]'
@@ -190,9 +190,9 @@ export function ChatInput({
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >
             {isRecording ? (
-              <MicOff className="h-4 w-4" />
+              <MicOff className="h-5 w-5" />
             ) : (
-              <Mic className="h-4 w-4" />
+              <Mic className="h-5 w-5" />
             )}
           </Button>
 
@@ -201,12 +201,12 @@ export function ChatInput({
             onClick={handleSend}
             disabled={!message.trim() || disabled || isLoading}
             size="sm"
-            className="h-[40px] min-w-[40px]"
+            className="h-[50px] min-w-[50px]"
           >
             {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-5 w-5 animate-spin" />
             ) : (
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             )}
           </Button>
         </div>

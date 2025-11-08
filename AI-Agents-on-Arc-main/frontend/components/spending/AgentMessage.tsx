@@ -11,7 +11,7 @@ interface AgentMessageProps {
 export function AgentMessage({ message }: AgentMessageProps) {
   return (
     <div className="flex justify-start mb-1 animate-in slide-in-from-left-2 duration-500">
-      <div className="flex items-start gap-2 max-w-[85%]">
+      <div className="flex items-start gap-2 max-w-[90%]">
         {/* Enhanced ArcFi Logo Avatar */}
         <div className="flex-shrink-0 relative group">
           {/* Main avatar container with glass effect */}
@@ -39,10 +39,10 @@ export function AgentMessage({ message }: AgentMessageProps) {
             </div>
           </div>
 
-          {/* Status indicator */}
+          {/* Status indicator - proportional */}
           <div
             className={cn(
-              "absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-background shadow-sm",
+              "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-background shadow-sm",
               "bg-gradient-to-r from-green-400 to-emerald-500"
             )}
           />
@@ -60,7 +60,7 @@ export function AgentMessage({ message }: AgentMessageProps) {
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 via-cyan-500/5 to-transparent rounded-full blur-3xl" />
 
-          <CardContent className="px-4 py-3 relative">
+          <CardContent className="px-4 pt-3 pb-5 relative">
             {/* AI Header */}
             <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/30">
               <div className="flex items-center gap-2">
@@ -96,24 +96,23 @@ export function AgentMessage({ message }: AgentMessageProps) {
                 components={{
                   // Enhanced paragraph styling
                   p: ({ children }) => (
-                    <p className="text-sm leading-relaxed mb-4 last:mb-0 text-foreground/95">
+                    <p className="text-xs leading-relaxed mb-3 last:mb-0 text-foreground/95">
                       {children}
                     </p>
                   ),
                   // Enhanced list styling with better spacing
                   ul: ({ children }) => (
-                    <ul className="text-sm space-y-2 mb-4 ml-5 list-none text-foreground/95">
+                    <ul className="text-xs space-y-1.5 mb-3 ml-5 list-none text-foreground/95">
                       {children}
                     </ul>
                   ),
                   ol: ({ children }) => (
-                    <ol className="text-sm space-y-2 mb-4 ml-5 list-decimal text-foreground/95">
+                    <ol className="text-xs space-y-1.5 mb-3 ml-5 list-decimal text-foreground/95">
                       {children}
                     </ol>
                   ),
                   li: ({ children }) => (
-                    <li className="text-foreground/95 relative">
-                      <div className="absolute -left-4 top-2 w-1.5 h-1.5 bg-gradient-to-r from-primary to-cyan-500 rounded-full" />
+                    <li className="text-foreground/95">
                       {children}
                     </li>
                   ),
@@ -175,7 +174,7 @@ export function AgentMessage({ message }: AgentMessageProps) {
 
             {/* Enhanced Footer */}
             {!message.streaming && (
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-gradient-to-r from-transparent via-border/50 to-transparent">
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-gradient-to-r from-transparent via-border/50 to-transparent">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full shadow-sm" />
                   <span className="text-xs text-muted-foreground font-medium">

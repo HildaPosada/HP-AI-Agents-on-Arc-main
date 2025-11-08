@@ -6,12 +6,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Sidebar */}
+    <div className="flex h-screen bg-background overflow-hidden">
+      {/* Sidebar - Always renders (handles its own responsive behavior) */}
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden">{children}</div>
+      <div className="flex-1 flex flex-col overflow-hidden pt-14 sm:pt-0" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        {children}
+      </div>
     </div>
   );
 }

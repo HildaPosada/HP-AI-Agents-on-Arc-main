@@ -5,172 +5,150 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthContext";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { Button } from "@/components/ui/button";
+import { DemoTutorial } from "@/components/DemoTutorial";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import {
   Brain,
   DollarSign,
   TrendingUp,
   BarChart3,
-  PieChart,
-  LineChart,
   Shield,
   CheckCircle,
   AlertTriangle,
+  Zap,
+  Cpu,
+  Network,
+  MessageCircle,
+  Award,
+  Github,
+  ExternalLink,
+  Menu,
+  X,
+  Play,
 } from "lucide-react";
 
 export default function Home() {
   const { isAuthenticated, isLoading, logout } = useAuth();
   const router = useRouter();
   const [showAgentPermissions, setShowAgentPermissions] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showDemoTutorial, setShowDemoTutorial] = useState(false);
 
+  // Scroll to top on page load
   useEffect(() => {
-    // Simple effect: authenticated users always see agent permissions
-    if (!isLoading) {
-      if (isAuthenticated) {
-        // Always show agent permission request after login
-        setShowAgentPermissions(true);
-      } else {
-        // Not authenticated - hide permission screen
-        setShowAgentPermissions(false);
-      }
-    }
-  }, [isLoading, isAuthenticated]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  // Handle agent permission granting
   const handleGrantPermissions = () => {
     setShowAgentPermissions(false);
-    // Navigate directly to dashboard - no storage needed
     router.push("/spending");
   };
 
-  // Handle agent permission denial
   const handleDenyPermissions = () => {
     setShowAgentPermissions(false);
-    // Since the app requires agent permissions to function, sign user out
     logout();
   };
 
-  // Show loading state while checking authentication
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#283342] via-[#2a3644] to-[#283342] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] p-4">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF9900] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#ccff00] mx-auto mb-4"></div>
           <p className="text-white/70">Loading...</p>
         </div>
       </div>
     );
   }
 
-  // Show agent permissions request if authenticated but permissions not granted
   if (showAgentPermissions) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#283342] via-[#2a3644] to-[#283342] relative overflow-hidden flex items-center justify-center p-4">
-        {/* Background Elements */}
+      <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] relative overflow-hidden flex items-center justify-center p-4">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 sm:left-20">
-            <Shield className="h-16 w-16 sm:h-24 sm:w-24 text-[#FF9900] animate-pulse" />
+            <Shield className="h-16 w-16 sm:h-24 sm:w-24 text-[#ccff00] animate-pulse" />
           </div>
           <div className="absolute bottom-20 right-10 sm:right-32">
-            <Brain className="h-18 w-18 sm:h-22 sm:w-22 text-[#FF9900] animate-pulse" />
+            <Brain className="h-18 w-18 sm:h-22 sm:w-22 text-[#ccff00] animate-pulse" />
           </div>
         </div>
 
-        {/* Agent Permission Request */}
         <div className="relative z-10 w-full max-w-2xl mx-auto">
-          <Card className="shadow-2xl border-[#FF9900]/20 bg-white">
-            <CardHeader className="text-center pb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#FF9900] to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl font-bold text-[#283342]">
-                Enable AI Agents
-              </CardTitle>
-              <CardDescription className="text-base text-[#283342]/70">
-                To use ArcFi, you must allow our AI agents to help manage your
-                finances
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Benefits */}
-              <div className="space-y-4">
-                <h3 className="font-semibold text-lg flex items-center gap-2 text-[#283342]">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
-                  What our AI agents will do for you:
-                </h3>
-                <ul className="space-y-3 text-sm text-[#283342]/70">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#FF9900] mt-2 flex-shrink-0"></div>
-                    <span>
-                      <strong className="text-[#283342]">Daily Spending Agent:</strong> Analyze your
-                      spending patterns, find savings opportunities, and manage
-                      subscriptions
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#FF9900] mt-2 flex-shrink-0"></div>
-                    <span>
-                      <strong className="text-[#283342]">Big Purchases Agent:</strong> Help plan major
-                      purchases like homes and cars with personalized advice
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#FF9900] mt-2 flex-shrink-0"></div>
-                    <span>
-                      <strong className="text-[#283342]">Trip Planning Agent:</strong> Budget and save for
-                      vacations, find deals, and track travel expenses
-                    </span>
-                  </li>
-                </ul>
+          <Card className="shadow-2xl border-[#ccff00]/20 bg-[#1a1a1a]">
+            <CardContent className="pt-6 sm:pt-8">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="w-16 h-16 bg-[#ccff00] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-[#0f0f0f]" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                  Enable AI Agents
+                </h2>
+                <p className="text-white/70 text-sm sm:text-base">
+                  Grant access to our 6 specialized AI agents
+                </p>
               </div>
 
-              {/* Security Notice */}
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <div className="space-y-4 mb-6 sm:mb-8">
+                <h3 className="font-semibold flex items-center gap-2 text-white text-sm">
+                  <CheckCircle className="h-5 w-5 text-[#ccff00]" />
+                  Your AI Agent Team:
+                </h3>
+                <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                  {[
+                    { name: "Spending Agent", emoji: "💰" },
+                    { name: "Portfolio Agent", emoji: "��" },
+                    { name: "Goals Agent", emoji: "🎯" },
+                    { name: "Perks Agent", emoji: "🎁" },
+                    { name: "Advisors Agent", emoji: "👨‍💼" },
+                    { name: "Chat Orchestrator", emoji: "🤖" },
+                  ].map((agent) => (
+                    <div
+                      key={agent.name}
+                      className="p-2 sm:p-3 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/30 hover:border-[#ccff00]/60 transition-colors"
+                    >
+                      <p className="font-medium text-white">
+                        {agent.emoji} {agent.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-[#ccff00]/10 border border-[#ccff00]/30 rounded-lg p-4 mb-6 sm:mb-8">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="h-5 w-5 text-[#FF9900] flex-shrink-0 mt-0.5" />
-                  <div className="text-sm">
-                    <p className="font-medium text-[#283342] mb-1">
-                      Important:
+                  <AlertTriangle className="h-5 w-5 text-[#ccff00] flex-shrink-0 mt-0.5" />
+                  <div className="text-xs sm:text-sm">
+                    <p className="font-medium text-white mb-1">
+                      Powered by Google ADK & A2A Protocol
                     </p>
-                    <p className="text-[#283342]/80">
-                      Our AI agents will access your transaction history,
-                      account balances, and spending patterns to provide
-                      personalized financial guidance. Your data is encrypted
-                      and never shared with third parties.
+                    <p className="text-white/80">
+                      Agents communicate securely via Agent-to-Agent protocol
+                      with Gemini API.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <div className="flex flex-col gap-3">
                 <Button
                   onClick={handleGrantPermissions}
-                  className="flex-1 bg-gradient-to-r from-[#FF9900] to-orange-600 hover:from-[#FF9900]/90 hover:to-orange-600/90 text-white"
+                  className="w-full bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] font-bold"
                   size="lg"
                 >
-                  <CheckCircle className="mr-2 h-4 w-4" />I Allow Agent Access
+                  <CheckCircle className="mr-2 h-4 w-4" />
+                  Allow Agent Access
                 </Button>
                 <Button
                   onClick={handleDenyPermissions}
                   variant="outline"
                   size="lg"
-                  className="flex-1 border-red-200 text-red-600 hover:bg-red-50"
+                  className="w-full border-[#ccff00]/30 text-[#ccff00] hover:bg-[#ccff00]/10"
                 >
                   Cancel
                 </Button>
               </div>
-
-              <p className="text-xs text-center text-[#283342]/60 mt-4">
-                You must enable agent access to use ArcFi. You can manage these
-                permissions in your account settings later.
-              </p>
             </CardContent>
           </Card>
         </div>
@@ -178,209 +156,336 @@ export default function Home() {
     );
   }
 
-  // Show login form if not authenticated
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#283342] via-[#2a3644] to-[#283342] relative overflow-hidden">
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-10px) rotate(1deg);
-          }
-        }
-        @keyframes breathe {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-        @keyframes bounce-slow {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
-        }
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-breathe {
-          animation: breathe 4s ease-in-out infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 3s ease-in-out infinite;
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        .group:hover .animate-spin-slow {
-          animation: spin-slow 2s linear infinite;
-        }
-      `}</style>
-      {/* Background Financial Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 sm:left-20">
-          <TrendingUp
-            className="h-16 w-16 sm:h-24 sm:w-24 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "0s", animationDuration: "3s" }}
-          />
-        </div>
-        <div className="absolute top-40 right-10 sm:right-20">
-          <BarChart3
-            className="h-12 w-12 sm:h-20 sm:w-20 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "1s", animationDuration: "4s" }}
-          />
-        </div>
-        <div className="absolute bottom-40 left-10 sm:left-32">
-          <PieChart
-            className="h-14 w-14 sm:h-18 sm:w-18 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "2s", animationDuration: "3.5s" }}
-          />
-        </div>
-        <div className="absolute bottom-20 right-10 sm:right-32">
-          <LineChart
-            className="h-18 w-18 sm:h-22 sm:w-22 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "0.5s", animationDuration: "4.5s" }}
-          />
-        </div>
-        {/* Additional chart elements for larger screens */}
-        <div className="hidden lg:block absolute top-60 left-1/4">
-          <BarChart3
-            className="h-20 w-20 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "1.5s", animationDuration: "3.8s" }}
-          />
-        </div>
-        <div className="hidden lg:block absolute top-32 right-1/3">
-          <TrendingUp
-            className="h-16 w-16 text-[#FF9900] animate-pulse"
-            style={{ animationDelay: "2.5s", animationDuration: "3.2s" }}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f]">
+      {/* Navigation */}
+      <div className="fixed top-0 w-full z-50 bg-[#0f0f0f]/80 backdrop-blur border-b border-[#ccff00]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            {/* Logo */}
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-[#ccff00] rounded-lg flex items-center justify-center">
+                <Brain className="h-5 w-5 text-[#0f0f0f]" />
+              </div>
+              <span className="text-lg sm:text-xl font-bold text-[#ccff00]">
+                ArcFi
+              </span>
+            </div>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-8">
+              <a
+                href="#agents"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
+              >
+                Meet Your AI Team
+              </a>
+              <a
+                href="#tech"
+                className="text-xs sm:text-sm font-medium text-white/60 hover:text-[#ccff00] transition-colors"
+              >
+                Technology
+              </a>
+              <Button
+                onClick={() => setShowDemoTutorial(true)}
+                variant="ghost"
+                size="sm"
+                className="text-[#ccff00] hover:bg-[#ccff00]/10 gap-2"
+              >
+                <Play className="h-4 w-4" />
+                Demo
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-2">
+              <Button
+                onClick={() => setShowDemoTutorial(true)}
+                variant="ghost"
+                size="sm"
+                className="text-[#ccff00] hover:bg-[#ccff00]/10"
+              >
+                <Play className="h-4 w-4" />
+              </Button>
+              <button
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+              >
+                {showMobileMenu ? (
+                  <X className="h-5 w-5 text-white" />
+                ) : (
+                  <Menu className="h-5 w-5 text-white" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {showMobileMenu && (
+            <div className="md:hidden pb-4 space-y-2">
+              <a
+                href="#agents"
+                onClick={() => setShowMobileMenu(false)}
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
+              >
+                Meet Your AI Team
+              </a>
+              <a
+                href="#tech"
+                onClick={() => setShowMobileMenu(false)}
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg"
+              >
+                Technology
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg flex items-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+              <a
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-left px-4 py-2 text-white hover:bg-[#ccff00]/10 rounded-lg flex items-center gap-2"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Docs
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-        {/* Hero Section */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16 max-w-4xl mx-auto">
-          {/* Enhanced Animated Logo + Brand Name (Horizontal Layout) */}
-          <div className="mb-6 sm:mb-8 flex items-center justify-center gap-4 sm:gap-6">
-            {/* Enhanced Animated Logo */}
-            <div className="relative group cursor-pointer">
-              {/* Floating backdrop glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#FF9900]/20 to-orange-600/20 rounded-xl blur-xl animate-pulse group-hover:from-[#FF9900]/30 group-hover:to-orange-600/30 transition-all duration-1000"></div>
-
-              {/* Main logo container */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-[#FF9900] to-orange-600 rounded-xl flex items-center justify-center shadow-xl group-hover:shadow-[#FF9900]/40 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-2 animate-float">
-                <Brain className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-white transition-all duration-500 group-hover:scale-110 animate-breathe" />
-              </div>
-
-              {/* Enhanced DollarSign with more complex animation */}
-              <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 animate-bounce-slow">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-orange-400/30 rounded-full blur-sm animate-pulse"></div>
-                  <DollarSign className="relative h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-orange-400 animate-pulse group-hover:animate-spin-slow group-hover:text-orange-300 transition-all duration-500" />
-                </div>
-              </div>
-
-              {/* Orbiting sparkle elements */}
-              <div className="absolute inset-0 animate-spin-slow">
-                <div
-                  className="absolute top-0 left-1/2 w-1 h-1 bg-[#FF9900] rounded-full animate-pulse"
-                  style={{ animationDelay: "0s" }}
-                ></div>
-                <div
-                  className="absolute top-1/2 right-0 w-1 h-1 bg-orange-400 rounded-full animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                ></div>
-                <div
-                  className="absolute bottom-0 left-1/2 w-1 h-1 bg-[#FF9900] rounded-full animate-pulse"
-                  style={{ animationDelay: "2s" }}
-                ></div>
-                <div
-                  className="absolute top-1/2 left-0 w-1 h-1 bg-orange-400 rounded-full animate-pulse"
-                  style={{ animationDelay: "1.5s" }}
-                ></div>
-              </div>
+      {/* Hero Section */}
+      <div className="pt-20 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Logo + Title */}
+          <div className="mb-6 sm:mb-8 flex justify-center">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#ccff00] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#ccff00]/30">
+              <Brain className="h-8 w-8 sm:h-10 sm:w-10 text-[#0f0f0f]" />
             </div>
-
-            {/* Brand Name */}
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-[#FF9900] via-[#FF9900] to-orange-500 bg-clip-text text-transparent">
-              ArcFi
-            </h1>
           </div>
 
-          {/* Tagline */}
-          <div className="mb-6 sm:mb-8">
-            <p className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white mb-2">
-              Your Financial Intelligence Partner
-            </p>
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Harness the power of AI to analyze your spending patterns,
-              optimize your budget, and make smarter financial decisions.
-            </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+            The Future of <span className="text-[#ccff00]">Banking</span>
+          </h1>
+
+          <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
+            Multi-agent AI orchestration powered by Google ADK, A2A Protocol, and Gemini. Transform banking.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 sm:mb-16 px-2">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("login")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ccff00] text-[#0f0f0f] font-bold rounded-lg hover:bg-[#ccff00]/90 transition-all hover:shadow-2xl hover:shadow-[#ccff00]/30 text-sm sm:text-base"
+            >
+              Try ArcFi Now
+            </button>
+            <a
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 sm:px-8 py-3 sm:py-4 border border-[#ccff00]/30 text-[#ccff00] font-bold rounded-lg hover:border-[#ccff00] hover:bg-[#ccff00]/10 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+            >
+              <Github className="h-4 w-4 sm:h-5 sm:w-5" />
+              GitHub
+            </a>
           </div>
 
-          {/* Feature Highlights */}
-          <div className="hidden sm:flex justify-center gap-6 lg:gap-8 mb-8 lg:mb-12">
-            <div className="text-center">
-              <div className="w-12 h-12 lg:w-14 lg:h-14 bg-[#FF9900]/10 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                <TrendingUp className="h-6 w-6 lg:h-7 lg:w-7 text-[#FF9900]" />
+          {/* Key Metrics */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-8 mb-12 sm:mb-20">
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                6
               </div>
-              <p className="text-sm lg:text-base font-medium text-white">
-                Smart Analysis
-              </p>
+              <div className="text-xs sm:text-sm text-white/70">Agents</div>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 lg:w-14 lg:h-14 bg-[#FF9900]/10 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                <BarChart3 className="h-6 w-6 lg:h-7 lg:w-7 text-[#FF9900]" />
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                A2A
               </div>
-              <p className="text-sm lg:text-base font-medium text-white">
-                Visual Insights
-              </p>
+              <div className="text-xs sm:text-sm text-white/70">Protocol</div>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 lg:w-14 lg:h-14 bg-[#FF9900]/10 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                <Brain className="h-6 w-6 lg:h-7 lg:w-7 text-[#FF9900]" />
+            <div className="p-4 sm:p-6 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+              <div className="text-2xl sm:text-3xl font-bold text-[#ccff00] mb-1 sm:mb-2">
+                USDC
               </div>
-              <p className="text-sm lg:text-base font-medium text-white">
-                AI Recommendations
-              </p>
+              <div className="text-xs sm:text-sm text-white/70">Arc</div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Login Form Section */}
-        <div className="w-full max-w-md mx-auto relative">
-          {/* Subtle glow effect behind login form */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FF9900]/5 to-orange-600/5 rounded-xl blur-xl"></div>
-          <div className="relative">
+      {/* Agents Section */}
+      <div id="agents" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+            Meet Your AI Team
+          </h2>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {[
+              {
+                icon: DollarSign,
+                name: "Spending Agent",
+                desc: "Analyzes transactions & finds savings",
+              },
+              {
+                icon: TrendingUp,
+                name: "Portfolio Agent",
+                desc: "Investment analysis & rebalancing",
+              },
+              {
+                icon: Brain,
+                name: "Goals Agent",
+                desc: "Goal setting & savings tracking",
+              },
+              {
+                icon: BarChart3,
+                name: "Perks Agent",
+                desc: "Reward maximization",
+              },
+              {
+                icon: Shield,
+                name: "Advisors Agent",
+                desc: "Professional guidance & matching",
+              },
+              {
+                icon: Network,
+                name: "Chat Orchestrator",
+                desc: "Multi-agent coordination",
+              },
+            ].map((agent, idx) => {
+              const Icon = agent.icon;
+              return (
+                <Card
+                  key={idx}
+                  className="bg-[#1a1a1a] border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-all hover:shadow-lg hover:shadow-[#ccff00]/10"
+                >
+                  <CardContent className="pt-6">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-[#ccff00] mb-3" />
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">
+                      {agent.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-white/70">
+                      {agent.desc}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Tech Stack */}
+      <div id="tech" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+            Powered By Industry Leaders
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {[
+              {
+                title: "🧠 Google AI Stack",
+                items: ["Agent Development Kit (ADK)", "Gemini 2.5 Flash API", "A2A Protocol"],
+              },
+              {
+                title: "💰 Blockchain Stack",
+                items: ["Circle Arc Network", "USDC Stablecoin", "Smart Contracts"],
+              },
+              {
+                title: "🎨 Frontend Stack",
+                items: ["Next.js 15 + React 19", "TypeScript", "Tailwind CSS"],
+              },
+              {
+                title: "⚙️ Backend Stack",
+                items: ["Python + FastAPI", "Microservices", "Cymbal Bank"],
+              },
+            ].map((stack, idx) => (
+              <Card
+                key={idx}
+                className="bg-[#1a1a1a] border-[#ccff00]/20"
+              >
+                <CardContent className="pt-6 sm:pt-8">
+                  <h3 className="text-lg sm:text-2xl font-bold text-[#ccff00] mb-4">
+                    {stack.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {stack.items.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 text-xs sm:text-sm text-white/70"
+                      >
+                        <CheckCircle className="h-4 w-4 text-[#ccff00]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Login Section */}
+      <div
+        id="login"
+        className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#ccff00]/10"
+      >
+        <div className="max-w-md mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 text-center">
+            Get Started
+          </h2>
+          <div className="bg-[#1a1a1a] border border-[#ccff00]/20 rounded-lg p-6 sm:p-8">
             <LoginForm />
           </div>
         </div>
+      </div>
 
-        {/* Footer */}
-        <div className="mt-8 sm:mt-12 lg:mt-16 text-center">
-          <p className="text-sm text-white/60">
-            Secure • Intelligent • Personalized
-          </p>
+      {/* Footer */}
+      <div className="border-t border-[#ccff00]/10 py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-white/60 text-xs sm:text-sm">
+          <p>Built for AI Agents on Arc with USDC Hackathon</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#ccff00] transition-colors flex items-center gap-2"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+            <a
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#ccff00] transition-colors flex items-center gap-2"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Docs
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Demo Tutorial Modal */}
+      <DemoTutorial
+        isOpen={showDemoTutorial}
+        onClose={() => setShowDemoTutorial(false)}
+      />
     </div>
   );
 }

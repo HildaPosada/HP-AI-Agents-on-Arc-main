@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { SpendingCard } from "./SpendingCard";
 import { ActivitiesList } from "./ActivitiesList";
 import { InsightsCard } from "./InsightsCard";
+import { AgentReasoningPanel } from "./AgentReasoningPanel";
+import { USDCTransactionCard } from "./USDCTransactionCard";
 
 interface SpendingSnapshotProps {
   userId: string;
@@ -28,10 +30,8 @@ export function SpendingSnapshot({
     setIsLoading(true);
     onLoadingStateChange?.(true);
 
-    // Simulate loading delay for better UX
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    // Use dummy data directly
     console.log("[FRONTEND] 📊 Loading demo data for presentation");
     const dummyData: SpendingSnapshotData = {
       income: 8500,
@@ -63,44 +63,36 @@ export function SpendingSnapshot({
     }
   }, [userId, fetchSpendingData]);
 
-  // Loading state
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent relative">
-        {/* Glass loading card */}
-        <div className="bg-card/90 backdrop-blur-md border border-border/50 rounded-xl p-8 shadow-lg relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
-
+      <div className="h-full flex items-center justify-center bg-background">
+        <div className="bg-card border border-border rounded-lg p-8 shadow-lg relative overflow-hidden">
           <div className="relative flex flex-col items-center space-y-6">
-            {/* Animated ArcFi logo */}
             <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-cyan-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
-                <span className="text-white font-bold text-lg">ArcFi</span>
+              <div className="w-16 h-16 bg-[#ccff00] rounded-lg flex items-center justify-center">
+                <span className="text-[#0f0f0f] font-bold text-lg">ArcFi</span>
               </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-cyan-400 rounded-full animate-pulse" />
             </div>
 
-            {/* Loading spinner */}
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <Loader2 className="h-8 w-8 animate-spin text-[#ccff00]" />
 
             <div className="text-center space-y-2">
-              <p className="text-foreground font-semibold">
+              <p className="text-foreground font-bold">
                 Analyzing Financial Data
               </p>
               <p className="text-muted-foreground text-sm">
-                AI is processing your spending patterns...
+                Processing your spending patterns...
               </p>
             </div>
 
-            {/* Progress dots */}
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
                 style={{ animationDelay: "0.3s" }}
               />
               <div
-                className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
                 style={{ animationDelay: "0.6s" }}
               />
             </div>
@@ -110,21 +102,19 @@ export function SpendingSnapshot({
     );
   }
 
-  // Error state
   if (error) {
     return (
-      <div className="h-full p-6 flex items-center justify-center bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent">
+      <div className="h-full p-6 flex items-center justify-center bg-background">
         <div className="w-full max-w-md">
           <Alert
             variant="destructive"
-            className="bg-card/90 backdrop-blur-md border-destructive/20 shadow-lg relative overflow-hidden"
+            className="bg-card border border-destructive/30 rounded-lg shadow-lg"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
             <div className="relative">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription className="flex flex-col space-y-4 pt-2">
                 <div className="space-y-2">
-                  <p className="font-semibold text-destructive">
+                  <p className="font-bold text-destructive">
                     Unable to load financial data
                   </p>
                   <p className="text-sm text-muted-foreground">{error}</p>
@@ -133,7 +123,7 @@ export function SpendingSnapshot({
                   variant="outline"
                   size="sm"
                   onClick={fetchSpendingData}
-                  className="self-start bg-background/50 hover:bg-background border-destructive/30 hover:border-destructive/50 text-destructive hover:text-destructive"
+                  className="self-start bg-card hover:bg-muted text-foreground rounded-lg"
                 >
                   <div className="flex items-center gap-2">
                     <Loader2 className="h-4 w-4" />
@@ -148,28 +138,16 @@ export function SpendingSnapshot({
     );
   }
 
-  // Success state - render the dashboard
   console.log("[FRONTEND] 🎨 Rendering dashboard with data:");
   console.log("[FRONTEND] 🎨 Income:", data?.income);
   console.log("[FRONTEND] 🎨 Expenses:", data?.expenses);
-  console.log("[FRONTEND] 🎨 Activities count:", data?.activities?.length);
-  console.log("[FRONTEND] 🎨 Activities:", data?.activities);
-  console.log("[FRONTEND] 🎨 Insights length:", data?.insights?.length);
-  console.log(
-    "[FRONTEND] 🎨 Insights preview:",
-    data?.insights?.substring(0, 100)
-  );
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent relative">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)] pointer-events-none" />
-
-      {/* Scrollable Content */}
+    <div className="h-full flex flex-col bg-background relative">
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6 space-y-8">
+        <div className="p-8 space-y-8">
           <div className="relative space-y-8">
-            {/* Income and Expenses Cards */}
+            {/* Income & Expenses */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <SpendingCard
                 title="Income"
@@ -183,13 +161,54 @@ export function SpendingSnapshot({
               />
             </div>
 
-            {/* Activities List */}
-            <div className="transform hover:scale-[1.01] transition-transform duration-300">
+            {/* Agent Reasoning & USDC */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <AgentReasoningPanel
+                agentName="Spending Agent"
+                confidence={95}
+                reasoning="Analyzed 47 transactions across 12 merchants. Income exceeds expenses by 26.6%. Top spending category is Housing at 38%. Recommendation: Increase emergency fund savings."
+              />
+              <USDCTransactionCard
+                totalUSADCBalance={3500.5}
+                transactions={[
+                  {
+                    id: "1",
+                    type: "receive",
+                    amount: 1000,
+                    recipient: "Salary Deposit",
+                    timestamp: "2024-11-15 09:30 AM",
+                    hash: "0x742d...f9a2",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "2",
+                    type: "send",
+                    amount: 50,
+                    recipient: "USDC Payment",
+                    timestamp: "2024-11-14 02:15 PM",
+                    hash: "0x8f9e...2d45",
+                    status: "confirmed",
+                  },
+                  {
+                    id: "3",
+                    type: "receive",
+                    amount: 250,
+                    recipient: "Reward Payout",
+                    timestamp: "2024-11-13 11:00 AM",
+                    hash: "0x5c3a...b8e1",
+                    status: "confirmed",
+                  },
+                ]}
+              />
+            </div>
+
+            {/* Activities */}
+            <div>
               <ActivitiesList activities={data?.activities || []} />
             </div>
 
-            {/* Financial Insights */}
-            <div className="transform hover:scale-[1.01] transition-transform duration-300">
+            {/* Insights */}
+            <div>
               <InsightsCard insights={data?.insights || ""} />
             </div>
           </div>
