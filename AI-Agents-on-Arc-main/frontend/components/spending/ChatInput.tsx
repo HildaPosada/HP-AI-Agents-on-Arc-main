@@ -215,7 +215,7 @@ export function ChatInput({
               "h-[50px] min-w-[50px]",
               isRecording
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-                : 'bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#047857] hover:to-[#065f46]'
+                : 'bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 shadow-lg shadow-blue-500/30'
             )}
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >
