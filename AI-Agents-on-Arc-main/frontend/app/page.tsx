@@ -389,20 +389,20 @@ export default function Home() {
       </div>
 
       {/* Tech Stack */}
-      <div id="tech" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10">
+      <div id="tech" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
             Powered By Industry Leaders
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
             {[
               {
                 title: "🧠 Google AI Stack",
                 items: ["Agent Development Kit (ADK)", "Gemini 2.5 Flash API", "A2A Protocol"],
               },
               {
-                title: "💰 Blockchain Stack",
+                title: "💎 Blockchain Stack",
                 items: ["Circle Arc Network", "USDC Stablecoin", "Smart Contracts"],
               },
               {
@@ -410,25 +410,25 @@ export default function Home() {
                 items: ["Next.js 15 + React 19", "TypeScript", "Tailwind CSS"],
               },
               {
-                title: "⚙️ Backend Stack",
-                items: ["Python + FastAPI", "Microservices", "Cymbal Bank"],
+                title: "🔊 Voice & Backend Stack",
+                items: ["ElevenLabs AI Voice", "Python + FastAPI", "Microservices", "Cymbal Bank"],
               },
             ].map((stack, idx) => (
               <Card
                 key={idx}
                 className="bg-[#1a1a1a] border-[#FF9900]/20"
               >
-                <CardContent className="pt-6 sm:pt-8">
-                  <h3 className="text-lg sm:text-2xl font-bold text-[#FF9900] mb-4">
+                <CardContent className="pt-5 sm:pt-6">
+                  <h3 className="text-base sm:text-lg font-bold text-[#FF9900] mb-3">
                     {stack.title}
                   </h3>
                   <ul className="space-y-2">
                     {stack.items.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-3 text-xs sm:text-sm text-white/70"
+                        className="flex items-center gap-2 text-xs sm:text-sm text-white/70"
                       >
-                        <CheckCircle className="h-4 w-4 text-[#FF9900]" />
+                        <CheckCircle className="h-3.5 w-3.5 text-[#FF9900] flex-shrink-0" />
                         {item}
                       </li>
                     ))}
