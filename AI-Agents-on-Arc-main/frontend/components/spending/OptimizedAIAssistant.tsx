@@ -11,8 +11,6 @@ import {
   TrendingDown,
   DollarSign,
   Zap,
-  Mic,
-  Square,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -36,9 +34,7 @@ export function OptimizedAIAssistant() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -47,62 +43,6 @@ export function OptimizedAIAssistant() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  // Initialize speech recognition
-  useEffect(() => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = true;
-      recognition.lang = "en-US";
-
-      recognition.onstart = () => {
-        setIsListening(true);
-      };
-
-      recognition.onresult = (event: any) => {
-        let interimTranscript = "";
-        let finalTranscript = "";
-
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript + " ";
-          } else {
-            interimTranscript += transcript;
-          }
-        }
-
-        if (finalTranscript) {
-          setInput((prev) => prev + finalTranscript);
-        }
-      };
-
-      recognition.onend = () => {
-        setIsListening(false);
-      };
-
-      recognition.onerror = (event: any) => {
-        console.error("Speech recognition error:", event.error);
-        setIsListening(false);
-      };
-
-      recognitionRef.current = recognition;
-    }
-  }, []);
-
-  const toggleVoiceInput = () => {
-    if (!recognitionRef.current) return;
-
-    if (isListening) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    } else {
-      setInput("");
-      recognitionRef.current.start();
-    }
-  };
 
   const suggestedQuestions = [
     {
@@ -329,26 +269,11 @@ export function OptimizedAIAssistant() {
               }}
               placeholder="Ask about your spending..."
               className="flex-1 px-3 py-2 text-sm bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none text-white placeholder-white/30 transition-colors"
-              disabled={isLoading || isListening}
+              disabled={isLoading}
             />
             <button
-              onClick={toggleVoiceInput}
-              className={`p-2 border rounded-lg transition-all ${
-                isListening
-                  ? "bg-red-500/30 border-red-500 text-red-400 animate-pulse"
-                  : "bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border-[#FF9900]/40 text-[#FF9900]"
-              }`}
-              title={isListening ? "Stop recording" : "Start voice input"}
-            >
-              {isListening ? (
-                <Square className="h-4 w-4" />
-              ) : (
-                <Mic className="h-4 w-4" />
-              )}
-            </button>
-            <button
               onClick={() => handleSendMessage()}
-              disabled={!input.trim() || isLoading || isListening}
+              disabled={!input.trim() || isLoading}
               className="p-2 bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] rounded-lg disabled:opacity-40 transition-all"
             >
               <Send className="h-4 w-4" />
