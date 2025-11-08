@@ -55,6 +55,14 @@ const DEMO_STEPS: DemoStep[] = [
   },
   {
     id: 5,
+    title: "Voice-Powered AI Assistant",
+    description:
+      "Listen to AI responses using ElevenLabs multilingual voice technology. Perfect for hands-free banking and accessibility.",
+    highlight: "voice",
+    action: "Next",
+  },
+  {
+    id: 6,
     title: "Start Using ArcFi",
     description:
       "You're ready to manage your finances with AI! Begin exploring your dashboard.",
@@ -207,6 +215,19 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
                   <li>• Spending analysis</li>
                   <li>• Category recommendations</li>
                   <li>• Gemini AI powered</li>
+                </ul>
+              </div>
+            )}
+
+            {step.id === 5 && (
+              <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/30">
+                <div className="text-sm text-purple-400 font-bold mb-2">
+                  🔊 ElevenLabs Voice AI
+                </div>
+                <ul className="text-xs text-white/70 space-y-1">
+                  <li>• Multilingual voice support</li>
+                  <li>• Natural speech synthesis</li>
+                  <li>• Listen to AI responses</li>
                 </ul>
               </div>
             )}

@@ -389,20 +389,20 @@ export default function Home() {
       </div>
 
       {/* Tech Stack */}
-      <div id="tech" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
+      <div id="tech" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10">
+        <div className="max-w-[988px] mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
             Powered By Industry Leaders
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
             {[
               {
                 title: "🧠 Google AI Stack",
                 items: ["Agent Development Kit (ADK)", "Gemini 2.5 Flash API", "A2A Protocol"],
               },
               {
-                title: "💰 Blockchain Stack",
+                title: "💎 Blockchain Stack",
                 items: ["Circle Arc Network", "USDC Stablecoin", "Smart Contracts"],
               },
               {
@@ -410,25 +410,25 @@ export default function Home() {
                 items: ["Next.js 15 + React 19", "TypeScript", "Tailwind CSS"],
               },
               {
-                title: "⚙️ Backend Stack",
-                items: ["Python + FastAPI", "Microservices", "Cymbal Bank"],
+                title: "🔊 Voice & Backend Stack",
+                items: ["ElevenLabs AI Voice", "Python + FastAPI", "Microservices", "Cymbal Bank"],
               },
             ].map((stack, idx) => (
               <Card
                 key={idx}
                 className="bg-[#1a1a1a] border-[#FF9900]/20"
               >
-                <CardContent className="pt-6 sm:pt-8">
-                  <h3 className="text-lg sm:text-2xl font-bold text-[#FF9900] mb-4">
+                <CardContent className="pt-4 sm:pt-4 pb-4">
+                  <h3 className="text-lg sm:text-2xl font-bold text-[#FF9900] mb-2">
                     {stack.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {stack.items.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-3 text-xs sm:text-sm text-white/70"
+                        className="flex items-center gap-2 text-xs sm:text-sm text-white/70"
                       >
-                        <CheckCircle className="h-4 w-4 text-[#FF9900]" />
+                        <CheckCircle className="h-3 w-3 text-[#FF9900] flex-shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -443,13 +443,10 @@ export default function Home() {
       {/* Login Section */}
       <div
         id="login"
-        className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
+        className="py-6 sm:py-10 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
       >
         <div className="max-w-md mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 text-center">
-            Get Started
-          </h2>
-          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-4 sm:p-6">
+          <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-3 sm:p-4">
             <LoginForm />
           </div>
         </div>
