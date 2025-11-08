@@ -69,21 +69,21 @@ export function AdvisorsExplainableInsights({
   return (
     <div className="space-y-6">
       {/* Main Insight Card */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] relative overflow-hidden">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#ccff00]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9900]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
 
         <CardContent className="pt-8 relative">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center flex-shrink-0">
-              <Users className="h-6 w-6 text-[#ccff00]" />
+            <div className="w-12 h-12 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+              <Users className="h-6 w-6 text-[#FF9900]" />
             </div>
 
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="text-lg font-bold text-white">{agentName}</h3>
-                <div className="h-2 w-2 bg-[#ccff00] rounded-full animate-pulse"></div>
-                <span className="text-xs text-[#ccff00] font-bold">ANALYSIS</span>
+                <div className="h-2 w-2 bg-[#FF9900] rounded-full animate-pulse"></div>
+                <span className="text-xs text-[#FF9900] font-bold">ANALYSIS</span>
               </div>
               <p className="text-base text-white/90 leading-relaxed">{mainInsight}</p>
             </div>
@@ -92,7 +92,7 @@ export function AdvisorsExplainableInsights({
       </Card>
 
       {/* Matched Advisors */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
         <CardContent className="pt-8">
           <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
             Your Top Matched Advisors
@@ -103,10 +103,10 @@ export function AdvisorsExplainableInsights({
             {matchedAdvisors.map((advisor, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20 hover:border-[#ccff00]/40 transition-all"
+                className="p-4 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20 hover:border-[#FF9900]/40 transition-all"
               >
                 <div className="flex items-start gap-3">
-                  <Award className="h-5 w-5 text-[#ccff00] flex-shrink-0 mt-0.5" />
+                  <Award className="h-5 w-5 text-[#FF9900] flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="font-semibold text-white text-sm">{advisor}</p>
                   </div>
@@ -115,11 +115,11 @@ export function AdvisorsExplainableInsights({
             ))}
 
             {/* Match Summary */}
-            <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
-              <div className="flex items-center justify-between p-4 rounded-lg bg-[#ccff00]/5">
+            <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-[#FF9900]/5">
                 <div>
                   <p className="text-xs text-white/60 mb-1">Advisors Reviewed</p>
-                  <p className="text-3xl font-bold text-[#ccff00]">5</p>
+                  <p className="text-3xl font-bold text-[#FF9900]">5</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-white/60 mb-1">Top Matches Found</p>
@@ -130,16 +130,16 @@ export function AdvisorsExplainableInsights({
           </div>
 
           {/* Confidence Score */}
-          <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
-            <div className="flex items-center justify-between gap-4 p-4 rounded-lg bg-[#ccff00]/5">
+          <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
+            <div className="flex items-center justify-between gap-4 p-4 rounded-lg bg-[#FF9900]/5">
               <div>
                 <p className="text-xs text-white/60 mb-2">Match Confidence</p>
-                <p className="text-2xl font-bold text-[#ccff00]">{confidence}%</p>
+                <p className="text-2xl font-bold text-[#FF9900]">{confidence}%</p>
               </div>
               <div className="flex-1">
-                <div className="h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#ccff00]/20">
+                <div className="h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#FF9900]/20">
                   <div
-                    className="h-full bg-gradient-to-r from-[#ccff00] to-[#ffdd00]"
+                    className="h-full bg-gradient-to-r from-[#FF9900] to-[#ffdd00]"
                     style={{ width: `${confidence}%` }}
                   ></div>
                 </div>
@@ -151,7 +151,7 @@ export function AdvisorsExplainableInsights({
       </Card>
 
       {/* Advisor Recommendations */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
         <CardContent className="pt-8">
           <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
             Next Steps to Maximize Your Advisor Relationships
@@ -161,12 +161,12 @@ export function AdvisorsExplainableInsights({
             {recommendations.map((rec, idx) => (
               <div
                 key={idx}
-                className={`p-4 rounded-lg border transition-all hover:shadow-lg hover:shadow-[#ccff00]/20 ${
+                className={`p-4 rounded-lg border transition-all hover:shadow-lg hover:shadow-[#FF9900]/20 ${
                   rec.priority === "high"
                     ? "bg-green-500/10 border-green-500/30 hover:border-green-500/60"
                     : rec.priority === "medium"
-                    ? "bg-[#ccff00]/10 border-[#ccff00]/30 hover:border-[#ccff00]/60"
-                    : "bg-[#0f0f0f] border-[#ccff00]/20 hover:border-[#ccff00]/40"
+                    ? "bg-[#FF9900]/10 border-[#FF9900]/30 hover:border-[#FF9900]/60"
+                    : "bg-[#0f0f0f] border-[#FF9900]/20 hover:border-[#FF9900]/40"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-3">
@@ -175,14 +175,14 @@ export function AdvisorsExplainableInsights({
                       rec.priority === "high"
                         ? "bg-green-500/20"
                         : rec.priority === "medium"
-                        ? "bg-[#ccff00]/20"
-                        : "bg-[#ccff00]/10"
+                        ? "bg-[#FF9900]/20"
+                        : "bg-[#FF9900]/10"
                     }`}
                   >
                     {rec.priority === "high" ? (
                       <AlertCircle className="h-4 w-4 text-green-400" />
                     ) : (
-                      <Calendar className="h-4 w-4 text-[#ccff00]" />
+                      <Calendar className="h-4 w-4 text-[#FF9900]" />
                     )}
                   </div>
 
@@ -194,8 +194,8 @@ export function AdvisorsExplainableInsights({
                           rec.priority === "high"
                             ? "bg-green-500/20 text-green-400"
                             : rec.priority === "medium"
-                            ? "bg-[#ccff00]/20 text-[#ccff00]"
-                            : "bg-[#ccff00]/10 text-white/60"
+                            ? "bg-[#FF9900]/20 text-[#FF9900]"
+                            : "bg-[#FF9900]/10 text-white/60"
                         }`}
                       >
                         {rec.priority.toUpperCase()}
@@ -214,9 +214,9 @@ export function AdvisorsExplainableInsights({
 
                 {/* Action & Impact */}
                 <div className="space-y-2">
-                  <div className="p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/10">
+                  <div className="p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/10">
                     <p className="text-xs text-white/60 mb-1">Action:</p>
-                    <p className="text-sm text-[#ccff00] font-semibold">{rec.action}</p>
+                    <p className="text-sm text-[#FF9900] font-semibold">{rec.action}</p>
                   </div>
 
                   <div className="p-3 rounded-lg bg-[#0f0f0f] border border-green-500/20">
@@ -225,7 +225,7 @@ export function AdvisorsExplainableInsights({
                   </div>
                 </div>
 
-                <button className="w-full mt-3 py-2 px-4 rounded-lg bg-[#ccff00]/20 hover:bg-[#ccff00]/30 border border-[#ccff00]/40 text-[#ccff00] font-bold text-sm transition-all">
+                <button className="w-full mt-3 py-2 px-4 rounded-lg bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] font-bold text-sm transition-all">
                   {rec.priority === "high" ? "Schedule Now" : "Schedule"}
                 </button>
               </div>

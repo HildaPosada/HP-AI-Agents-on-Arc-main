@@ -19,85 +19,146 @@ export function ChatInput({
   const [isRecording, setIsRecording] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<any>(null);
+  const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Initialize speech recognition
   const initializeSpeechRecognition = () => {
-    if (typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (typeof window === 'undefined') return;
+
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+
+    if (!SpeechRecognition) {
+      console.log('ℹ️ Speech Recognition API not available in this browser');
+      return;
+    }
+
+    try {
       const recognition = new SpeechRecognition();
-      recognition.continuous = true;
+      recognition.continuous = false;
       recognition.interimResults = true;
       recognition.lang = 'en-US';
 
+      recognition.onstart = () => {
+        console.log('🎤 Speech recognition started');
+        setIsListening(true);
+        setIsRecording(true);
+      };
+
       recognition.onresult = (event: any) => {
-        let interimTranscript = '';
         let finalTranscript = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
             finalTranscript += transcript + ' ';
-          } else {
-            interimTranscript += transcript;
           }
         }
 
-        if (finalTranscript) {
-          setMessage(prev => prev + finalTranscript);
-        } else if (interimTranscript) {
-          // Show interim results
-          setMessage(prev => {
-            const lastSpace = prev.lastIndexOf(' ');
-            return lastSpace >= 0 ? prev.substring(0, lastSpace + 1) + interimTranscript : interimTranscript;
-          });
+        if (finalTranscript.trim()) {
+          console.log('✓ Final transcript:', finalTranscript);
+          setMessage(prev => (prev + ' ' + finalTranscript).trim());
         }
       };
 
       recognition.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
+        console.log('⚠️ Speech recognition error:', event.error);
+        // Silently handle errors - don't show alerts
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognition.onend = () => {
+        console.log('🎤 Speech recognition ended');
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognitionRef.current = recognition;
+    } catch (error) {
+      console.log('ℹ️ Could not initialize speech recognition:', error);
+      // Silently fail - don't show alerts
     }
   };
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+      }
       if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {
+          console.log('Speech recognition already stopped');
+        }
       }
     };
   }, []);
 
   const toggleVoiceInput = () => {
-    if (!recognitionRef.current) {
-      initializeSpeechRecognition();
-    }
-
-    if (isListening) {
+    if (isListening || isRecording) {
       // Stop listening
-      recognitionRef.current?.stop();
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+        recordingTimeoutRef.current = null;
+      }
+      try {
+        if (recognitionRef.current) {
+          recognitionRef.current.stop();
+        }
+      } catch (error) {
+        console.error('Error stopping speech recognition:', error);
+      }
       setIsListening(false);
       setIsRecording(false);
     } else {
       // Start listening
+      setMessage(''); // Clear message when starting
+
+      if (!recognitionRef.current) {
+        initializeSpeechRecognition();
+      }
+
+      // Show recording UI immediately
+      setIsListening(true);
+      setIsRecording(true);
+
+      // Clear any existing timeout
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+      }
+
+      // Set maximum recording duration (10 seconds)
+      recordingTimeoutRef.current = setTimeout(() => {
+        setIsListening(false);
+        setIsRecording(false);
+        recordingTimeoutRef.current = null;
+      }, 10000);
+
       try {
-        recognitionRef.current?.start();
-        setIsListening(true);
-        setIsRecording(true);
+        if (recognitionRef.current) {
+          recognitionRef.current.start();
+          console.log('✓ Speech recognition started');
+        } else {
+          console.log('Speech Recognition API not available, showing recording UI');
+          // Still show recording state for user feedback even without API
+        }
       } catch (error) {
         console.error('Error starting speech recognition:', error);
-        // If already started, just continue
-        setIsListening(true);
-        setIsRecording(true);
+        if ((error as any).name === 'InvalidStateError') {
+          console.log('Speech recognition already running, attempting restart');
+          try {
+            if (recognitionRef.current) {
+              recognitionRef.current.abort();
+              setTimeout(() => {
+                recognitionRef.current?.start();
+              }, 100);
+            }
+          } catch (e) {
+            console.error('Error restarting:', e);
+          }
+        }
       }
     }
   };
@@ -185,7 +246,7 @@ export function ChatInput({
               "h-[50px] min-w-[50px]",
               isRecording
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-                : 'bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#047857] hover:to-[#065f46]'
+                : 'bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 shadow-lg shadow-blue-500/30'
             )}
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >

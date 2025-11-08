@@ -21,7 +21,7 @@ export function AgentReasoningPanel({
       "Advisors Agent": "from-indigo-500 to-blue-500",
       "Chat Orchestrator": "from-pink-500 to-rose-500",
     };
-    return colors[agent] || "from-[#ccff00] to-[#ffdd00]";
+    return colors[agent] || "from-[#FF9900] to-[#ffdd00]";
   };
 
   const getAgentIcon = (agent: string) => {
@@ -37,11 +37,11 @@ export function AgentReasoningPanel({
   };
 
   return (
-    <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] hover:border-[#ccff00]/50">
+    <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] hover:border-[#FF9900]/50">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-3 text-lg">
-          <div className="w-8 h-8 rounded-lg bg-[#ccff00]/20 flex items-center justify-center">
-            <Network className="h-4 w-4 text-[#ccff00]" />
+          <div className="w-8 h-8 rounded-lg bg-[#FF9900]/20 flex items-center justify-center">
+            <Network className="h-4 w-4 text-[#FF9900]" />
           </div>
           <div>
             <div className="text-white">Multi-Agent Orchestration</div>
@@ -58,7 +58,7 @@ export function AgentReasoningPanel({
           <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-3">
             Active Agent
           </div>
-          <div className={`p-4 rounded-lg bg-gradient-to-r ${getAgentColor(agentName)} bg-opacity-10 border border-[#ccff00]/30`}>
+          <div className={`p-4 rounded-lg bg-gradient-to-r ${getAgentColor(agentName)} bg-opacity-10 border border-[#FF9900]/30`}>
             <div className="flex items-center gap-3">
               <span className="text-2xl">{getAgentIcon(agentName)}</span>
               <div>
@@ -76,15 +76,15 @@ export function AgentReasoningPanel({
               Confidence Score
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-[#ccff00]">
+              <span className="text-2xl font-bold text-[#FF9900]">
                 {confidence}%
               </span>
-              <CheckCircle className="h-5 w-5 text-[#ccff00]" />
+              <CheckCircle className="h-5 w-5 text-[#FF9900]" />
             </div>
           </div>
           <div className="w-full bg-[#2a2a2a] rounded-full h-2">
             <div
-              className="bg-gradient-to-r from-[#ccff00] to-[#ffdd00] h-2 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[#FF9900] to-[#ffdd00] h-2 rounded-full transition-all duration-500"
               style={{ width: `${confidence}%` }}
             ></div>
           </div>
@@ -95,9 +95,9 @@ export function AgentReasoningPanel({
           <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-3">
             Agent Reasoning
           </div>
-          <div className="p-4 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+          <div className="p-4 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20">
             <div className="flex items-start gap-3">
-              <Zap className="h-4 w-4 text-[#ccff00] flex-shrink-0 mt-0.5" />
+              <Zap className="h-4 w-4 text-[#FF9900] flex-shrink-0 mt-0.5" />
               <p className="text-sm text-white/80 leading-relaxed">
                 {reasoning}
               </p>
@@ -121,8 +121,8 @@ export function AgentReasoningPanel({
                 key={agent.name}
                 className={`flex items-center gap-3 p-2 rounded-lg transition-colors ${
                   agent.active
-                    ? "bg-[#ccff00]/20 border border-[#ccff00]/50"
-                    : "bg-[#ccff00]/5 border border-[#ccff00]/20"
+                    ? "bg-[#FF9900]/20 border border-[#FF9900]/50"
+                    : "bg-[#FF9900]/5 border border-[#FF9900]/20"
                 }`}
               >
                 <span className="text-lg">{agent.emoji}</span>
@@ -131,13 +131,13 @@ export function AgentReasoningPanel({
                 </span>
                 {agent.active ? (
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-[#ccff00] font-bold">
+                    <span className="text-xs text-[#FF9900] font-bold">
                       ACTIVE
                     </span>
-                    <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse"></div>
+                    <div className="w-2 h-2 rounded-full bg-[#FF9900] animate-pulse"></div>
                   </div>
                 ) : (
-                  <div className="w-2 h-2 rounded-full bg-[#ccff00]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#FF9900]/30"></div>
                 )}
               </div>
             ))}
@@ -145,11 +145,11 @@ export function AgentReasoningPanel({
         </div>
 
         {/* A2A Protocol Badge */}
-        <div className="pt-4 border-t border-[#ccff00]/10">
-          <div className="flex items-center justify-between p-3 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
+        <div className="pt-4 border-t border-[#FF9900]/10">
+          <div className="flex items-center justify-between p-3 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse"></div>
-              <span className="text-xs font-bold text-[#ccff00]">
+              <div className="w-2 h-2 rounded-full bg-[#FF9900] animate-pulse"></div>
+              <span className="text-xs font-bold text-[#FF9900]">
                 A2A PROTOCOL ENABLED
               </span>
             </div>

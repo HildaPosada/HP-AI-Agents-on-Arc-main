@@ -5,24 +5,24 @@
   --background: #0f0f0f;
   --foreground: #ffffff;
   
-  /* Neon lime for primary actions */
-  --primary: #ccff00;
+  /* Amazon Orange for primary actions */
+  --primary: #FF9900;
   --primary-foreground: #0f0f0f;
-  
+
   /* Secondary colors */
   --secondary: #1a1a1a;
   --secondary-foreground: #ffffff;
   --muted: #2a2a2a;
   --muted-foreground: #a0a0a0;
-  
+
   /* Accent colors */
-  --accent: #ccff00;
+  --accent: #FF9900;
   --accent-foreground: #0f0f0f;
-  
+
   /* Border and input colors */
   --border: #333333;
   --input: #2a2a2a;
-  --ring: #ccff00;
+  --ring: #FF9900;
   
   /* Destructive colors */
   --destructive: #ff4444;
@@ -119,7 +119,7 @@ body {
 
 /* Gradient text for accents */
 .gradient-text {
-  background: linear-gradient(135deg, #ccff00, #00dd77);
+  background: linear-gradient(135deg, #FF9900, #FFA500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

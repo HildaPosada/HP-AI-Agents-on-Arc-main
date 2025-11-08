@@ -36,10 +36,10 @@ export function FloatingAdvisorChat({
       >
         <div className="relative">
           {/* Glow effect */}
-          <div className="absolute inset-0 bg-[#ccff00] rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"></div>
+          <div className="absolute inset-0 bg-[#FF9900] rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"></div>
 
           {/* Main button */}
-          <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[#ccff00] to-[#ffdd00] flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_rgba(204,255,0,0.5)] transition-all duration-300">
+          <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[#FF9900] to-[#ffdd00] flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_rgba(204,255,0,0.5)] transition-all duration-300">
             <MessageCircle className="w-7 h-7 text-[#0f0f0f]" />
           </div>
 
@@ -48,7 +48,7 @@ export function FloatingAdvisorChat({
 
           {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="bg-[#0f0f0f] border border-[#ccff00]/40 text-[#ccff00] text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap">
+            <div className="bg-[#0f0f0f] border border-[#FF9900]/40 text-[#FF9900] text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap">
               Chat with Advisors
             </div>
           </div>
@@ -65,7 +65,7 @@ export function FloatingAdvisorChat({
 
           {/* Modal - slides in from right - Non-blocking */}
           <div
-            className={`fixed right-0 z-50 bg-[#0f0f0f] border-l border-[#ccff00]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto ${
+            className={`fixed right-0 z-50 bg-[#0f0f0f] border-l border-[#FF9900]/20 shadow-2xl transition-all duration-300 ease-out flex flex-col overflow-hidden pointer-events-auto ${
               isCollapsed
                 ? "top-auto h-16 w-full sm:w-96 lg:w-[28rem] rounded-tl-2xl"
                 : "top-0 h-full w-full sm:w-96 lg:w-[28rem]"
@@ -73,11 +73,11 @@ export function FloatingAdvisorChat({
             style={isCollapsed ? { bottom: 'env(safe-area-inset-bottom)' } : { bottom: 0 }}
           >
             {/* Header */}
-            <div className="flex-shrink-0 p-4 border-b border-[#ccff00]/20 bg-[#1a1a1a]">
+            <div className="flex-shrink-0 p-4 border-b border-[#FF9900]/20 bg-[#1a1a1a]">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center">
-                    <MessageCircle className="w-4 h-4 text-[#ccff00]" />
+                  <div className="w-8 h-8 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center">
+                    <MessageCircle className="w-4 h-4 text-[#FF9900]" />
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-sm">
@@ -92,11 +92,11 @@ export function FloatingAdvisorChat({
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors pointer-events-auto"
+                    className="p-2 hover:bg-[#FF9900]/10 rounded-lg transition-colors pointer-events-auto"
                     aria-label={isCollapsed ? "Expand chat" : "Collapse chat"}
                   >
                     <ChevronDown
-                      className={`w-4 h-4 text-[#ccff00] transition-transform duration-300 ${
+                      className={`w-4 h-4 text-[#FF9900] transition-transform duration-300 ${
                         isCollapsed ? "rotate-180" : ""
                       }`}
                     />
@@ -104,10 +104,10 @@ export function FloatingAdvisorChat({
 
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors pointer-events-auto"
+                    className="p-2 hover:bg-[#FF9900]/10 rounded-lg transition-colors pointer-events-auto"
                     aria-label="Close chat"
                   >
-                    <X className="w-4 h-4 text-[#ccff00]" />
+                    <X className="w-4 h-4 text-[#FF9900]" />
                   </button>
                 </div>
               </div>

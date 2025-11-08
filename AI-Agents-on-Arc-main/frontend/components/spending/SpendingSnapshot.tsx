@@ -69,12 +69,12 @@ export function SpendingSnapshot({
         <div className="bg-card border border-border rounded-lg p-8 shadow-lg relative overflow-hidden">
           <div className="relative flex flex-col items-center space-y-6">
             <div className="relative">
-              <div className="w-16 h-16 bg-[#ccff00] rounded-lg flex items-center justify-center">
+              <div className="w-16 h-16 bg-[#FF9900] rounded-lg flex items-center justify-center">
                 <span className="text-[#0f0f0f] font-bold text-lg">ArcFi</span>
               </div>
             </div>
 
-            <Loader2 className="h-8 w-8 animate-spin text-[#ccff00]" />
+            <Loader2 className="h-8 w-8 animate-spin text-[#FF9900]" />
 
             <div className="text-center space-y-2">
               <p className="text-foreground font-bold">
@@ -86,13 +86,13 @@ export function SpendingSnapshot({
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse" />
               <div
-                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse"
                 style={{ animationDelay: "0.3s" }}
               />
               <div
-                className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"
+                className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse"
                 style={{ animationDelay: "0.6s" }}
               />
             </div>

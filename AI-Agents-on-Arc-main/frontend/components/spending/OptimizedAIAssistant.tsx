@@ -149,18 +149,18 @@ export function OptimizedAIAssistant() {
   };
 
   return (
-    <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] h-full flex flex-col">
-      <CardContent className="p-6 flex flex-col h-full">
+    <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] h-full flex flex-col">
+      <CardContent className="p-4 sm:p-5 flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#ccff00]/10">
-          <div className="w-8 h-8 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center">
-            <Bot className="h-4 w-4 text-[#ccff00]" />
+        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#FF9900]/10">
+          <div className="w-6 h-6 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+            <Bot className="h-3 w-3 text-[#FF9900]" />
           </div>
-          <div>
-            <h3 className="font-bold text-white text-sm">AI Assistant</h3>
-            <p className="text-xs text-white/50">Multi-agent powered</p>
+          <div className="min-w-0">
+            <h3 className="font-bold text-white text-xs">AI Assistant</h3>
+            <p className="text-xs text-white/50 leading-tight">Multi-agent powered</p>
           </div>
-          <div className="ml-auto w-2 h-2 bg-[#ccff00] rounded-full animate-pulse"></div>
+          <div className="ml-auto w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-pulse flex-shrink-0"></div>
         </div>
 
         {/* Messages Area */}
@@ -175,12 +175,12 @@ export function OptimizedAIAssistant() {
                   <button
                     key={idx}
                     onClick={() => handleQuickQuestion(q.question)}
-                    className="w-full text-left p-3 rounded-lg bg-[#0f0f0f] border border-[#ccff00]/20 hover:border-[#ccff00]/60 hover:bg-[#ccff00]/10 transition-all group"
+                    className="w-full text-left p-3 rounded-lg bg-[#0f0f0f] border border-[#FF9900]/20 hover:border-[#FF9900]/60 hover:bg-[#FF9900]/10 transition-all group"
                   >
                     <div className="flex items-start gap-2">
                       <span className="text-lg">{q.emoji}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-white group-hover:text-[#ccff00] transition-colors">
+                        <p className="text-sm text-white group-hover:text-[#FF9900] transition-colors">
                           {q.question}
                         </p>
                         <p className="text-xs text-white/40">{q.context}</p>
@@ -198,8 +198,8 @@ export function OptimizedAIAssistant() {
               className={cn("flex gap-3", msg.role === "user" ? "justify-end" : "justify-start")}
             >
               {msg.role === "assistant" && (
-                <div className="w-7 h-7 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center flex-shrink-0">
-                  <Bot className="h-3 w-3 text-[#ccff00]" />
+                <div className="w-7 h-7 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+                  <Bot className="h-3 w-3 text-[#FF9900]" />
                 </div>
               )}
 
@@ -207,19 +207,19 @@ export function OptimizedAIAssistant() {
                 className={cn(
                   "max-w-[80%] rounded-lg px-4 py-3 text-sm",
                   msg.role === "user"
-                    ? "bg-[#ccff00] text-[#0f0f0f] font-bold"
-                    : "bg-[#0f0f0f] border border-[#ccff00]/20 text-white/80"
+                    ? "bg-[#FF9900] text-[#0f0f0f] font-bold"
+                    : "bg-[#0f0f0f] border border-[#FF9900]/20 text-white/80"
                 )}
               >
                 {msg.content}
 
                 {/* Action Buttons */}
                 {msg.actions && msg.actions.length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-[#ccff00]/20 space-y-2">
+                  <div className="mt-3 pt-3 border-t border-[#FF9900]/20 space-y-2">
                     {msg.actions.map((action, idx) => (
                       <button
                         key={idx}
-                        className="w-full text-left text-xs px-3 py-1.5 rounded bg-[#ccff00]/20 hover:bg-[#ccff00]/30 text-[#ccff00] font-medium transition-all"
+                        className="w-full text-left text-xs px-3 py-1.5 rounded bg-[#FF9900]/20 hover:bg-[#FF9900]/30 text-[#FF9900] font-medium transition-all"
                       >
                         → {action.label}
                       </button>
@@ -229,7 +229,7 @@ export function OptimizedAIAssistant() {
               </div>
 
               {msg.role === "user" && (
-                <div className="w-7 h-7 rounded-lg bg-[#ccff00] flex items-center justify-center flex-shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-[#FF9900] flex items-center justify-center flex-shrink-0">
                   <UserIcon className="h-3 w-3 text-[#0f0f0f]" />
                 </div>
               )}
@@ -238,14 +238,14 @@ export function OptimizedAIAssistant() {
 
           {isLoading && (
             <div className="flex gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center flex-shrink-0">
-                <Bot className="h-3 w-3 text-[#ccff00]" />
+              <div className="w-7 h-7 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+                <Bot className="h-3 w-3 text-[#FF9900]" />
               </div>
-              <div className="bg-[#0f0f0f] border border-[#ccff00]/20 rounded-lg px-4 py-3">
+              <div className="bg-[#0f0f0f] border border-[#FF9900]/20 rounded-lg px-4 py-3">
                 <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-                  <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                  <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-bounce" />
+                  <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+                  <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                 </div>
               </div>
             </div>
@@ -255,7 +255,7 @@ export function OptimizedAIAssistant() {
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-[#ccff00]/10 pt-4">
+        <div className="border-t border-[#FF9900]/10 pt-4">
           <div className="flex gap-2">
             <input
               type="text"
@@ -268,13 +268,13 @@ export function OptimizedAIAssistant() {
                 }
               }}
               placeholder="Ask about your spending..."
-              className="flex-1 px-3 py-2 text-sm bg-[#0f0f0f] border border-[#ccff00]/30 rounded-lg focus:border-[#ccff00] focus:outline-none text-white placeholder-white/30 transition-colors"
+              className="flex-1 px-3 py-2 text-sm bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none text-white placeholder-white/30 transition-colors"
               disabled={isLoading}
             />
             <button
               onClick={() => handleSendMessage()}
               disabled={!input.trim() || isLoading}
-              className="p-2 bg-[#ccff00]/20 hover:bg-[#ccff00]/30 border border-[#ccff00]/40 text-[#ccff00] rounded-lg disabled:opacity-40 transition-all"
+              className="p-2 bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] rounded-lg disabled:opacity-40 transition-all"
             >
               <Send className="h-4 w-4" />
             </button>
