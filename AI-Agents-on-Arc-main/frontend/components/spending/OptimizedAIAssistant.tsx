@@ -329,11 +329,26 @@ export function OptimizedAIAssistant() {
               }}
               placeholder="Ask about your spending..."
               className="flex-1 px-3 py-2 text-sm bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none text-white placeholder-white/30 transition-colors"
-              disabled={isLoading}
+              disabled={isLoading || isListening}
             />
             <button
+              onClick={toggleVoiceInput}
+              className={`p-2 border rounded-lg transition-all ${
+                isListening
+                  ? "bg-red-500/30 border-red-500 text-red-400 animate-pulse"
+                  : "bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border-[#FF9900]/40 text-[#FF9900]"
+              }`}
+              title={isListening ? "Stop recording" : "Start voice input"}
+            >
+              {isListening ? (
+                <Square className="h-4 w-4" />
+              ) : (
+                <Mic className="h-4 w-4" />
+              )}
+            </button>
+            <button
               onClick={() => handleSendMessage()}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading || isListening}
               className="p-2 bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] rounded-lg disabled:opacity-40 transition-all"
             >
               <Send className="h-4 w-4" />
