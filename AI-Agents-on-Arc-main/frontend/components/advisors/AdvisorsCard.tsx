@@ -172,11 +172,11 @@ export function AdvisorsCard({
               )}
             </div>
           ) : (
-            <div className="max-h-[500px] overflow-y-auto space-y-3">
+            <div className="max-h-[400px] overflow-y-auto space-y-2">
               {items.map((item, index) => (
                 <div
                   key={index}
-                  className="group relative bg-card hover:bg-accent/20 rounded-lg p-4 shadow-sm hover:shadow-md border border-border/50 hover:border-border transition-all duration-200 cursor-default"
+                  className="group relative bg-card hover:bg-accent/20 rounded-lg p-3 shadow-sm hover:shadow-md border border-border/50 hover:border-border transition-all duration-200 cursor-default"
                 >
                   <div className="leading-relaxed space-y-1">
                     {formatAdvisorText(item)}
