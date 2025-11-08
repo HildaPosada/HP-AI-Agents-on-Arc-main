@@ -319,17 +319,23 @@ export function ChatInput({
         </div>
       </div>
 
-      {/* Help text */}
+      {/* Help text & Error messages */}
       <div className="flex items-center justify-between mt-2">
-        <p className="text-xs text-muted-foreground">
-          {isRecording ? (
-            <span className="text-red-500 font-medium animate-pulse">
-              🎤 Recording... Speak now
-            </span>
-          ) : (
-            "Press Enter to send, Shift+Enter for a new line"
-          )}
-        </p>
+        {micError ? (
+          <p className="text-xs text-red-500 font-medium">⚠️ {micError}</p>
+        ) : isRecording ? (
+          <p className="text-xs text-red-500 font-medium animate-pulse">
+            🎤 Recording... Speak now
+          </p>
+        ) : hasBrowserSupport === false ? (
+          <p className="text-xs text-muted-foreground">
+            💡 Try Chrome, Edge, or Safari for voice input
+          </p>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            Press Enter to send, Shift+Enter for a new line
+          </p>
+        )}
         {isRecording && (
           <span className="text-xs text-red-500 font-medium">
             Click microphone to stop
