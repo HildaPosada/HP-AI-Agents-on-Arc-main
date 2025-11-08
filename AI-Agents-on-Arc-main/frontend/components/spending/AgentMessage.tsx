@@ -1,14 +1,34 @@
+"use client";
+
+import { useState } from "react";
 import { ChatMessage } from "@/lib/types/chat";
 import { Card, CardContent } from "@/components/ui/card";
-import { Loader2, Bot, DollarSign, Sparkles } from "lucide-react";
+import { Loader2, Bot, DollarSign, Sparkles, Volume2, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { useElevenLabsVoice } from "@/lib/hooks/useElevenLabsVoice";
 
 interface AgentMessageProps {
   message: ChatMessage;
 }
 
 export function AgentMessage({ message }: AgentMessageProps) {
+  const { speak, stop, isLoading: isVoiceLoading, isPlaying } = useElevenLabsVoice();
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+
+  const handleSpeak = async () => {
+    setVoiceError(null);
+    try {
+      if (isPlaying) {
+        stop();
+      } else {
+        await speak(message.content);
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Voice synthesis failed";
+      setVoiceError(message);
+    }
+  };
   return (
     <div className="flex justify-start mb-1 animate-in slide-in-from-left-2 duration-500">
       <div className="flex items-start gap-2 max-w-[90%]">
