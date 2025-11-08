@@ -446,9 +446,6 @@ export default function Home() {
         className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#FF9900]/10"
       >
         <div className="max-w-md mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 text-center">
-            Get Started
-          </h2>
           <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg p-4 sm:p-6">
             <LoginForm />
           </div>
