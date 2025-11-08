@@ -31,7 +31,10 @@ export default function SpendingPage() {
   // Scroll to top on page load
   useEffect(() => {
     if (!isLoadingData && isAuthenticated) {
-      window.scrollTo(0, 0);
+      const scrollContainer = document.querySelector('.flex-1.overflow-y-auto');
+      if (scrollContainer) {
+        scrollContainer.scrollTop = 0;
+      }
     }
   }, [isLoadingData, isAuthenticated]);
 
