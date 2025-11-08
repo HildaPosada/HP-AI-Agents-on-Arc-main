@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
 import { useRouter } from "next/navigation";
 import { Loader2, Users, Zap } from "lucide-react";
@@ -18,6 +18,7 @@ export default function AdvisorsPage() {
   const [_advisorsData, setAdvisorsData] =
     useState<AdvisorsSnapshotData | null>(null);
   const [showFullAnalysis, setShowFullAnalysis] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSnapshotDataLoaded = useCallback((data: AdvisorsSnapshotData) => {
     console.log("[ADVISORS PAGE] 📋 Snapshot data loaded:", data);
@@ -68,6 +69,19 @@ export default function AdvisorsPage() {
     }
   }, [isLoading, isAuthenticated, router]);
 
+  // Scroll to top on page load
+  useEffect(() => {
+    if (!isLoadingData && isAuthenticated && scrollContainerRef.current) {
+      // Use setTimeout to ensure DOM has fully settled before scrolling
+      const scrollTimer = setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = 0;
+        }
+      }, 100);
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [isLoadingData, isAuthenticated]);
+
   if (isLoading || isLoadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -113,7 +127,7 @@ export default function AdvisorsPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto" ref={scrollContainerRef}>
         <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
           {/* Top Metrics Row - Hero Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

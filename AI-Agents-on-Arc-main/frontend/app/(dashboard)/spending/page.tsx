@@ -32,7 +32,13 @@ export default function SpendingPage() {
   // Scroll to top on page load
   useEffect(() => {
     if (!isLoadingData && isAuthenticated && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0;
+      // Use setTimeout to ensure DOM has fully settled before scrolling
+      const scrollTimer = setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = 0;
+        }
+      }, 100);
+      return () => clearTimeout(scrollTimer);
     }
   }, [isLoadingData, isAuthenticated]);
 
