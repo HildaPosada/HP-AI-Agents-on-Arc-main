@@ -17,6 +17,8 @@ export function ChatInput({
   const [message, setMessage] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [micError, setMicError] = useState<string | null>(null);
+  const [hasBrowserSupport, setHasBrowserSupport] = useState<boolean | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<any>(null);
   const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
