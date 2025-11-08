@@ -218,6 +218,19 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
                 </ul>
               </div>
             )}
+
+            {step.id === 5 && (
+              <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/30">
+                <div className="text-sm text-purple-400 font-bold mb-2">
+                  🔊 ElevenLabs Voice AI
+                </div>
+                <ul className="text-xs text-white/70 space-y-1">
+                  <li>• Multilingual voice support</li>
+                  <li>• Natural speech synthesis</li>
+                  <li>• Listen to AI responses</li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Action Buttons */}
