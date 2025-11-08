@@ -72,7 +72,7 @@ export default function Home() {
             <Shield className="h-16 w-16 sm:h-24 sm:w-24 text-[#FF9900] animate-pulse" />
           </div>
           <div className="absolute bottom-20 right-10 sm:right-32">
-            <Brain className="h-18 w-18 sm:h-22 sm:w-22 text-[#FF9900] animate-pulse" />
+            <Coins className="h-18 w-18 sm:h-22 sm:w-22 text-[#FF9900] animate-pulse" />
           </div>
         </div>
 
@@ -166,7 +166,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-[#FF9900] rounded-lg flex items-center justify-center">
-                <Brain className="h-5 w-5 text-[#0f0f0f]" />
+                <Coins className="h-5 w-5 text-[#0f0f0f]" />
               </div>
               <span className="text-lg sm:text-xl font-bold text-[#FF9900]">
                 ArcFi
@@ -346,7 +346,7 @@ export default function Home() {
                 desc: "Investment analysis & rebalancing",
               },
               {
-                icon: Brain,
+                icon: Coins,
                 name: "Goals Agent",
                 desc: "Goal setting & savings tracking",
               },
