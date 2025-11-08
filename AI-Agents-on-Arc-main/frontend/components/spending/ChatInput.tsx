@@ -80,7 +80,19 @@ export function ChatInput({
 
       recognition.onerror = (event: any) => {
         console.log('⚠️ Speech recognition error:', event.error);
-        setMicError(`Mic error: ${event.error}`);
+        let errorMsg = event.error;
+
+        if (event.error === 'not-allowed') {
+          errorMsg = 'Microphone denied. Allow in browser settings (🔒 icon > Microphone > Allow)';
+        } else if (event.error === 'network') {
+          errorMsg = 'Network error. Check your connection';
+        } else if (event.error === 'no-speech') {
+          errorMsg = 'No speech detected. Try again';
+        } else if (event.error === 'service-not-allowed') {
+          errorMsg = 'Browser blocked speech service';
+        }
+
+        setMicError(`Mic error: ${errorMsg}`);
         setIsListening(false);
         setIsRecording(false);
       };
