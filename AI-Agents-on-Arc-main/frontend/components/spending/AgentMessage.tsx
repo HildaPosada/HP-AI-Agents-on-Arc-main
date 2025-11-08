@@ -207,6 +207,28 @@ export function AgentMessage({ message }: AgentMessageProps) {
                   <span className="text-xs bg-gradient-to-r from-primary/70 to-cyan-600/70 bg-clip-text text-transparent font-medium">
                     AI Analysis Complete
                   </span>
+
+                  {/* Voice button */}
+                  <button
+                    onClick={handleSpeak}
+                    disabled={isVoiceLoading}
+                    className={cn(
+                      "flex items-center gap-1 ml-2 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200",
+                      "border border-transparent hover:border-primary/50",
+                      isPlaying
+                        ? "bg-primary/20 text-primary hover:bg-primary/30"
+                        : "text-muted-foreground hover:text-primary/70 hover:bg-primary/10",
+                      isVoiceLoading && "opacity-50 cursor-not-allowed"
+                    )}
+                    title={isPlaying ? "Stop audio" : "Play audio"}
+                    aria-label={isPlaying ? "Stop audio" : "Play audio"}
+                  >
+                    {isPlaying ? (
+                      <Square className="w-3 h-3 fill-current" />
+                    ) : (
+                      <Volume2 className="w-3 h-3" />
+                    )}
+                  </button>
                 </div>
 
                 {/* Confidence indicator */}
