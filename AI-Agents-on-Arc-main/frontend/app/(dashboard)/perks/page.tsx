@@ -26,6 +26,13 @@ export default function PerksPage() {
     }
   }, [isLoading, isAuthenticated, router]);
 
+  // Scroll to top on page load
+  useEffect(() => {
+    if (!isLoadingData && isAuthenticated) {
+      window.scrollTo(0, 0);
+    }
+  }, [isLoadingData, isAuthenticated]);
+
   if (isLoading || isLoadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -226,9 +233,7 @@ export default function PerksPage() {
               </Card>
 
               {/* AI Assistant */}
-              <div className="h-96">
-                <OptimizedAIAssistant />
-              </div>
+              <OptimizedAIAssistant />
             </div>
           </div>
 
