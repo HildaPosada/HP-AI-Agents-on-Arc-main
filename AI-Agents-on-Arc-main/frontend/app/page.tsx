@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import {
   Brain,
+  Coins,
   DollarSign,
   TrendingUp,
   BarChart3,
