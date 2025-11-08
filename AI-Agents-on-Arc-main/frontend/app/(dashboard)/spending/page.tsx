@@ -28,6 +28,13 @@ export default function SpendingPage() {
     }
   }, [isLoading, isAuthenticated, router]);
 
+  // Scroll to top on page load
+  useEffect(() => {
+    if (!isLoadingData && isAuthenticated) {
+      window.scrollTo(0, 0);
+    }
+  }, [isLoadingData, isAuthenticated]);
+
   if (isLoading || isLoadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
