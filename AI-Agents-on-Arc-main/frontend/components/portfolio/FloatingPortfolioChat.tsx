@@ -25,7 +25,7 @@ export function FloatingPortfolioChat({
           setIsOpen(true);
           setIsCollapsed(false);
         }}
-        className={`fixed right-6 z-40 group transition-all duration-300 ${
+        className={`fixed right-6 z-50 group transition-all duration-300 ${
           isOpen ? "hidden" : "block"
         }`}
         style={{ bottom: 'calc(5rem + env(safe-area-inset-bottom))' }}
