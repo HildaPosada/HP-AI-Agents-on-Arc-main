@@ -120,11 +120,11 @@ export function AdvisorsCard({
 
   return (
     <Card className="hover:shadow-md transition-all duration-200 border-2">
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle
             className={cn(
-              "text-lg font-semibold flex items-center gap-2",
+              "text-base font-semibold flex items-center gap-2",
               styles.header
             )}
           >
@@ -135,7 +135,7 @@ export function AdvisorsCard({
           </CardTitle>
           <Badge
             variant="outline"
-            className={cn("text-xs px-2 py-1", styles.badge)}
+            className={cn("text-xs px-2 py-0.5", styles.badge)}
           >
             {items.length} {items.length === 1 ? "item" : "items"}
           </Badge>
