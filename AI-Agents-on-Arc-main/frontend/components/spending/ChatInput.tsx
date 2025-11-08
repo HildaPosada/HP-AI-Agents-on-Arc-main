@@ -19,6 +19,7 @@ export function ChatInput({
   const [isRecording, setIsRecording] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<any>(null);
+  const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Initialize speech recognition
   const initializeSpeechRecognition = () => {
@@ -112,13 +113,17 @@ export function ChatInput({
       setIsListening(true);
       setIsRecording(true);
 
-      // Set minimum recording duration so it doesn't flash
-      const recordingTimeout = setTimeout(() => {
-        if (isRecording) {
-          setIsListening(false);
-          setIsRecording(false);
-        }
-      }, 10000); // 10 second timeout
+      // Clear any existing timeout
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+      }
+
+      // Set maximum recording duration (10 seconds)
+      recordingTimeoutRef.current = setTimeout(() => {
+        setIsListening(false);
+        setIsRecording(false);
+        recordingTimeoutRef.current = null;
+      }, 10000);
 
       try {
         if (recognitionRef.current) {
