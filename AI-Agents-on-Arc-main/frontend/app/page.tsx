@@ -266,7 +266,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           {/* Logo + Title */}
           <div className="mb-6 sm:mb-8 flex justify-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#FF9900] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#FF9900]/30">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#FF9900] to-[#ffdd00] rounded-xl flex items-center justify-center shadow-2xl shadow-[#FF9900]/30 logo-glow">
               <Coins className="h-8 w-8 sm:h-10 sm:w-10 text-[#0f0f0f]" />
             </div>
           </div>
