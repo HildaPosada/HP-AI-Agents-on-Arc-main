@@ -248,7 +248,7 @@ export default function Home() {
                 GitHub
               </a>
               <a
-                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
+                href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full text-left px-4 py-2 text-white hover:bg-[#FF9900]/10 rounded-lg flex items-center gap-2"
@@ -470,7 +470,7 @@ export default function Home() {
               GitHub
             </a>
             <a
-              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/flare-space/AI-Agents-on-Arc-main#readme"
+              href="https://github.com/HildaPosada/HP-AI-Agents-on-Arc-main/tree/main/AI-Agents-on-Arc-main"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#FF9900] transition-colors flex items-center gap-2"

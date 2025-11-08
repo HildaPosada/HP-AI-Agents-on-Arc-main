@@ -120,11 +120,11 @@ export function AdvisorsCard({
 
   return (
     <Card className="hover:shadow-md transition-all duration-200 border-2">
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle
             className={cn(
-              "text-lg font-semibold flex items-center gap-2",
+              "text-base font-semibold flex items-center gap-2",
               styles.header
             )}
           >
@@ -135,7 +135,7 @@ export function AdvisorsCard({
           </CardTitle>
           <Badge
             variant="outline"
-            className={cn("text-xs px-2 py-1", styles.badge)}
+            className={cn("text-xs px-2 py-0.5", styles.badge)}
           >
             {items.length} {items.length === 1 ? "item" : "items"}
           </Badge>
@@ -172,13 +172,13 @@ export function AdvisorsCard({
               )}
             </div>
           ) : (
-            <div className="max-h-[500px] overflow-y-auto space-y-3">
+            <div className="max-h-[400px] overflow-y-auto space-y-2">
               {items.map((item, index) => (
                 <div
                   key={index}
-                  className="group relative bg-card hover:bg-accent/20 rounded-lg p-4 shadow-sm hover:shadow-md border border-border/50 hover:border-border transition-all duration-200 cursor-default"
+                  className="group relative bg-card hover:bg-accent/20 rounded-lg p-3 shadow-sm hover:shadow-md border border-border/50 hover:border-border transition-all duration-200 cursor-default"
                 >
-                  <div className="leading-relaxed space-y-1">
+                  <div className="leading-snug">
                     {formatAdvisorText(item)}
                   </div>
                   {/* Variant-specific accent line */}

@@ -21,7 +21,7 @@ export default function AdvisorsPage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSnapshotDataLoaded = useCallback((data: AdvisorsSnapshotData) => {
-    console.log("[ADVISORS PAGE] 📋 Snapshot data loaded:", data);
+    console.log("[ADVISORS PAGE] ��� Snapshot data loaded:", data);
     setAdvisorsData(data);
     setSnapshotLoaded(true);
   }, []);
@@ -54,6 +54,7 @@ export default function AdvisorsPage() {
       };
 
       setAdvisorsData(dummyData);
+      setSnapshotLoaded(true);
     };
 
     if (!isLoading && isAuthenticated) {
