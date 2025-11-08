@@ -133,7 +133,24 @@ export function Sidebar() {
             </div>
 
             <button
-              className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-purple-600 to-magenta-600 hover:from-purple-700 hover:to-magenta-700 text-white font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm"
+              onClick={() => {
+                // Check if Web3 wallet is available
+                if (typeof window !== 'undefined' && (window as any).ethereum) {
+                  // Try to connect to MetaMask or other Web3 wallet
+                  (window as any).ethereum.request({ method: 'eth_requestAccounts' })
+                    .then((accounts: string[]) => {
+                      console.log('Connected wallet:', accounts[0]);
+                      alert('Wallet connected: ' + accounts[0]);
+                    })
+                    .catch((error: any) => {
+                      console.error('Wallet connection error:', error);
+                      alert('Wallet connection failed: ' + error.message);
+                    });
+                } else {
+                  alert('Please install MetaMask or another Web3 wallet to use ArcFi');
+                }
+              }}
+              className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm shadow-lg shadow-blue-500/30"
             >
               <Wallet className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>Connect Arc Wallet</span>
