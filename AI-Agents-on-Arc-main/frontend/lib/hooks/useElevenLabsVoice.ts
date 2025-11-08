@@ -40,21 +40,35 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
         const response = await fetch("/api/elevenlabs/voices");
         if (!response.ok) {
           console.warn("Could not fetch voices, using default");
-          setSelectedVoiceId("Adam");
+          setSelectedVoiceId("Matilda");
           setAvailableVoices([]);
           return;
         }
         const data = await response.json();
         if (data.voices && data.voices.length > 0) {
-          setAvailableVoices(data.voices);
-          setSelectedVoiceId(data.voices[0].voice_id);
+          // Filter to only show Matilda and George voices
+          const filteredVoices = data.voices.filter(
+            (voice: Voice) =>
+              voice.name.toLowerCase().includes("matilda") ||
+              voice.name.toLowerCase().includes("george")
+          );
+
+          if (filteredVoices.length > 0) {
+            setAvailableVoices(filteredVoices);
+            setSelectedVoiceId(filteredVoices[0].voice_id);
+          } else {
+            // Fallback if voices don't exist
+            console.warn("Matilda and George voices not found in account");
+            setAvailableVoices(data.voices.slice(0, 2));
+            setSelectedVoiceId(data.voices[0].voice_id);
+          }
         } else {
-          setSelectedVoiceId("Adam");
+          setSelectedVoiceId("Matilda");
           setAvailableVoices([]);
         }
       } catch (err) {
         console.warn("Failed to fetch voices:", err);
-        setSelectedVoiceId("Adam");
+        setSelectedVoiceId("Matilda");
         setAvailableVoices([]);
       } finally {
         setVoicesLoading(false);
