@@ -57,17 +57,19 @@ export function USDCTransactionCard({
           <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">
             USDC Balance on Arc
           </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-2">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 mb-2">
             <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2">
               <span className="text-2xl sm:text-3xl font-bold text-[#FF9900]">
                 ${totalUSADCBalance.toFixed(2)}
               </span>
               <span className="text-xs text-white/60">Circle Arc Network</span>
             </div>
-            <BlockchainVerificationBadge
-              status="verified"
-              network="Circle Arc"
-            />
+            <div className="w-full sm:w-auto">
+              <BlockchainVerificationBadge
+                status="verified"
+                network="Circle Arc"
+              />
+            </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-white/70">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
