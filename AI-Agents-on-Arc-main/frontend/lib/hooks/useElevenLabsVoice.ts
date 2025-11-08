@@ -147,5 +147,9 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
     isLoading,
     isPlaying,
     error,
+    selectedVoiceId,
+    setSelectedVoiceId,
+    availableVoices,
+    voicesLoading,
   };
 }
