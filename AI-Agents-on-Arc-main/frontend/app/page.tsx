@@ -418,18 +418,18 @@ export default function Home() {
                 key={idx}
                 className="bg-[#1a1a1a] border-[#FF9900]/20"
               >
-                <CardContent className="pt-5 sm:pt-6">
-                  <h3 className="text-base sm:text-lg font-bold text-[#FF9900] mb-3">
+                <CardContent className="pt-4 sm:pt-4 pb-4">
+                  <h3 className="text-sm sm:text-base font-bold text-[#FF9900] mb-2">
                     {stack.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {stack.items.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 text-xs sm:text-sm text-white/70"
+                        className="flex items-center gap-2 text-xs text-white/70"
                       >
-                        <CheckCircle className="h-3.5 w-3.5 text-[#FF9900] flex-shrink-0" />
-                        {item}
+                        <CheckCircle className="h-3 w-3 text-[#FF9900] flex-shrink-0" />
+                        <span className="line-clamp-1">{item}</span>
                       </li>
                     ))}
                   </ul>
