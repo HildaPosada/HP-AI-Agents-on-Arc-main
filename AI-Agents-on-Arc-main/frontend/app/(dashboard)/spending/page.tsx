@@ -209,7 +209,9 @@ export default function SpendingPage() {
               />
 
               {/* AI Assistant */}
-              <OptimizedAIAssistant />
+              <div className="h-96">
+                <OptimizedAIAssistant />
+              </div>
             </div>
           </div>
 
