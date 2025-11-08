@@ -116,6 +116,7 @@ export function FloatingSpendingChat({
                 <SpendingChat
                   userId={userId}
                   isEnabled={isEnabled}
+                  spendingData={null}
                 />
               </div>
             )}
