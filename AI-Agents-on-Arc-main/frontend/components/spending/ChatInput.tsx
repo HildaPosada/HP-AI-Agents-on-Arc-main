@@ -285,7 +285,7 @@ export function ChatInput({
           {/* Voice Input Button */}
           <Button
             onClick={toggleVoiceInput}
-            disabled={disabled || isLoading}
+            disabled={disabled || isLoading || hasBrowserSupport === false}
             size="sm"
             className={cn(
               "h-[50px] min-w-[50px]",
@@ -293,6 +293,7 @@ export function ChatInput({
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
                 : 'bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 shadow-lg shadow-blue-500/30'
             )}
+            title={hasBrowserSupport === false ? "Microphone not supported in this browser" : isRecording ? "Stop recording" : "Start voice input"}
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >
             {isRecording ? (
