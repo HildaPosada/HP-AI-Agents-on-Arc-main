@@ -178,7 +178,7 @@ export function AdvisorsCard({
                   key={index}
                   className="group relative bg-card hover:bg-accent/20 rounded-lg p-3 shadow-sm hover:shadow-md border border-border/50 hover:border-border transition-all duration-200 cursor-default"
                 >
-                  <div className="leading-relaxed space-y-1">
+                  <div className="leading-snug">
                     {formatAdvisorText(item)}
                   </div>
                   {/* Variant-specific accent line */}
