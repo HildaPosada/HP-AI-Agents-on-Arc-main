@@ -158,7 +158,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f]">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] scroll-pt-24">
       {/* Navigation */}
       <div className="fixed top-0 w-full z-50 bg-[#0f0f0f]/80 backdrop-blur border-b border-[#FF9900]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
