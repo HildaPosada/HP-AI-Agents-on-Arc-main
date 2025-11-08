@@ -16,7 +16,7 @@ function formatAdvisorText(text: string) {
     // Person names (e.g., "Bob Williams", "Alice Johnson")
     if (part.match(/\b[A-Z][a-z]+ [A-Z][a-z]+\b/)) {
       return (
-        <span key={index} className="font-bold text-sm text-foreground">
+        <span key={index} className="font-bold text-base text-foreground">
           {part}
         </span>
       );
@@ -27,7 +27,7 @@ function formatAdvisorText(text: string) {
       return (
         <span
           key={index}
-          className="font-mono font-semibold text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded-md"
+          className="font-mono font-semibold text-sm bg-primary/10 text-primary px-2 py-0.5 rounded-md"
         >
           {part}
         </span>
@@ -41,7 +41,7 @@ function formatAdvisorText(text: string) {
       )
     ) {
       return (
-        <span key={index} className="font-semibold text-xs text-foreground">
+        <span key={index} className="font-semibold text-sm text-foreground">
           {part}
         </span>
       );
@@ -52,7 +52,7 @@ function formatAdvisorText(text: string) {
       return (
         <span
           key={index}
-          className="font-semibold text-xs text-muted-foreground"
+          className="font-semibold text-sm text-muted-foreground"
         >
           {part}
         </span>
@@ -61,7 +61,7 @@ function formatAdvisorText(text: string) {
 
     // Regular text (commas, hyphens, etc.)
     return (
-      <span key={index} className="text-xs text-muted-foreground">
+      <span key={index} className="text-sm text-muted-foreground">
         {part}
       </span>
     );
