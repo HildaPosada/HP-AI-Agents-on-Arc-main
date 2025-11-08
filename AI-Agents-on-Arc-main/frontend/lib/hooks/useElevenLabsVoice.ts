@@ -55,6 +55,11 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
         return;
       }
 
+      if (!selectedVoiceId) {
+        setError("Voice service loading...");
+        return;
+      }
+
       try {
         setIsLoading(true);
         setError(null);
@@ -67,7 +72,7 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
           },
           body: JSON.stringify({
             text,
-            voiceId,
+            voiceId: selectedVoiceId,
             modelId,
           }),
         });
@@ -109,7 +114,7 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
         setIsLoading(false);
       }
     },
-    [voiceId, modelId]
+    [selectedVoiceId, modelId]
   );
 
   const stop = useCallback(() => {
