@@ -109,19 +109,19 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl bg-[#1a1a1a] border-[#ccff00]/30 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <Card className="w-full max-w-2xl bg-[#1a1a1a] border-[#FF9900]/30 shadow-2xl max-h-[90vh] overflow-y-auto">
         <CardContent className="pt-8">
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+            className="absolute top-4 right-4 p-2 hover:bg-[#FF9900]/10 rounded-lg transition-colors"
           >
             <X className="h-5 w-5 text-white/60" />
           </button>
 
           {/* Header */}
           <div className="mb-8 flex items-start gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#ccff00] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-[#FF9900] flex items-center justify-center flex-shrink-0">
               <Lightbulb className="h-6 w-6 text-[#0f0f0f]" />
             </div>
             <div className="flex-1">
@@ -142,7 +142,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
             </div>
             <div className="h-2 bg-[#2a2a2a] rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-[#ccff00] to-[#ffdd00] transition-all duration-500"
+                className="h-full bg-gradient-to-r from-[#FF9900] to-[#ffdd00] transition-all duration-500"
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
@@ -150,10 +150,10 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
 
           {/* Completed Steps Indicator */}
           {completedSteps.length > 0 && (
-            <div className="mb-6 p-4 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/20">
+            <div className="mb-6 p-4 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/20">
               <div className="flex items-center gap-2 mb-2">
-                <CheckCircle className="h-4 w-4 text-[#ccff00]" />
-                <span className="text-xs font-bold text-[#ccff00]">
+                <CheckCircle className="h-4 w-4 text-[#FF9900]" />
+                <span className="text-xs font-bold text-[#FF9900]">
                   Progress Saved
                 </span>
               </div>
@@ -161,7 +161,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
                 {DEMO_STEPS.slice(0, currentStep + 1).map((s) => (
                   <div
                     key={s.id}
-                    className="px-3 py-1 rounded-full bg-[#ccff00]/20 border border-[#ccff00]/30 text-xs text-white/70"
+                    className="px-3 py-1 rounded-full bg-[#FF9900]/20 border border-[#FF9900]/30 text-xs text-white/70"
                   >
                     {s.title}
                   </div>
@@ -177,7 +177,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
                 {["💰 Spending", "📈 Portfolio", "🎯 Goals"].map((agent) => (
                   <div
                     key={agent}
-                    className="p-3 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20 text-center text-sm text-white"
+                    className="p-3 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20 text-center text-sm text-white"
                   >
                     {agent}
                   </div>
@@ -199,8 +199,8 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
             )}
 
             {step.id === 4 && (
-              <div className="p-4 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/20">
-                <div className="text-sm text-[#ccff00] font-bold mb-2">
+              <div className="p-4 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/20">
+                <div className="text-sm text-[#FF9900] font-bold mb-2">
                   AI-Powered Insights
                 </div>
                 <ul className="text-xs text-white/70 space-y-1">
@@ -221,7 +221,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
                   setCurrentStep(currentStep - 1);
                   setCompletedSteps(completedSteps.filter((s) => s !== currentStep - 1));
                 }}
-                className="sm:flex-1 border-[#ccff00]/30 text-white hover:bg-[#ccff00]/10"
+                className="sm:flex-1 border-[#FF9900]/30 text-white hover:bg-[#FF9900]/10"
               >
                 Back
               </Button>
@@ -229,7 +229,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
 
             <Button
               onClick={currentStep === DEMO_STEPS.length - 1 ? handleFinish : handleNext}
-              className="flex-1 sm:flex-1 bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] font-bold flex items-center justify-center gap-2"
+              className="flex-1 sm:flex-1 bg-[#FF9900] hover:bg-[#FF9900]/90 text-[#0f0f0f] font-bold flex items-center justify-center gap-2"
             >
               {step.action}
               {currentStep !== DEMO_STEPS.length - 1 && <ChevronRight className="h-4 w-4" />}
@@ -245,7 +245,7 @@ export function DemoTutorial({ isOpen = false, onClose }: DemoTutorialProps) {
           </div>
 
           {/* Tips */}
-          <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
+          <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
             <div className="flex items-start gap-2 text-xs text-white/60">
               <BookOpen className="h-4 w-4 flex-shrink-0 mt-0.5" />
               <p>
@@ -269,7 +269,7 @@ export function DemoTutorialButton() {
         variant="ghost"
         size="sm"
         onClick={() => setShowTutorial(true)}
-        className="text-[#ccff00] hover:bg-[#ccff00]/10 gap-2"
+        className="text-[#FF9900] hover:bg-[#FF9900]/10 gap-2"
       >
         <Play className="h-4 w-4" />
         <span className="hidden sm:inline">Demo Tour</span>

@@ -14,7 +14,7 @@ export function UserMessage({ message }: UserMessageProps) {
         {/* iOS Messenger Style Message Bubble */}
         <Card
           className={cn(
-            "relative bg-gradient-to-br from-[#ccff00] to-[#b8e800] order-2",
+            "relative bg-gradient-to-br from-[#FF9900] to-[#b8e800] order-2",
             "text-[#0f0f0f] shadow-md",
             "transition-all duration-200 overflow-hidden rounded-3xl"
           )}

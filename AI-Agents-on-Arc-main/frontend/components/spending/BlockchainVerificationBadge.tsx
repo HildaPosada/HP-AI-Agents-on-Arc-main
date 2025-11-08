@@ -47,10 +47,10 @@ export function BlockchainVerificationBadge({
         };
       default:
         return {
-          bgColor: "bg-[#ccff00]/10",
-          borderColor: "border-[#ccff00]/30",
-          hoverBorder: "hover:border-[#ccff00]/60",
-          textColor: "text-[#ccff00]",
+          bgColor: "bg-[#FF9900]/10",
+          borderColor: "border-[#FF9900]/30",
+          hoverBorder: "hover:border-[#FF9900]/60",
+          textColor: "text-[#FF9900]",
           icon: CheckCircle,
           label: "VERIFIED",
           pulse: true,
@@ -119,7 +119,7 @@ export function BlockchainVerificationPanel({
         {transactions?.map((tx) => (
           <div
             key={tx.id}
-            className="p-4 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-all group"
+            className="p-4 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20 hover:border-[#FF9900]/50 transition-all group"
           >
             <div className="flex items-start gap-3 mb-3">
               <BlockchainVerificationBadge
@@ -129,11 +129,11 @@ export function BlockchainVerificationPanel({
               <span className="text-xs text-white/60 ml-auto">{tx.timestamp}</span>
             </div>
 
-            <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-[#1a1a1a] border border-[#ccff00]/10">
+            <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-[#1a1a1a] border border-[#FF9900]/10">
               <span className="text-xs text-white/60 font-mono">
                 Tx Hash:
               </span>
-              <span className="text-xs text-[#ccff00] font-mono font-bold group-hover:select-all cursor-pointer">
+              <span className="text-xs text-[#FF9900] font-mono font-bold group-hover:select-all cursor-pointer">
                 {tx.hash}
               </span>
             </div>
@@ -141,7 +141,7 @@ export function BlockchainVerificationPanel({
         ))}
       </div>
 
-      <div className="mt-4 pt-4 border-t border-[#ccff00]/10">
+      <div className="mt-4 pt-4 border-t border-[#FF9900]/10">
         <div className="flex items-center justify-between text-xs p-3 rounded-lg bg-green-500/10 border border-green-500/30">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>

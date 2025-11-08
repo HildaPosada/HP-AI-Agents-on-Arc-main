@@ -50,7 +50,7 @@ export function USDCTransactionCard({
   totalUSADCBalance = 3500.5,
 }: USDCTransactionCardProps) {
   return (
-    <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] hover:border-[#ccff00]/50">
+    <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] hover:border-[#FF9900]/50">
       <CardContent className="pt-6 sm:pt-8">
         {/* Header with Balance */}
         <div className="mb-6">
@@ -58,7 +58,7 @@ export function USDCTransactionCard({
             USDC Balance on Arc
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2 mb-4">
-            <span className="text-3xl sm:text-4xl font-bold text-[#ccff00]">
+            <span className="text-3xl sm:text-4xl font-bold text-[#FF9900]">
               ${totalUSADCBalance.toFixed(2)}
             </span>
             <span className="text-xs sm:text-sm text-white/60">Circle Arc Network</span>
@@ -70,7 +70,7 @@ export function USDCTransactionCard({
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-[#ccff00]/10 mb-6"></div>
+        <div className="h-px bg-[#FF9900]/10 mb-6"></div>
 
         {/* Blockchain Verification Badge */}
         <div className="mb-6">
@@ -83,7 +83,7 @@ export function USDCTransactionCard({
           />
         </div>
 
-        <div className="h-px bg-[#ccff00]/10 mb-6"></div>
+        <div className="h-px bg-[#FF9900]/10 mb-6"></div>
 
         {/* Recent Transactions */}
         <div>
@@ -95,7 +95,7 @@ export function USDCTransactionCard({
             {transactions.map((tx) => (
               <div
                 key={tx.id}
-                className="p-3 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20 hover:border-[#ccff00]/50 transition-colors group"
+                className="p-3 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20 hover:border-[#FF9900]/50 transition-colors group"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                   {/* Icon */}
@@ -134,8 +134,8 @@ export function USDCTransactionCard({
                       <div className="flex items-center gap-1">
                         {tx.status === "confirmed" ? (
                           <>
-                            <CheckCircle className="h-3 w-3 text-[#ccff00]" />
-                            <span className="text-xs text-[#ccff00] font-bold">
+                            <CheckCircle className="h-3 w-3 text-[#FF9900]" />
+                            <span className="text-xs text-[#FF9900] font-bold">
                               CONFIRMED
                             </span>
                           </>
@@ -153,9 +153,9 @@ export function USDCTransactionCard({
                 </div>
 
                 {/* Hash on Hover - Mobile Friendly */}
-                <div className="mt-2 pt-2 border-t border-[#ccff00]/10 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                <div className="mt-2 pt-2 border-t border-[#FF9900]/10 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                   <p className="text-xs text-white/60 font-mono break-all">
-                    Hash: <span className="text-[#ccff00]">{tx.hash}</span>
+                    Hash: <span className="text-[#FF9900]">{tx.hash}</span>
                   </p>
                 </div>
               </div>
@@ -164,10 +164,10 @@ export function USDCTransactionCard({
         </div>
 
         {/* Arc Network Info */}
-        <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20">
-            <div className="w-8 h-8 rounded-full bg-[#ccff00]/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-sm font-bold text-[#ccff00]">⊙</span>
+        <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20">
+            <div className="w-8 h-8 rounded-full bg-[#FF9900]/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-sm font-bold text-[#FF9900]">⊙</span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-white truncate">Circle Arc Network</p>

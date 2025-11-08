@@ -20,7 +20,7 @@ export function ExpandableAdvisorChat({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+    <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
       {/* Accordion Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
@@ -28,8 +28,8 @@ export function ExpandableAdvisorChat({
       >
         <CardContent className="p-6 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center flex-shrink-0">
-              <MessageCircle className="w-5 h-5 text-[#ccff00]" />
+            <div className="w-10 h-10 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+              <MessageCircle className="w-5 h-5 text-[#FF9900]" />
             </div>
 
             <div className="flex-1">
@@ -46,7 +46,7 @@ export function ExpandableAdvisorChat({
 
           {/* Chevron Icon */}
           <ChevronDown
-            className={`w-5 h-5 text-[#ccff00] flex-shrink-0 transition-transform duration-300 ${
+            className={`w-5 h-5 text-[#FF9900] flex-shrink-0 transition-transform duration-300 ${
               isExpanded ? "rotate-180" : ""
             }`}
           />
@@ -57,7 +57,7 @@ export function ExpandableAdvisorChat({
       {isExpanded && (
         <>
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-transparent via-[#ccff00]/20 to-transparent"></div>
+          <div className="h-px bg-gradient-to-r from-transparent via-[#FF9900]/20 to-transparent"></div>
 
           {/* Chat Area */}
           <div className="h-96 overflow-hidden">

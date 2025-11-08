@@ -59,9 +59,9 @@ export function Sidebar() {
   const SidebarContent = () => (
     <>
       {/* Header with ArcFi Logo */}
-      <div className="relative p-4 sm:p-6 border-b border-[#ccff00]/10">
+      <div className="relative p-4 sm:p-6 border-b border-[#FF9900]/10">
         <div className="flex items-center gap-3">
-          <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg flex items-center justify-center bg-[#ccff00]">
+          <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg flex items-center justify-center bg-[#FF9900]">
             <Coins className="h-4 sm:h-5 w-4 sm:w-5 text-[#0f0f0f] font-bold" />
           </div>
           <div>
@@ -86,8 +86,8 @@ export function Sidebar() {
                 flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200
                 ${
                   isActive
-                    ? "bg-[#ccff00] text-[#0f0f0f]"
-                    : "text-white/70 hover:text-white hover:bg-[#ccff00]/10"
+                    ? "bg-[#FF9900] text-[#0f0f0f]"
+                    : "text-white/70 hover:text-white hover:bg-[#FF9900]/10"
                 }
               `}
             >
@@ -99,13 +99,13 @@ export function Sidebar() {
       </nav>
 
       {/* Send USDC Button */}
-      <div className="p-3 sm:p-4 border-t border-[#ccff00]/10">
+      <div className="p-3 sm:p-4 border-t border-[#FF9900]/10">
         <button
           onClick={() => {
             setIsTransactionModalOpen(true);
             setIsMobileMenuOpen(false);
           }}
-          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#ccff00] text-[#0f0f0f] font-bold rounded-lg hover:opacity-90 transition-opacity duration-200 text-xs sm:text-sm"
+          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#FF9900] text-[#0f0f0f] font-bold rounded-lg hover:opacity-90 transition-opacity duration-200 text-xs sm:text-sm"
         >
           <Send className="w-3 h-3 sm:w-4 sm:h-4" />
           <span>Send USDC</span>
@@ -114,12 +114,12 @@ export function Sidebar() {
       </div>
 
       {/* User Info & Logout */}
-      <div className="p-3 sm:p-4 border-t border-[#ccff00]/10 space-y-3 sm:space-y-4">
+      <div className="p-3 sm:p-4 border-t border-[#FF9900]/10 space-y-3 sm:space-y-4">
         {user && (
           <>
-            <div className="p-2 sm:p-3 rounded-lg bg-[#ccff00]/10 border border-[#ccff00]/30">
+            <div className="p-2 sm:p-3 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/30">
               <div className="flex items-center space-x-3">
-                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center bg-[#ccff00]">
+                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center bg-[#FF9900]">
                   <User className="w-3 h-3 sm:w-4 sm:h-4 text-[#0f0f0f]" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -134,7 +134,7 @@ export function Sidebar() {
             <Button
               variant="outline"
               size="sm"
-              className="w-full justify-start bg-transparent hover:bg-[#ccff00]/10 text-white rounded-lg text-xs sm:text-sm"
+              className="w-full justify-start bg-transparent hover:bg-[#FF9900]/10 text-white rounded-lg text-xs sm:text-sm"
               onClick={handleLogout}
             >
               <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
@@ -149,15 +149,15 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden sm:flex w-64 flex-col relative bg-[#0a0a0a] border-r border-[#ccff00]/10">
+      <div className="hidden sm:flex w-64 flex-col relative bg-[#0a0a0a] border-r border-[#FF9900]/10">
         <SidebarContent />
       </div>
 
       {/* Mobile Header with Menu Button */}
-      <div className="sm:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-[#ccff00]/10 flex items-center px-4 z-50">
+      <div className="sm:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-[#FF9900]/10 flex items-center px-4 z-50">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+          className="p-2 hover:bg-[#FF9900]/10 rounded-lg transition-colors"
         >
           {isMobileMenuOpen ? (
             <X className="h-5 w-5 text-white" />
@@ -166,7 +166,7 @@ export function Sidebar() {
           )}
         </button>
         <div className="ml-auto flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-[#ccff00]">
+          <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-[#FF9900]">
             <Coins className="h-3 w-3 text-[#0f0f0f]" />
           </div>
           <span className="font-bold text-white">ArcFi</span>
@@ -184,7 +184,7 @@ export function Sidebar() {
 
           {/* Drawer menu panel */}
           <div
-            className="sm:hidden fixed top-14 left-0 right-0 z-40 bg-[#0a0a0a] border-b border-[#ccff00]/10 overflow-y-auto"
+            className="sm:hidden fixed top-14 left-0 right-0 z-40 bg-[#0a0a0a] border-b border-[#FF9900]/10 overflow-y-auto"
             style={{ bottom: 0, paddingBottom: 'max(6rem, env(safe-area-inset-bottom))' }}
           >
             <div className="flex flex-col">

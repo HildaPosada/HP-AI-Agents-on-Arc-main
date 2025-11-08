@@ -141,20 +141,20 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-2 sm:p-4">
       {/* Modal Container */}
-      <div className="bg-[#1a1a1a] border border-[#ccff00]/20 rounded-2xl shadow-2xl w-full sm:max-w-5xl max-h-[90vh] overflow-hidden flex flex-col" style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem)' }}>
+      <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-2xl shadow-2xl w-full sm:max-w-5xl max-h-[90vh] overflow-hidden flex flex-col" style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem)' }}>
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a] p-4 sm:p-6 text-white relative border-b border-[#ccff00]/20">
+        <div className="bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a] p-4 sm:p-6 text-white relative border-b border-[#FF9900]/20">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 hover:bg-[#ccff00]/10 rounded-lg transition-colors"
+            className="absolute top-4 right-4 p-2 hover:bg-[#FF9900]/10 rounded-lg transition-colors"
           >
             <X className="h-5 w-5 text-white/70" />
           </button>
 
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-[#ccff00]/20 rounded-lg flex items-center justify-center border border-[#ccff00]/40">
-              <Send className="h-5 w-5 text-[#ccff00]" />
+            <div className="w-10 h-10 bg-[#FF9900]/20 rounded-lg flex items-center justify-center border border-[#FF9900]/40">
+              <Send className="h-5 w-5 text-[#FF9900]" />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-white">Send USDC</h2>
@@ -164,10 +164,10 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
 
           {/* USDC + Arc Badge */}
           <div className="flex items-center gap-2 text-xs">
-            <div className="inline-flex items-center gap-2 bg-[#ccff00]/10 backdrop-blur px-3 py-1.5 rounded-full border border-[#ccff00]/30">
-              <Shield className="h-3 w-3 text-[#ccff00]" />
-              <span className="text-[#ccff00] font-bold">USDC on Arc</span>
-              <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-[#FF9900]/10 backdrop-blur px-3 py-1.5 rounded-full border border-[#FF9900]/30">
+              <Shield className="h-3 w-3 text-[#FF9900]" />
+              <span className="text-[#FF9900] font-bold">USDC on Arc</span>
+              <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-pulse" />
             </div>
             <div className="inline-flex items-center gap-2 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/30">
               <Zap className="h-3 w-3 text-green-400" />
@@ -180,7 +180,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
         <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
           
           {/* Left Side - Transaction Form */}
-          <div className="flex-1 p-4 sm:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-[#ccff00]/10 pb-16 sm:pb-6" style={{ paddingBottom: 'calc(6rem + env(safe-area-inset-bottom))' }}>
+          <div className="flex-1 p-4 sm:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-[#FF9900]/10 pb-16 sm:pb-6" style={{ paddingBottom: 'calc(6rem + env(safe-area-inset-bottom))' }}>
             {step === "form" && (
               <div className="space-y-5">
                 
@@ -191,7 +191,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                   </label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                      <div className="w-5 h-5 bg-[#ccff00] rounded-full flex items-center justify-center">
+                      <div className="w-5 h-5 bg-[#FF9900] rounded-full flex items-center justify-center">
                         <span className="text-[#0f0f0f] text-xs font-bold">$</span>
                       </div>
                     </div>
@@ -200,7 +200,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0.00"
-                      className="w-full pl-12 pr-4 py-3 sm:py-4 text-2xl sm:text-3xl font-bold bg-[#0f0f0f] border border-[#ccff00]/30 rounded-lg focus:border-[#ccff00] focus:outline-none transition-colors text-[#ccff00] placeholder-white/20"
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 text-2xl sm:text-3xl font-bold bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none transition-colors text-[#FF9900] placeholder-white/20"
                     />
                   </div>
                   <p className="text-xs text-white/50 mt-2">
@@ -218,7 +218,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                     value={receiver}
                     onChange={(e) => setReceiver(e.target.value)}
                     placeholder="Name, email, or wallet address"
-                    className="w-full px-4 py-3 sm:py-4 bg-[#0f0f0f] border border-[#ccff00]/30 rounded-lg focus:border-[#ccff00] focus:outline-none transition-colors text-white placeholder-white/30"
+                    className="w-full px-4 py-3 sm:py-4 bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none transition-colors text-white placeholder-white/30"
                   />
                   
                   {/* Quick Recipients */}
@@ -229,7 +229,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                         <button
                           key={name}
                           onClick={() => setReceiver(name)}
-                          className="px-3 py-1.5 bg-[#ccff00]/10 hover:bg-[#ccff00]/20 border border-[#ccff00]/30 hover:border-[#ccff00]/60 rounded-lg text-xs font-medium text-[#ccff00] transition-all"
+                          className="px-3 py-1.5 bg-[#FF9900]/10 hover:bg-[#FF9900]/20 border border-[#FF9900]/30 hover:border-[#FF9900]/60 rounded-lg text-xs font-medium text-[#FF9900] transition-all"
                         >
                           {name}
                         </button>
@@ -248,19 +248,19 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                     onChange={(e) => setNote(e.target.value)}
                     placeholder="What's this for?"
                     rows={2}
-                    className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#ccff00]/30 rounded-lg focus:border-[#ccff00] focus:outline-none transition-colors text-white placeholder-white/30 resize-none text-sm"
+                    className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none transition-colors text-white placeholder-white/30 resize-none text-sm"
                   />
                 </div>
 
                 {/* Arc Network Info */}
-                <div className="bg-[#ccff00]/5 border border-[#ccff00]/20 rounded-lg p-4 space-y-3">
+                <div className="bg-[#FF9900]/5 border border-[#FF9900]/20 rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-bold text-white">Network & Method</p>
                       <p className="text-xs text-white/60 mt-0.5">Circle Arc Network</p>
                     </div>
-                    <div className="w-10 h-10 bg-[#ccff00]/20 rounded-lg flex items-center justify-center border border-[#ccff00]/40">
-                      <span className="text-[#ccff00] font-bold">⊙</span>
+                    <div className="w-10 h-10 bg-[#FF9900]/20 rounded-lg flex items-center justify-center border border-[#FF9900]/40">
+                      <span className="text-[#FF9900] font-bold">⊙</span>
                     </div>
                   </div>
 
@@ -268,12 +268,12 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                     <div className="flex items-center gap-1.5">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                       <span className="text-white/70">Network:</span>
-                      <span className="font-mono text-[#ccff00] font-bold">Arc Mainnet</span>
+                      <span className="font-mono text-[#FF9900] font-bold">Arc Mainnet</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 text-xs pt-2 border-t border-[#ccff00]/10">
-                    <Shield className="h-4 w-4 text-[#ccff00]" />
+                  <div className="flex items-center gap-3 text-xs pt-2 border-t border-[#FF9900]/10">
+                    <Shield className="h-4 w-4 text-[#FF9900]" />
                     <span className="text-white/70">Blockchain verified • Instant settlement</span>
                   </div>
                 </div>
@@ -282,7 +282,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                 <Button
                   onClick={handleSubmitTransaction}
                   disabled={!amount || !receiver}
-                  className="w-full py-4 sm:py-5 text-base sm:text-lg font-bold bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[#ccff00]/30 transition-all"
+                  className="w-full py-4 sm:py-5 text-base sm:text-lg font-bold bg-[#FF9900] hover:bg-[#FF9900]/90 text-[#0f0f0f] disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[#FF9900]/30 transition-all"
                 >
                   Send {amount || "0.00"} USDC
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -293,23 +293,23 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
             {step === "processing" && (
               <div className="flex flex-col items-center justify-center h-full space-y-4 text-center">
                 <div className="relative mb-4">
-                  <Loader2 className="h-16 w-16 text-[#ccff00] animate-spin" />
+                  <Loader2 className="h-16 w-16 text-[#FF9900] animate-spin" />
                 </div>
                 <h3 className="text-xl font-bold text-white">Processing Transaction</h3>
                 <p className="text-white/60 max-w-sm text-sm">
                   Verifying and securing your USDC transfer on Arc blockchain...
                 </p>
                 <div className="space-y-2 text-xs text-white/70 w-full max-w-sm">
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#ccff00]/5">
-                    <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" />
+                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#FF9900]/5">
+                    <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse" />
                     <span>Verifying recipient wallet</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#ccff00]/5">
-                    <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#FF9900]/5">
+                    <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
                     <span>Checking Arc network</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#ccff00]/5">
-                    <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
+                  <div className="flex items-center gap-2 p-2 rounded-lg bg-[#FF9900]/5">
+                    <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
                     <span>Broadcasting USDC</span>
                   </div>
                 </div>
@@ -328,10 +328,10 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                 </p>
                 
                 {/* Transaction Details */}
-                <div className="w-full bg-[#ccff00]/5 border border-[#ccff00]/20 rounded-lg p-4 space-y-2 text-xs mt-4">
+                <div className="w-full bg-[#FF9900]/5 border border-[#FF9900]/20 rounded-lg p-4 space-y-2 text-xs mt-4">
                   <div className="flex justify-between text-white/70">
                     <span>Amount</span>
-                    <span className="text-[#ccff00] font-bold">{amount} USDC</span>
+                    <span className="text-[#FF9900] font-bold">{amount} USDC</span>
                   </div>
                   <div className="flex justify-between text-white/70">
                     <span>Recipient</span>
@@ -341,7 +341,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                     <span>Network</span>
                     <span className="text-white">Arc</span>
                   </div>
-                  <div className="flex justify-between text-white/70 pt-2 border-t border-[#ccff00]/10">
+                  <div className="flex justify-between text-white/70 pt-2 border-t border-[#FF9900]/10">
                     <span>Status</span>
                     <span className="text-green-400 font-bold">✓ Confirmed</span>
                   </div>
@@ -349,7 +349,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
 
                 <Button
                   onClick={onClose}
-                  className="w-full py-4 mt-4 text-base font-bold bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f]"
+                  className="w-full py-4 mt-4 text-base font-bold bg-[#FF9900] hover:bg-[#FF9900]/90 text-[#0f0f0f]"
                 >
                   Done
                 </Button>
@@ -361,17 +361,17 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
           <div className="w-full lg:w-80 flex flex-col bg-[#0f0f0f] border-t lg:border-t-0">
             
             {/* Chat Header */}
-            <div className="p-4 border-b border-[#ccff00]/10">
+            <div className="p-4 border-b border-[#FF9900]/10">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-[#ccff00]/20 rounded-lg flex items-center justify-center border border-[#ccff00]/40">
-                  <Bot className="h-5 w-5 text-[#ccff00]" />
+                <div className="w-10 h-10 bg-[#FF9900]/20 rounded-lg flex items-center justify-center border border-[#FF9900]/40">
+                  <Bot className="h-5 w-5 text-[#FF9900]" />
                 </div>
                 <div>
                   <h3 className="font-bold text-sm text-white">AI Assistant</h3>
                   <p className="text-xs text-white/50">USDC Helper</p>
                 </div>
                 <div className="ml-auto">
-                  <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse" />
+                  <div className="w-2 h-2 bg-[#FF9900] rounded-full animate-pulse" />
                 </div>
               </div>
             </div>
@@ -387,22 +387,22 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                   )}
                 >
                   {message.role === "assistant" && (
-                    <div className="w-7 h-7 bg-[#ccff00]/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#ccff00]/40">
-                      <Bot className="h-3 w-3 text-[#ccff00]" />
+                    <div className="w-7 h-7 bg-[#FF9900]/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#FF9900]/40">
+                      <Bot className="h-3 w-3 text-[#FF9900]" />
                     </div>
                   )}
                   <div
                     className={cn(
                       "max-w-[70%] rounded-lg px-3 py-2 text-xs sm:text-sm",
                       message.role === "user"
-                        ? "bg-[#ccff00] text-[#0f0f0f] font-bold"
-                        : "bg-[#1a1a1a] border border-[#ccff00]/20 text-white/80"
+                        ? "bg-[#FF9900] text-[#0f0f0f] font-bold"
+                        : "bg-[#1a1a1a] border border-[#FF9900]/20 text-white/80"
                     )}
                   >
                     {message.content}
                   </div>
                   {message.role === "user" && (
-                    <div className="w-7 h-7 bg-[#ccff00] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 bg-[#FF9900] rounded-lg flex items-center justify-center flex-shrink-0">
                       <UserIcon className="h-3 w-3 text-[#0f0f0f]" />
                     </div>
                   )}
@@ -411,14 +411,14 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
               
               {isTyping && (
                 <div className="flex gap-2">
-                  <div className="w-7 h-7 bg-[#ccff00]/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#ccff00]/40">
-                    <Bot className="h-3 w-3 text-[#ccff00]" />
+                  <div className="w-7 h-7 bg-[#FF9900]/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#FF9900]/40">
+                    <Bot className="h-3 w-3 text-[#FF9900]" />
                   </div>
-                  <div className="bg-[#1a1a1a] border border-[#ccff00]/20 rounded-lg px-3 py-2">
+                  <div className="bg-[#1a1a1a] border border-[#FF9900]/20 rounded-lg px-3 py-2">
                     <div className="flex gap-1">
-                      <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full animate-bounce" />
-                      <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                      <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                      <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-bounce" />
+                      <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                      <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                     </div>
                   </div>
                 </div>
@@ -427,7 +427,7 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
 
             {/* Chat Input */}
             {step === "form" && (
-              <div className="p-3 border-t border-[#ccff00]/10">
+              <div className="p-3 border-t border-[#FF9900]/10">
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -440,12 +440,12 @@ export function TransactionModal({ isOpen, onClose, userName }: TransactionModal
                       }
                     }}
                     placeholder="Ask..."
-                    className="flex-1 px-3 py-2 text-xs bg-[#0f0f0f] border border-[#ccff00]/30 rounded-lg focus:border-[#ccff00] focus:outline-none text-white placeholder-white/30 transition-colors"
+                    className="flex-1 px-3 py-2 text-xs bg-[#0f0f0f] border border-[#FF9900]/30 rounded-lg focus:border-[#FF9900] focus:outline-none text-white placeholder-white/30 transition-colors"
                   />
                   <button
                     onClick={handleSendChatMessage}
                     disabled={!chatInput.trim() || isTyping}
-                    className="p-2 bg-[#ccff00]/20 hover:bg-[#ccff00]/30 border border-[#ccff00]/40 text-[#ccff00] rounded-lg disabled:opacity-40 transition-all"
+                    className="p-2 bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] rounded-lg disabled:opacity-40 transition-all"
                   >
                     <Send className="h-4 w-4" />
                   </button>

@@ -108,21 +108,21 @@ export function PerksExplainableInsights({
   return (
     <div className="space-y-6">
       {/* Main Insight Card */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a] relative overflow-hidden">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#ccff00]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9900]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
 
         <CardContent className="pt-8 relative">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#ccff00]/20 border border-[#ccff00]/40 flex items-center justify-center flex-shrink-0">
-              <Gift className="h-6 w-6 text-[#ccff00]" />
+            <div className="w-12 h-12 rounded-lg bg-[#FF9900]/20 border border-[#FF9900]/40 flex items-center justify-center flex-shrink-0">
+              <Gift className="h-6 w-6 text-[#FF9900]" />
             </div>
 
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="text-lg font-bold text-white">{agentName}</h3>
-                <div className="h-2 w-2 bg-[#ccff00] rounded-full animate-pulse"></div>
-                <span className="text-xs text-[#ccff00] font-bold">REWARDS</span>
+                <div className="h-2 w-2 bg-[#FF9900] rounded-full animate-pulse"></div>
+                <span className="text-xs text-[#FF9900] font-bold">REWARDS</span>
               </div>
               <p className="text-base text-white/90 leading-relaxed">{mainInsight}</p>
             </div>
@@ -131,7 +131,7 @@ export function PerksExplainableInsights({
       </Card>
 
       {/* Active Rewards */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
         <CardContent className="pt-8">
           <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
             Your Active Rewards
@@ -152,7 +152,7 @@ export function PerksExplainableInsights({
                     {cat.status === "expiring" && (
                       <AlertCircle className="h-4 w-4 text-yellow-400 mb-1" />
                     )}
-                    <p className="font-bold text-[#ccff00] text-sm">
+                    <p className="font-bold text-[#FF9900] text-sm">
                       {cat.value.toLocaleString()}
                     </p>
                   </div>
@@ -160,7 +160,7 @@ export function PerksExplainableInsights({
 
                 {/* Status bar */}
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="flex-1 h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#ccff00]/20">
+                  <div className="flex-1 h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#FF9900]/20">
                     <div
                       className={`h-full bg-gradient-to-r ${cat.color}`}
                       style={{
@@ -178,7 +178,7 @@ export function PerksExplainableInsights({
                       cat.status === "expiring"
                         ? "bg-yellow-500/20 text-yellow-400"
                         : cat.status === "available"
-                        ? "bg-[#ccff00]/20 text-[#ccff00]"
+                        ? "bg-[#FF9900]/20 text-[#FF9900]"
                         : "bg-green-500/20 text-green-400"
                     }`}
                   >
@@ -193,10 +193,10 @@ export function PerksExplainableInsights({
             ))}
 
             {/* Total Summary */}
-            <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
-              <div className="p-4 rounded-lg bg-[#ccff00]/5">
+            <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
+              <div className="p-4 rounded-lg bg-[#FF9900]/5">
                 <p className="text-xs text-white/60 mb-1">Total Rewards Value</p>
-                <p className="text-3xl font-bold text-[#ccff00]">$3,847</p>
+                <p className="text-3xl font-bold text-[#FF9900]">$3,847</p>
                 <p className="text-xs text-white/60 mt-2">
                   If used optimally, could be worth $5,200+
                 </p>
@@ -205,16 +205,16 @@ export function PerksExplainableInsights({
           </div>
 
           {/* Confidence Score */}
-          <div className="mt-6 pt-6 border-t border-[#ccff00]/10">
-            <div className="flex items-center justify-between gap-4 p-4 rounded-lg bg-[#ccff00]/5">
+          <div className="mt-6 pt-6 border-t border-[#FF9900]/10">
+            <div className="flex items-center justify-between gap-4 p-4 rounded-lg bg-[#FF9900]/5">
               <div>
                 <p className="text-xs text-white/60 mb-2">Analysis Confidence</p>
-                <p className="text-2xl font-bold text-[#ccff00]">{confidence}%</p>
+                <p className="text-2xl font-bold text-[#FF9900]">{confidence}%</p>
               </div>
               <div className="flex-1">
-                <div className="h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#ccff00]/20">
+                <div className="h-2 bg-[#0f0f0f] rounded-full overflow-hidden border border-[#FF9900]/20">
                   <div
-                    className="h-full bg-gradient-to-r from-[#ccff00] to-[#ffdd00]"
+                    className="h-full bg-gradient-to-r from-[#FF9900] to-[#ffdd00]"
                     style={{ width: `${confidence}%` }}
                   ></div>
                 </div>
@@ -226,7 +226,7 @@ export function PerksExplainableInsights({
       </Card>
 
       {/* Reward Optimizations */}
-      <Card className="card-modern border border-[#ccff00]/20 bg-[#1a1a1a]">
+      <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a]">
         <CardContent className="pt-8">
           <h3 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
             Optimization Opportunities
@@ -236,12 +236,12 @@ export function PerksExplainableInsights({
             {optimizations.map((opt, idx) => (
               <div
                 key={idx}
-                className={`p-4 rounded-lg border transition-all hover:shadow-lg hover:shadow-[#ccff00]/20 ${
+                className={`p-4 rounded-lg border transition-all hover:shadow-lg hover:shadow-[#FF9900]/20 ${
                   opt.priority === "high"
                     ? "bg-green-500/10 border-green-500/30 hover:border-green-500/60"
                     : opt.priority === "medium"
-                    ? "bg-[#ccff00]/10 border-[#ccff00]/30 hover:border-[#ccff00]/60"
-                    : "bg-[#0f0f0f] border-[#ccff00]/20 hover:border-[#ccff00]/40"
+                    ? "bg-[#FF9900]/10 border-[#FF9900]/30 hover:border-[#FF9900]/60"
+                    : "bg-[#0f0f0f] border-[#FF9900]/20 hover:border-[#FF9900]/40"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-3">
@@ -250,14 +250,14 @@ export function PerksExplainableInsights({
                       opt.priority === "high"
                         ? "bg-green-500/20"
                         : opt.priority === "medium"
-                        ? "bg-[#ccff00]/20"
-                        : "bg-[#ccff00]/10"
+                        ? "bg-[#FF9900]/20"
+                        : "bg-[#FF9900]/10"
                     }`}
                   >
                     {opt.priority === "high" ? (
                       <AlertCircle className="h-4 w-4 text-green-400" />
                     ) : (
-                      <Target className="h-4 w-4 text-[#ccff00]" />
+                      <Target className="h-4 w-4 text-[#FF9900]" />
                     )}
                   </div>
 
@@ -269,8 +269,8 @@ export function PerksExplainableInsights({
                           opt.priority === "high"
                             ? "bg-green-500/20 text-green-400"
                             : opt.priority === "medium"
-                            ? "bg-[#ccff00]/20 text-[#ccff00]"
-                            : "bg-[#ccff00]/10 text-white/60"
+                            ? "bg-[#FF9900]/20 text-[#FF9900]"
+                            : "bg-[#FF9900]/10 text-white/60"
                         }`}
                       >
                         {opt.priority.toUpperCase()}
@@ -292,7 +292,7 @@ export function PerksExplainableInsights({
                   <p className="text-sm text-green-400 font-semibold">{opt.saving}</p>
                 </div>
 
-                <button className="w-full py-2 px-4 rounded-lg bg-[#ccff00]/20 hover:bg-[#ccff00]/30 border border-[#ccff00]/40 text-[#ccff00] font-bold text-sm transition-all">
+                <button className="w-full py-2 px-4 rounded-lg bg-[#FF9900]/20 hover:bg-[#FF9900]/30 border border-[#FF9900]/40 text-[#FF9900] font-bold text-sm transition-all">
                   {opt.action}
                 </button>
               </div>

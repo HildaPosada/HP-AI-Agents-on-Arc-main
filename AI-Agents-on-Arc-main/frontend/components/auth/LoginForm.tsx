@@ -42,15 +42,15 @@ export function LoginForm() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <Card className="bg-[#1a1a1a] border border-[#ccff00]/20 shadow-2xl shadow-[#ccff00]/10 relative overflow-hidden">
+      <Card className="bg-[#1a1a1a] border border-[#FF9900]/20 shadow-2xl shadow-[#FF9900]/10 relative overflow-hidden">
         {/* Glow effect */}
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#ccff00]/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#FF9900]/10 rounded-full blur-3xl"></div>
 
         <CardContent className="p-6 sm:p-8 relative">
           {/* Header */}
           <div className="mb-8 text-center">
             <div className="flex justify-center mb-4">
-              <div className="w-12 h-12 bg-[#ccff00] rounded-lg flex items-center justify-center shadow-lg shadow-[#ccff00]/30">
+              <div className="w-12 h-12 bg-[#FF9900] rounded-lg flex items-center justify-center shadow-lg shadow-[#FF9900]/30">
                 <Zap className="h-6 w-6 text-[#0f0f0f]" />
               </div>
             </div>
@@ -73,13 +73,13 @@ export function LoginForm() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="user-001"
-                  className="h-12 text-base bg-[#0f0f0f] border border-[#ccff00]/30 text-white placeholder-white/30 focus:border-[#ccff00] focus:outline-none transition-colors rounded-lg"
+                  className="h-12 text-base bg-[#0f0f0f] border border-[#FF9900]/30 text-white placeholder-white/30 focus:border-[#FF9900] focus:outline-none transition-colors rounded-lg"
                   disabled={isLoading}
                   autoComplete="username"
                   autoFocus
                 />
                 {username && !isLoading && (
-                  <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[#ccff00]" />
+                  <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[#FF9900]" />
                 )}
               </div>
             </div>
@@ -95,7 +95,7 @@ export function LoginForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-12 text-base font-bold bg-[#ccff00] hover:bg-[#ccff00]/90 text-[#0f0f0f] shadow-lg shadow-[#ccff00]/30 transition-all duration-200 rounded-lg mt-6"
+              className="w-full h-12 text-base font-bold bg-[#FF9900] hover:bg-[#FF9900]/90 text-[#0f0f0f] shadow-lg shadow-[#FF9900]/30 transition-all duration-200 rounded-lg mt-6"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -114,9 +114,9 @@ export function LoginForm() {
 
           {/* Divider */}
           <div className="flex items-center gap-2 my-6">
-            <div className="h-px bg-[#ccff00]/10 flex-1"></div>
+            <div className="h-px bg-[#FF9900]/10 flex-1"></div>
             <span className="text-xs text-white/50 font-bold uppercase">Demo Accounts</span>
-            <div className="h-px bg-[#ccff00]/10 flex-1"></div>
+            <div className="h-px bg-[#FF9900]/10 flex-1"></div>
           </div>
 
           {/* Demo Account Buttons */}
@@ -137,7 +137,7 @@ export function LoginForm() {
                   }
                 }}
                 disabled={isLoading}
-                className="px-3 py-2 text-xs font-bold bg-[#ccff00]/10 hover:bg-[#ccff00]/20 text-[#ccff00] rounded-lg transition-all duration-200 border border-[#ccff00]/30 hover:border-[#ccff00]/60 hover:shadow-lg hover:shadow-[#ccff00]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-2 text-xs font-bold bg-[#FF9900]/10 hover:bg-[#FF9900]/20 text-[#FF9900] rounded-lg transition-all duration-200 border border-[#FF9900]/30 hover:border-[#FF9900]/60 hover:shadow-lg hover:shadow-[#FF9900]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {demoUser}
               </button>
@@ -145,23 +145,23 @@ export function LoginForm() {
           </div>
 
           {/* Info Box */}
-          <div className="mt-6 p-4 rounded-lg bg-[#ccff00]/5 border border-[#ccff00]/20 space-y-2">
+          <div className="mt-6 p-4 rounded-lg bg-[#FF9900]/5 border border-[#FF9900]/20 space-y-2">
             <div className="flex items-start gap-2">
-              <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full mt-1.5 flex-shrink-0"></div>
+              <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full mt-1.5 flex-shrink-0"></div>
               <p className="text-xs text-white/70">
-                <span className="text-[#ccff00] font-bold">Multi-agent AI</span> - 6 specialized financial agents
+                <span className="text-[#FF9900] font-bold">Multi-agent AI</span> - 6 specialized financial agents
               </p>
             </div>
             <div className="flex items-start gap-2">
-              <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full mt-1.5 flex-shrink-0"></div>
+              <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full mt-1.5 flex-shrink-0"></div>
               <p className="text-xs text-white/70">
-                <span className="text-[#ccff00] font-bold">Blockchain secured</span> - USDC on Arc network
+                <span className="text-[#FF9900] font-bold">Blockchain secured</span> - USDC on Arc network
               </p>
             </div>
             <div className="flex items-start gap-2">
-              <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full mt-1.5 flex-shrink-0"></div>
+              <div className="w-1.5 h-1.5 bg-[#FF9900] rounded-full mt-1.5 flex-shrink-0"></div>
               <p className="text-xs text-white/70">
-                <span className="text-[#ccff00] font-bold">AI-powered</span> - Gemini 2.5 Flash API
+                <span className="text-[#FF9900] font-bold">AI-powered</span> - Gemini 2.5 Flash API
               </p>
             </div>
           </div>
