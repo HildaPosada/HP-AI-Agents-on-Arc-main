@@ -13,8 +13,18 @@ interface AgentMessageProps {
 }
 
 export function AgentMessage({ message }: AgentMessageProps) {
-  const { speak, stop, isLoading: isVoiceLoading, isPlaying } = useElevenLabsVoice();
+  const {
+    speak,
+    stop,
+    isLoading: isVoiceLoading,
+    isPlaying,
+    selectedVoiceId,
+    setSelectedVoiceId,
+    availableVoices,
+    voicesLoading,
+  } = useElevenLabsVoice();
   const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [showVoiceSelector, setShowVoiceSelector] = useState(false);
 
   const handleSpeak = async () => {
     setVoiceError(null);
