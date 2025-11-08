@@ -1,164 +1,349 @@
-# AI Agents on Arc with USDC - Multi-Agent Banking System
 
-This project was built as part of AI Agents on Arc with USDC Hackathon, where I reimagined retail banking through intelligent multi-agent systems powered by Google's Agent Development Kit (ADK), the Agent-to-Agent (A2A) Protocol, and the Gemini API.
+<div align='center'>
+<img width="272" height="137" alt="ArcFi" src="https://github.com/user-attachments/assets/11432f9f-6a4c-47ce-8d8b-9521b513d7be" />
+</div>
 
-## 🎯 What This Project Does
+# ArcFi — AI Agents on Arc with USDC
 
-This multi-agent banking system transforms the traditional banking experience by providing proactive, intelligent financial guidance through specialized AI agents. Instead of static chatbots, users interact with a sophisticated orchestrator that routes queries to domain-specific agents, each equipped to handle different aspects of personal finance.
+This project was built for the **AI Agents on Arc with USDC Hackathon**, reimagining retail banking through intelligent multi-agent systems powered by **Google’s Agent Development Kit (ADK)**, the **Agent-to-Agent (A2A) Protocol**, the **Gemini API**, and the **Arc blockchain** — a **USDC-native Layer-1** designed for stable, secure financial automation.
+
+## What This Project Does
+
+ArcFi transforms traditional banking into **autonomous finance** by combining **AI-driven intelligence** with **on-chain execution**. Instead of relying on a single chatbot or static dashboard, users engage with a network of specialized AI agents operating on the Arc blockchain, executing secure USDC transactions while delivering real-time financial insights.
 
 ### The Agents
 
-The system consists of six specialized agents working together:
+The system consists of six specialized agents working together as one coordinated financial ecosystem:
 
-- **Chat Orchestrator** - Intelligently routes user queries to the appropriate specialist agent
-- **Spending Agent** - Analyzes transactions, budgets, and daily expenses
-- **Perks Agent** - Manages banking perks, rewards, and account benefits
-- **Portfolio Agent** - Provides investment portfolio analysis and market insights
-- **Goals Agent** - Helps with financial goal setting and savings tracking
-- **Advisors Agent** - Offers financial advisory services and professional guidance
+- **Chat Orchestrator** – Routes user queries to the relevant specialist agent and unifies responses  
+- **Spending Agent** – Tracks transactions, spending patterns, and budgets  
+- **Perks Agent** – Optimizes rewards, cashback programs, and loyalty points  
+- **Portfolio Agent** – Analyzes investments, portfolio allocations, and market data  
+- **Goals Agent** – Sets and tracks financial goals, savings, and progress  
+- **Advisors Agent** – Connects users with professional financial advisors for personalized guidance  
 
-Each agent connects to Cymbal Bank's backend services through the A2A protocol, enabling seamless communication and data exchange between agents.
+Each agent connects through the **A2A Protocol**, sharing context securely while leveraging **Arc blockchain’s smart contracts** and **USDC-based transactions** to provide trustless, transparent, and auditable operations.
 
-## 🏗️ Architecture
+## Architecture
 
 ### Frontend
-- **Framework**: Next.js 15.4.6 with React 19
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with shadcn/ui components
-- **Port**: 3000 (default)
+- **Framework**: Next.js 15.4.6 with React 19  
+- **Language**: TypeScript  
+- **Styling**: Tailwind CSS with shadcn/ui components  
+- **Port**: 3000 (default)  
+- **On-chain Integration**: USDC payment interface using Arc’s wallet SDK  
 
 ### Backend
-- **Framework**: Google Agent Development Kit (ADK)
-- **Protocol**: Agent-to-Agent (A2A) for inter-agent communication
-- **Language**: Python (3.10+)
-- **Package Manager**: uv
-- **AI Model**: Gemini 2.5 Flash
+- **Framework**: Google Agent Development Kit (ADK)  
+- **Protocol**: Agent-to-Agent (A2A) for inter-agent collaboration  
+- **Language**: Python (3.10+)  
+- **AI Model**: Gemini 2.5 Flash  
+- **Blockchain Layer**: Arc (EVM-compatible) with USDC for gas fees and transactions  
 
 ### Agent Ports
-- Chat Orchestrator: `8090`
-- Spending Agent: `8081`
-- Perks Agent: `8082`
-- Portfolio Agent: `8083`
-- Goals Agent: `8084`
+- Chat Orchestrator: `8090`  
+- Spending Agent: `8081`  
+- Perks Agent: `8082`  
+- Portfolio Agent: `8083`  
+- Goals Agent: `8084`  
 - Advisors Agent: `8085`
 
-## 🚀 Getting Started
+### Workflow
+```mermaid
+graph LR
+    subgraph E[Existing Infra]
+        BE[Backend API]
+        FE[Frontend UI]
+        EA[Existing Agent]
+    end
+
+    EA -->|connects to| A2A[Agent-to-Agent Hub]
+
+    subgraph System[AI Agent System]
+        A2A --> A1[Spending Agent]
+        A2A --> A2[Portfolio Agent]
+        A2A --> A3[Perks Agent]
+        A2A --> A4[Advisors Agent]
+        A2A --> A5[Goals Agent]
+    end
+
+    subgraph Custom[ArcFi - Our Custom App]
+        UI[Next.js UI]
+        WC[Wallet Context]
+        TM[Transaction Modal]
+    end
+
+    subgraph Arc[Arc Blockchain Layer]
+        ARC[Arc Network<br/>Chain ID: 88882]
+        USDC[USDC Contract<br/>ERC20 Token]
+        MM[MetaMask/<br/>Web3 Wallet]
+    end
+
+    A1 <--> Custom
+    A2 <--> Custom
+    A3 <--> Custom
+    A4 <--> Custom
+    A5 <--> Custom
+
+    UI --> WC
+    WC --> MM
+    MM <-->|Web3 Connection| ARC
+    ARC <-->|Gas Fees in USDC| USDC
+    TM -->|Send USDC| WC
+    WC -->|Execute Transaction| USDC
+
+    style E stroke:#8A2BE2,stroke-width:2px,color:#fff
+    style A2A fill:#ff6666,stroke:#ff6666,color:#fff
+    style System stroke:#ff6666,stroke-width:2px
+    style Custom stroke:#00cc66,stroke-width:2px,color:#fff,fill:#1a2332
+    style Arc stroke:#a855f7,stroke-width:3px,color:#fff,fill:#2d1b4e
+    style ARC fill:#a855f7,stroke:#a855f7,color:#fff
+    style USDC fill:#2775CA,stroke:#2775CA,color:#fff
+    style MM fill:#FF9900,stroke:#FF9900,color:#fff
+
+```
+
+## Getting Started
 
 ### Prerequisites
 
-Before running the project, make sure you have:
+You’ll need the following installed:
 
-- **Node.js** (v20+)
-- **Python** (3.10-3.12)
-- **uv** (Python package manager) - [Install here](https://github.com/astral-sh/uv)
-- **Google API Key** with Gemini API access
+- **Node.js** (v20+)  
+- **Python** (3.10–3.12)  
+- **uv** (Python package manager) – [Install here](https://github.com/astral-sh/uv)  
+- **Google API Key** (for Gemini API access)  
+- **Arc Testnet Wallet** with **Testnet USDC Faucet** access  
 
 ### Setup Instructions
 
 #### 1. Configure Environment Variables
 
-You need to add your `GOOGLE_API_KEY` to the `.env` file in each agent directory:
+Add your `GOOGLE_API_KEY` to the `.env` file in each agent directory:
 
 ```bash
-# Add your API key to each of these files:
-agents/spending_snapshot_agent/spending_snapshot_agent/.env
-agents/perks_snapshot_agent/perks_snapshot_agent/.env
-agents/portfolio_snapshot_agent/portfolio_snapshot_agent/.env
-agents/goals_snapshot_agent/goals_snapshot_agent/.env
-agents/advisors_snapshot_agent/advisors_snapshot_agent/.env
-agents/chat/chat/.env
-```
-
-Each `.env` file should contain:
-```
 GOOGLE_API_KEY=your_api_key_here
-```
+````
 
 #### 2. Start the Agents
 
-Open a terminal and navigate to the agents directory:
+In the agents directory, run:
 
 ```bash
 cd agents
 make agents
 ```
 
-This will start all agents simultaneously on their respective ports.
+This will launch all agents on their respective ports.
 
 #### 3. Start the Frontend
 
-Open a **second terminal** and start the Next.js development server:
+In a new terminal:
 
 ```bash
 cd frontend
-npm install  # Only needed on first run
+npm install   # Run once
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
+The app will be live at `http://localhost:3000`
 
-## 💡 How It Works
+## How It Works
 
-1. **User Interaction**: Users interact with the frontend interface, which provides a modern banking dashboard
-2. **Query Routing**: The Chat Orchestrator receives user queries and intelligently routes them to the appropriate specialist agent
-3. **Agent Processing**: Each specialist agent uses the Cymbal Bank Agent Wrapper to communicate with backend services via A2A protocol
-4. **Data Retrieval**: Agents fetch relevant data (transactions, profile, goals, etc.) from Cymbal Bank's API
-5. **Response Generation**: Agents analyze the data and generate intelligent, context-aware responses using Gemini
-6. **User Response**: The orchestrator returns the response to the user through the frontend
+1. **User Interaction** – The user interacts through a chat-based dashboard built with Next.js.
+2. **Query Routing** – The Chat Orchestrator analyzes intent and delegates the task to the right AI agent.
+3. **Agent Collaboration** – Agents process data via A2A Protocol and retrieve contextual data (spending, goals, investments).
+4. **On-chain Execution** – When needed, agents execute secure **USDC transactions** on the **Arc blockchain** via smart contracts.
+5. **Learning Feedback Loop** – Transaction data is fed back into AI context for improved recommendations.
+6. **Response Delivery** – The orchestrator compiles insights and returns a personalized, real-time response to the user.
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-- **[Google Agent Development Kit (ADK)](https://github.com/google/adk)** - Framework for building multi-agent systems
-- **[Agent-to-Agent (A2A) Protocol](https://github.com/a2aproject/a2a)** - Standardized protocol for agent communication
-- **[Gemini API](https://ai.google.dev/)** - Google's advanced AI model for natural language understanding
-- **Next.js** - React framework for production-grade applications
-- **Python** - Backend agent implementation
-- **TypeScript** - Type-safe frontend development
+* **[Arc Blockchain](https://www.arc.network/)** – EVM-compatible, USDC-native Layer-1 for stablecoin-based finance
+* **USDC** – Stable digital dollar used for all transactions and gas fees
+* **[Google ADK](https://google.github.io/adk-docs/)** – Multi-agent system development framework
+* **[A2A Protocol](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)** – Agent communication standard
+* **[Gemini API](https://ai.google.dev/)** – Natural language AI for contextual financial reasoning
+* **Next.js** – React-based framework for the frontend interface
+* **TypeScript** – Type-safe client-side code
+* **Python** – Backend implementation for AI agents
 
-## 📁 Project Structure
+## Project Structure
 
+<details>
+  <summary><b>📂 Click to view full repository structure</b></summary>
+
+```bash
+temp-repo/
+├── .git/                                    # Git repository
+├── .gitignore                               # Git ignore rules
+├── README.md                                # Project documentation
+├── DEPLOYMENT.md                            # Deployment instructions
+├── netlify.toml                             # Netlify deployment config
+│
+├── agents/                                  # 🤖 Multi-agent backend (Python)
+│   ├── .venv/                               # Python virtual environment
+│   ├── Makefile                             # Agent startup commands
+│   ├── pyproject.toml                       # Python dependencies
+│   ├── uv.lock                              # Dependency lock file
+│   ├── chat/                                # Chat orchestrator agent
+│   │   └── chat/
+│   │       ├── __init__.py
+│   │       ├── agent.py
+│   │       └── cymbal_agent_wrapper.py
+│   ├── spending_snapshot_agent/             # Spending analysis agent
+│   │   ├── pyproject.toml
+│   │   └── spending_snapshot_agent/
+│   │       ├── __init__.py
+│   │       ├── agent.py
+│   │       └── cymbal_agent_wrapper.py
+│   ├── portfolio_snapshot_agent/            # Portfolio analysis agent
+│   │   ├── pyproject.toml
+│   │   └── portfolio_snapshot_agent/
+│   │       ├── __init__.py
+│   │       ├── agent.py
+│   │       └── cymbal_agent_wrapper.py
+│   ├── perks_snapshot_agent/                # Perks management agent
+│   │   ├── pyproject.toml
+│   │   └── perks_snapshot_agent/
+│   │       ├── __init__.py
+│   │       ├── agent.py
+│   │       └── cymbal_agent_wrapper.py
+│   ├── advisors_snapshot_agent/             # Advisory services agent
+│   │   ├── pyproject.toml
+│   │   └── advisors_snapshot_agent/
+│   │       ├── __init__.py
+│   │       ├── agent.py
+│   │       └── cymbal_agent_wrapper.py
+│   └── goals_snapshot_agent/                # Goals tracking agent
+│       ├── pyproject.toml
+│       └── goals_snapshot_agent/
+│           ├── __init__.py
+│           ├── agent.py
+│           └── cymbal_agent_wrapper.py
+│
+└── frontend/                                # 💻 Next.js frontend application
+    ├── .next/                               # Next.js build output
+    ├── node_modules/                        # Node dependencies
+    ├── .gitignore                           # Frontend-specific ignores
+    ├── package.json                         # Node dependencies (ethers.js v6)
+    ├── package-lock.json                    # Dependency lock file
+    ├── next.config.ts                       # Next.js configuration
+    ├── tsconfig.json                        # TypeScript configuration
+    ├── next-env.d.ts                        # Next.js TypeScript types
+    ├── eslint.config.mjs                    # ESLint configuration
+    ├── postcss.config.mjs                   # PostCSS configuration
+    ├── components.json                      # Shadcn UI components config
+    ├── README.md                            # Frontend documentation
+    │
+    ├── app/                                 # Next.js App Router
+    │   ├── favicon.ico                      # Site icon
+    │   ├── globals.css                      # Global styles (Arc animations)
+    │   ├── layout.tsx                       # Root layout
+    │   ├── page.tsx                         # Login page (Arc branding)
+    │   ├── (dashboard)/                     # Dashboard routes group
+    │   │   ├── layout.tsx                   # Dashboard layout (Sidebar)
+    │   │   ├── spending/
+    │   │   │   └── page.tsx                 # Spending agent page
+    │   │   ├── portfolio/
+    │   │   │   └── page.tsx                 # Portfolio agent page
+    │   │   ├── perks/
+    │   │   │   └── page.tsx                 # Perks agent page
+    │   │   └── advisors/
+    │   │       └── page.tsx                 # Advisors agent page
+    │   └── api/                             # API routes
+    │       └── cymbal/                      # Cymbal agent endpoints
+    │           ├── chat/
+    │           ├── spending-snapshot/
+    │           ├── portfolio-snapshot/
+    │           ├── perks-snapshot/
+    │           └── advisors-snapshot/
+    │
+    ├── components/                          # React components
+    │   ├── auth/                            # Authentication components
+    │   │   ├── AuthContext.tsx              # Auth provider
+    │   │   └── LoginForm.tsx                # Login form
+    │   ├── layout/                          # Layout components
+    │   │   ├── Sidebar.tsx                  # Sidebar (Arc wallet button)
+    │   │   └── SplitView.tsx                # Split view layout
+    │   ├── transaction/                     # Transaction components
+    │   │   └── TransactionModal.tsx         # USDC transaction modal (Arc)
+    │   ├── spending/                        # Spending-specific components
+    │   │   ├── SpendingSnapshot.tsx
+    │   │   ├── SpendingChat.tsx
+    │   │   ├── SpendingCard.tsx
+    │   │   ├── InsightsCard.tsx
+    │   │   ├── ActivitiesList.tsx
+    │   │   ├── AgentMessage.tsx
+    │   │   ├── UserMessage.tsx
+    │   │   └── ChatInput.tsx
+    │   ├── portfolio/                       # Portfolio-specific components
+    │   │   ├── PortfolioSnapshot.tsx
+    │   │   ├── PortfolioChat.tsx
+    │   │   └── PortfolioCard.tsx
+    │   ├── perks/                           # Perks-specific components
+    │   │   ├── PerksSnapshot.tsx
+    │   │   ├── PerksChat.tsx
+    │   │   └── PerksCard.tsx
+    │   ├── advisors/                        # Advisors-specific components
+    │   │   ├── AdvisorsSnapshot.tsx
+    │   │   ├── AdvisorsChat.tsx
+    │   │   └── AdvisorsCard.tsx
+    │   └── ui/                              # Reusable UI components (Shadcn)
+    │       ├── button.tsx
+    │       ├── card.tsx
+    │       ├── input.tsx
+    │       ├── badge.tsx
+    │       └── alert.tsx
+    │
+    ├── lib/                                 # Utilities and types
+    │   ├── utils.ts                         # Utility functions
+    │   ├── mockData.ts                      # Mock data for demo mode
+    │   ├── arc/                             # 🔗 Arc blockchain integration
+    │   │   ├── config.ts                    # Arc network & USDC config
+    │   │   └── WalletContext.tsx            # Web3 wallet provider (ethers.js)
+    │   └── types/                           # TypeScript type definitions
+    │       ├── spending.ts
+    │       ├── portfolio.ts
+    │       ├── perks.ts
+    │       ├── advisors.ts
+    │       └── chat.ts
+    │
+    └── public/                              # Static assets
+        └── (images, fonts, etc.)
 ```
-adk-bake-off/
-├── agents/                          # Multi-agent backend
-│   ├── chat/                        # Chat orchestrator agent
-│   ├── spending_snapshot_agent/     # Spending analysis agent
-│   ├── perks_snapshot_agent/        # Perks management agent
-│   ├── portfolio_snapshot_agent/    # Portfolio analysis agent
-│   ├── goals_snapshot_agent/        # Goals tracking agent
-│   ├── advisors_snapshot_agent/     # Advisory services agent
-│   └── Makefile                     # Agent startup commands
-├── frontend/                        # Next.js frontend
-│   ├── app/                         # Next.js app router
-│   ├── components/                  # React components
-│   └── lib/                         # Utility functions and types
-└── refs/                           # Reference materials and samples
-```
+</details>
 
 
-## 📝 Notes
+## Notes
 
-- All agents must be running before the frontend can communicate with them
-- The `make agents` command starts agents in the background - use `Ctrl+C` to stop all agents
-- Each agent operates independently but communicates through the orchestrator
-- The system uses the A2A protocol to enable standardized agent-to-agent communication
+* All agents must be active before starting the frontend.
+* The **A2A Protocol** handles secure communication between agents.
+* The **Arc blockchain** ensures all financial actions are verifiable and stable with **USDC-based gas fees**.
+* Agents maintain autonomy but collaborate through the orchestrator for seamless user experiences.
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
-### Agents won't start
-- Verify your `GOOGLE_API_KEY` is set in all `.env` files
-- Check that ports 8081-8085 and 8090 are not in use
-- Ensure Python 3.10+ is installed: `python --version`
+### Agents Won’t Start
 
-### Frontend won't connect to agents
-- Verify all agents are running (check terminal output)
-- Ensure CORS is enabled (already configured in Makefile)
-- Check browser console for connection errors
+* Ensure your `GOOGLE_API_KEY` is in all `.env` files
+* Confirm ports 8081–8085 and 8090 are free
+* Run `python --version` to confirm you’re using Python 3.10+
 
-### Module not found errors
-- Run `uv sync` in the agents directory to install dependencies
-- Run `npm install` in the frontend directory
+### Frontend Can’t Connect
+
+* Check if all agents are running
+* Review browser console for connection or CORS issues
+* Ensure Arc Testnet RPC is correctly configured
+
+### Missing Modules
+
+* Run `uv sync` in the agents directory
+* Run `npm install` in the frontend directory
 
 ---
 
-Built with ❤️ for AI Agents on Arc with USDC Hackathon
+Built with ❤️ on the **Arc Blockchain** using **USDC**, **AI Agents**, and **Gemini Intelligence** —
+**ArcFi: The Future of Autonomous Banking**
+
 
