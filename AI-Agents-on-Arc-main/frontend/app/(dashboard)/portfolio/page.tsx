@@ -66,11 +66,11 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
-              <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-[#FF9900] flex items-center justify-center">
+              <div className="w-7 sm:w-8 h-7 sm:h-8 rounded-lg bg-[#FF9900] flex items-center justify-center">
                 <TrendingUp className="h-4 sm:h-5 w-4 sm:w-5 text-[#0f0f0f]" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-white">Portfolio Analysis</h1>
+                <h1 className="text-sm sm:text-lg font-bold text-white">Portfolio Analysis</h1>
                 <p className="text-xs sm:text-sm text-white/60">
                   Real-time investment analysis with multi-agent insights
                 </p>
