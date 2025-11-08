@@ -11,6 +11,8 @@ import {
   TrendingDown,
   DollarSign,
   Zap,
+  Mic,
+  Square,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +36,9 @@ export function OptimizedAIAssistant() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
