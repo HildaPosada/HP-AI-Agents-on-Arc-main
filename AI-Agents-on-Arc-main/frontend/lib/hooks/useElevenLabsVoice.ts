@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 interface UseElevenLabsVoiceOptions {
   voiceId?: string;
@@ -8,8 +8,9 @@ interface UseElevenLabsVoiceOptions {
 }
 
 export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
+  const [selectedVoiceId, setSelectedVoiceId] = useState<string>("");
   const {
-    voiceId = "21m00Tcm4TlvDq8ikWAM", // Default voice ID
+    voiceId = selectedVoiceId,
     modelId = "eleven_multilingual_v2",
   } = options;
 
@@ -17,6 +18,35 @@ export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
   const [error, setError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const voiceFetchedRef = useRef(false);
+
+  // Fetch available voices on mount
+  useEffect(() => {
+    if (voiceFetchedRef.current) return;
+    voiceFetchedRef.current = true;
+
+    const fetchVoices = async () => {
+      try {
+        const response = await fetch("/api/elevenlabs/voices");
+        if (!response.ok) {
+          console.warn("Could not fetch voices, using default");
+          setSelectedVoiceId("Adam");
+          return;
+        }
+        const data = await response.json();
+        if (data.voices && data.voices.length > 0) {
+          setSelectedVoiceId(data.voices[0].voice_id);
+        } else {
+          setSelectedVoiceId("Adam");
+        }
+      } catch (err) {
+        console.warn("Failed to fetch voices:", err);
+        setSelectedVoiceId("Adam");
+      }
+    };
+
+    fetchVoices();
+  }, []);
 
   const speak = useCallback(
     async (text: string) => {
