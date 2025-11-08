@@ -83,8 +83,15 @@ export function ChatInput({
   // Cleanup on unmount
   useEffect(() => {
     return () => {
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+      }
       if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {
+          console.log('Speech recognition already stopped');
+        }
       }
     };
   }, []);
@@ -92,6 +99,10 @@ export function ChatInput({
   const toggleVoiceInput = () => {
     if (isListening || isRecording) {
       // Stop listening
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+        recordingTimeoutRef.current = null;
+      }
       try {
         if (recognitionRef.current) {
           recognitionRef.current.stop();
