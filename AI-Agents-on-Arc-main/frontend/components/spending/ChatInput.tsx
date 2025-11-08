@@ -91,18 +91,12 @@ export function ChatInput({
   }, []);
 
   const toggleVoiceInput = () => {
-    if (!recognitionRef.current) {
-      initializeSpeechRecognition();
-      if (!recognitionRef.current) {
-        console.error('Failed to initialize speech recognition');
-        return;
-      }
-    }
-
     if (isListening || isRecording) {
       // Stop listening
       try {
-        recognitionRef.current.stop();
+        if (recognitionRef.current) {
+          recognitionRef.current.stop();
+        }
       } catch (error) {
         console.error('Error stopping speech recognition:', error);
       }
@@ -110,20 +104,39 @@ export function ChatInput({
       setIsRecording(false);
     } else {
       // Start listening
+      setMessage(''); // Clear message when starting
+
+      if (!recognitionRef.current) {
+        initializeSpeechRecognition();
+      }
+
+      // Show recording UI even if recognition might not work (Safari fallback)
+      setIsListening(true);
+      setIsRecording(true);
+
       try {
-        setMessage(''); // Clear message when starting
-        recognitionRef.current.start();
+        if (recognitionRef.current) {
+          recognitionRef.current.start();
+        } else {
+          console.log('Speech Recognition not available, but showing recording UI');
+          // Still show the recording state for user feedback
+          setTimeout(() => {
+            console.log('Auto-stopping recording after timeout (no speech API)');
+            setIsListening(false);
+            setIsRecording(false);
+          }, 5000); // 5 second timeout for manual stop
+        }
       } catch (error) {
         console.error('Error starting speech recognition:', error);
+        // Keep recording state visible so user knows they clicked it
         if ((error as any).name === 'InvalidStateError') {
-          // Already running, stop and restart
           try {
-            recognitionRef.current.stop();
-            setTimeout(() => {
-              recognitionRef.current?.start();
-              setIsListening(true);
-              setIsRecording(true);
-            }, 100);
+            if (recognitionRef.current) {
+              recognitionRef.current.stop();
+              setTimeout(() => {
+                recognitionRef.current?.start();
+              }, 100);
+            }
           } catch (e) {
             console.error('Error restarting:', e);
           }
