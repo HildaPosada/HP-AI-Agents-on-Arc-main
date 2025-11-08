@@ -9,8 +9,8 @@ interface UseElevenLabsVoiceOptions {
 
 export function useElevenLabsVoice(options: UseElevenLabsVoiceOptions = {}) {
   const {
-    voiceId = "EXAVITQu4vLHcDDzia9d", // Default voice ID (Rachel)
-    modelId = "eleven_monolingual_v1",
+    voiceId = "21m00Tcm4TlvDq8ikWAM", // Default voice ID
+    modelId = "eleven_multilingual_v2",
   } = options;
 
   const [isLoading, setIsLoading] = useState(false);
