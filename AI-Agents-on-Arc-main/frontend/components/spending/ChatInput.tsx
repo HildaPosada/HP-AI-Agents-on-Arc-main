@@ -22,49 +22,62 @@ export function ChatInput({
 
   // Initialize speech recognition
   const initializeSpeechRecognition = () => {
-    if (typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (typeof window === 'undefined') return;
+
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+
+    if (!SpeechRecognition) {
+      console.error('Speech Recognition not supported in this browser');
+      alert('Speech Recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+      return;
+    }
+
+    try {
       const recognition = new SpeechRecognition();
-      recognition.continuous = true;
+      recognition.continuous = false;
       recognition.interimResults = true;
       recognition.lang = 'en-US';
 
+      recognition.onstart = () => {
+        console.log('Speech recognition started');
+        setIsListening(true);
+        setIsRecording(true);
+      };
+
       recognition.onresult = (event: any) => {
-        let interimTranscript = '';
+        console.log('Speech recognition result:', event);
         let finalTranscript = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
             finalTranscript += transcript + ' ';
-          } else {
-            interimTranscript += transcript;
           }
         }
 
-        if (finalTranscript) {
-          setMessage(prev => prev + finalTranscript);
-        } else if (interimTranscript) {
-          // Show interim results
-          setMessage(prev => {
-            const lastSpace = prev.lastIndexOf(' ');
-            return lastSpace >= 0 ? prev.substring(0, lastSpace + 1) + interimTranscript : interimTranscript;
-          });
+        if (finalTranscript.trim()) {
+          console.log('Final transcript:', finalTranscript);
+          setMessage(prev => (prev + ' ' + finalTranscript).trim());
         }
       };
 
       recognition.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
+        alert('Microphone Error: ' + event.error + '. Please check microphone permissions.');
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognition.onend = () => {
+        console.log('Speech recognition ended');
         setIsListening(false);
         setIsRecording(false);
       };
 
       recognitionRef.current = recognition;
+    } catch (error) {
+      console.error('Error initializing speech recognition:', error);
+      alert('Could not initialize speech recognition. Please check your browser.');
     }
   };
 
