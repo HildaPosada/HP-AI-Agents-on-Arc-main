@@ -1,14 +1,44 @@
+"use client";
+
+import { useState } from "react";
 import { ChatMessage } from "@/lib/types/chat";
 import { Card, CardContent } from "@/components/ui/card";
-import { Loader2, Bot, DollarSign, Sparkles } from "lucide-react";
+import { Loader2, Bot, DollarSign, Sparkles, Volume2, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { useElevenLabsVoice } from "@/lib/hooks/useElevenLabsVoice";
 
 interface AgentMessageProps {
   message: ChatMessage;
 }
 
 export function AgentMessage({ message }: AgentMessageProps) {
+  const {
+    speak,
+    stop,
+    isLoading: isVoiceLoading,
+    isPlaying,
+    selectedVoiceId,
+    setSelectedVoiceId,
+    availableVoices,
+    voicesLoading,
+  } = useElevenLabsVoice();
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [showVoiceSelector, setShowVoiceSelector] = useState(false);
+
+  const handleSpeak = async () => {
+    setVoiceError(null);
+    try {
+      if (isPlaying) {
+        stop();
+      } else {
+        await speak(message.content);
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Voice synthesis failed";
+      setVoiceError(message);
+    }
+  };
   return (
     <div className="flex justify-start mb-1 animate-in slide-in-from-left-2 duration-500">
       <div className="flex items-start gap-2 max-w-[90%]">
@@ -187,6 +217,67 @@ export function AgentMessage({ message }: AgentMessageProps) {
                   <span className="text-xs bg-gradient-to-r from-primary/70 to-cyan-600/70 bg-clip-text text-transparent font-medium">
                     AI Analysis Complete
                   </span>
+
+                  {/* Voice button with selector */}
+                  <div className="flex items-center gap-1 ml-2 relative">
+                    <button
+                      onClick={handleSpeak}
+                      disabled={isVoiceLoading}
+                      className={cn(
+                        "flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200",
+                        "border border-transparent hover:border-primary/50",
+                        isPlaying
+                          ? "bg-primary/20 text-primary hover:bg-primary/30"
+                          : "text-muted-foreground hover:text-primary/70 hover:bg-primary/10",
+                        isVoiceLoading && "opacity-50 cursor-not-allowed"
+                      )}
+                      title={isPlaying ? "Stop audio" : "Play audio"}
+                      aria-label={isPlaying ? "Stop audio" : "Play audio"}
+                    >
+                      {isVoiceLoading ? (
+                        <Loader2 className="w-3 h-3 animate-spin" />
+                      ) : isPlaying ? (
+                        <Square className="w-3 h-3 fill-current" />
+                      ) : (
+                        <Volume2 className="w-3 h-3" />
+                      )}
+                    </button>
+
+                    {/* Voice selector button */}
+                    {availableVoices.length > 1 && (
+                      <button
+                        onClick={() => setShowVoiceSelector(!showVoiceSelector)}
+                        className="px-1.5 py-1 rounded-md text-xs hover:bg-primary/10 transition-colors"
+                        title="Change voice"
+                        aria-label="Change voice"
+                      >
+                        ▼
+                      </button>
+                    )}
+
+                    {/* Voice selector dropdown */}
+                    {showVoiceSelector && availableVoices.length > 1 && (
+                      <div className="absolute top-full right-0 mt-1 bg-[#0f0f0f] border border-primary/20 rounded-md shadow-lg z-50 max-h-48 overflow-y-auto">
+                        {availableVoices.map((voice) => (
+                          <button
+                            key={voice.voice_id}
+                            onClick={() => {
+                              setSelectedVoiceId(voice.voice_id);
+                              setShowVoiceSelector(false);
+                            }}
+                            className={cn(
+                              "w-full text-left px-3 py-2 text-xs transition-colors",
+                              selectedVoiceId === voice.voice_id
+                                ? "bg-primary/30 text-primary font-medium"
+                                : "text-muted-foreground hover:bg-primary/10"
+                            )}
+                          >
+                            {voice.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Confidence indicator */}

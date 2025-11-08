@@ -272,11 +272,11 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-            The Future of <span className="text-[#FF9900]">Banking</span>
+            The Future of <span className="text-[#FF9900]">Crypto Exchange</span>
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
-            Multi-agent AI orchestration powered by Google ADK, A2A Protocol, and Gemini. Transform banking.
+            Empower your finances with AI + Arc insights. Track spending, grow savings with USDC, and manage money hands-free through multilingual ElevenLabs voice AI.
           </p>
 
           {/* CTA Buttons */}

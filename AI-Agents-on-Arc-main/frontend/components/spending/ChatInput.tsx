@@ -17,9 +17,22 @@ export function ChatInput({
   const [message, setMessage] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [micError, setMicError] = useState<string | null>(null);
+  const [hasBrowserSupport, setHasBrowserSupport] = useState<boolean | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<any>(null);
   const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check browser support on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      setHasBrowserSupport(false);
+      return;
+    }
+
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    setHasBrowserSupport(!!SpeechRecognition);
+  }, []);
 
   // Initialize speech recognition
   const initializeSpeechRecognition = () => {
@@ -28,7 +41,8 @@ export function ChatInput({
     const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
 
     if (!SpeechRecognition) {
-      console.log('ℹ️ Speech Recognition API not available in this browser');
+      setMicError('Speech recognition not supported in this browser');
+      setHasBrowserSupport(false);
       return;
     }
 
@@ -42,15 +56,19 @@ export function ChatInput({
         console.log('🎤 Speech recognition started');
         setIsListening(true);
         setIsRecording(true);
+        setMicError(null);
       };
 
       recognition.onresult = (event: any) => {
         let finalTranscript = '';
+        let interimTranscript = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
             finalTranscript += transcript + ' ';
+          } else {
+            interimTranscript += transcript;
           }
         }
 
@@ -62,7 +80,19 @@ export function ChatInput({
 
       recognition.onerror = (event: any) => {
         console.log('⚠️ Speech recognition error:', event.error);
-        // Silently handle errors - don't show alerts
+        let errorMsg = event.error;
+
+        if (event.error === 'not-allowed') {
+          errorMsg = 'Microphone denied. Allow in browser settings (🔒 icon > Microphone > Allow)';
+        } else if (event.error === 'network') {
+          errorMsg = 'Network error. Check your connection';
+        } else if (event.error === 'no-speech') {
+          errorMsg = 'No speech detected. Try again';
+        } else if (event.error === 'service-not-allowed') {
+          errorMsg = 'Browser blocked speech service';
+        }
+
+        setMicError(`Mic error: ${errorMsg}`);
         setIsListening(false);
         setIsRecording(false);
       };
@@ -75,8 +105,11 @@ export function ChatInput({
 
       recognitionRef.current = recognition;
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       console.log('ℹ️ Could not initialize speech recognition:', error);
-      // Silently fail - don't show alerts
+      setMicError(`Failed to initialize: ${errorMsg}`);
+      setIsListening(false);
+      setIsRecording(false);
     }
   };
 
@@ -96,6 +129,16 @@ export function ChatInput({
     };
   }, []);
 
+  // Clear error after 3 seconds
+  useEffect(() => {
+    if (micError) {
+      const timer = setTimeout(() => {
+        setMicError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [micError]);
+
   const toggleVoiceInput = () => {
     if (isListening || isRecording) {
       // Stop listening
@@ -113,8 +156,15 @@ export function ChatInput({
       setIsListening(false);
       setIsRecording(false);
     } else {
+      // Check browser support first
+      if (!hasBrowserSupport) {
+        setMicError('Microphone not supported. Try Chrome, Edge, or Safari.');
+        return;
+      }
+
       // Start listening
       setMessage(''); // Clear message when starting
+      setMicError(null);
 
       if (!recognitionRef.current) {
         initializeSpeechRecognition();
@@ -141,12 +191,14 @@ export function ChatInput({
           recognitionRef.current.start();
           console.log('✓ Speech recognition started');
         } else {
-          console.log('Speech Recognition API not available, showing recording UI');
-          // Still show recording state for user feedback even without API
+          setMicError('Failed to start microphone');
+          setIsRecording(false);
+          setIsListening(false);
         }
       } catch (error) {
         console.error('Error starting speech recognition:', error);
-        if ((error as any).name === 'InvalidStateError') {
+        const err = error as any;
+        if (err.name === 'InvalidStateError') {
           console.log('Speech recognition already running, attempting restart');
           try {
             if (recognitionRef.current) {
@@ -157,7 +209,12 @@ export function ChatInput({
             }
           } catch (e) {
             console.error('Error restarting:', e);
+            setMicError('Failed to start microphone');
           }
+        } else {
+          setMicError(`Microphone error: ${err.message || 'Unknown'}`);
+          setIsRecording(false);
+          setIsListening(false);
         }
       }
     }
@@ -240,7 +297,7 @@ export function ChatInput({
           {/* Voice Input Button */}
           <Button
             onClick={toggleVoiceInput}
-            disabled={disabled || isLoading}
+            disabled={disabled || isLoading || hasBrowserSupport === false}
             size="sm"
             className={cn(
               "h-[50px] min-w-[50px]",
@@ -248,6 +305,7 @@ export function ChatInput({
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
                 : 'bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 shadow-lg shadow-blue-500/30'
             )}
+            title={hasBrowserSupport === false ? "Microphone not supported in this browser" : isRecording ? "Stop recording" : "Start voice input"}
             aria-label={isRecording ? "Stop recording" : "Start voice input"}
           >
             {isRecording ? (
@@ -273,17 +331,23 @@ export function ChatInput({
         </div>
       </div>
 
-      {/* Help text */}
+      {/* Help text & Error messages */}
       <div className="flex items-center justify-between mt-2">
-        <p className="text-xs text-muted-foreground">
-          {isRecording ? (
-            <span className="text-red-500 font-medium animate-pulse">
-              🎤 Recording... Speak now
-            </span>
-          ) : (
-            "Press Enter to send, Shift+Enter for a new line"
-          )}
-        </p>
+        {micError ? (
+          <p className="text-xs text-red-500 font-medium">⚠️ {micError}</p>
+        ) : isRecording ? (
+          <p className="text-xs text-red-500 font-medium animate-pulse">
+            🎤 Recording... Speak now
+          </p>
+        ) : hasBrowserSupport === false ? (
+          <p className="text-xs text-muted-foreground">
+            💡 Try Chrome, Edge, or Safari for voice input
+          </p>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            Press Enter to send, Shift+Enter for a new line
+          </p>
+        )}
         {isRecording && (
           <span className="text-xs text-red-500 font-medium">
             Click microphone to stop
