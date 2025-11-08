@@ -51,26 +51,26 @@ export function USDCTransactionCard({
 }: USDCTransactionCardProps) {
   return (
     <Card className="card-modern border border-[#FF9900]/20 bg-[#1a1a1a] hover:border-[#FF9900]/50">
-      <CardContent className="pt-6 sm:pt-8">
+      <CardContent className="pt-4 sm:pt-6">
         {/* Header with Balance */}
-        <div className="mb-6">
-          <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-2">
+        <div className="mb-4">
+          <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">
             USDC Balance on Arc
           </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-2">
             <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-2">
-              <span className="text-3xl sm:text-4xl font-bold text-[#FF9900]">
+              <span className="text-2xl sm:text-3xl font-bold text-[#FF9900]">
                 ${totalUSADCBalance.toFixed(2)}
               </span>
-              <span className="text-xs sm:text-sm text-white/60">Circle Arc Network</span>
+              <span className="text-xs text-white/60">Circle Arc Network</span>
             </div>
             <BlockchainVerificationBadge
               status="verified"
               network="Circle Arc"
             />
           </div>
-          <div className="flex items-center gap-2 text-xs text-white/70">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+          <div className="flex items-center gap-1.5 text-xs text-white/70">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
             <span>Connected • Verified</span>
           </div>
         </div>
